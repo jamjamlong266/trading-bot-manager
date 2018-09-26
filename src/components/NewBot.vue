@@ -53,6 +53,7 @@
 
 <script>
 import db from './firebaseInit'
+import firebase from 'firebase'
 
 export default {
     name: 'new-bot',
@@ -64,6 +65,7 @@ export default {
             api_key: null,
             secret_key: null,
             trading_pair: null,
+            uid: null
         }
     },
     methods: {
@@ -74,7 +76,8 @@ export default {
                 indicator: this.indicator,
                 api_key: this.api_key,
                 secret_key: this.secret_key,
-                trading_pair: this.trading_pair
+                trading_pair: this.trading_pair,
+                uid: firebase.auth().currentUser.uid
             })
             .then(docRef => this.$router.push('/'))
             .catch(error => console.log(err))

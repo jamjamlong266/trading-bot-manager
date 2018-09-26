@@ -25,16 +25,19 @@
 
 <script>
 import db from './firebaseInit'
+import firebase from 'firebase'
 
 export default {
     name: 'dashboard',
     data () {
         return {
-            bots: []
+            bots: [],
+            // uid: null,
         }
     },
     created () {
-        console.log("hello")
+        // this.uid = firebase.auth().currentUser.uid;
+        // db.collection('trading_bot').where('uid', '==', this.uid).get().then( snapshot => {
         db.collection('trading_bot').get().then( snapshot => {
             snapshot.forEach(doc => {
                 console.log(doc)
