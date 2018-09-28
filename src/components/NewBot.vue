@@ -1,52 +1,79 @@
 <template>
     <div id="new-bot" class="container">
         <h3>New Bot</h3>
+        
         <div class="row">
             <form @sumbit.prevent="saveBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="bot_id" required>
+                        <input  class="bot_id" type="text" v-model="bot_id" required>
                         <label>Bot ID</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="exchange" required>
-                        <label>Exchange Platform</label>
+                    <p>Exchange :</p>
+                        <select class="exchange" v-model="exchange" style="height:50px; display:block">
+                            <option value="BINANCE">BINANCE</option>
+                            <option value="COINEX">COINEX</option>
+                            <option value="JONVI">JONVI</option>
+                        </select>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p>Indicator :</p>
+                        <select class="indicator" v-model="indicator" style="height:50px; display:block">
+                            <option value="RSI">RSI</option>
+                            <option value="EMA">EMA</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="indicator" required>
-                        <label>Indicator</label>
+                        <input  class="api_key" type="text" v-model="api_key" required>
+                        <label>API KEY</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="api_key" required>
-                        <label>API Key</label>
+                        <input  class="secret_key" type="text" v-model="secret_key" required>
+                        <label>SECRET KEY</label>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type="text" v-model="secret_key" required>
-                        <label>Secret Key</label>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="trading_pair" required>
-                        <label>Trading Pair</label>
+                        <p>Trading Pair :</p>
+                        <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block">
+                            <option value="BTC/USDT">BTC/USDT</option>
+                            <option value="BCH/USDT">BCH/USDT</option>
+                            <option value="JE/USDT">JE/USDT</option>
+                            <option value="ETH/USDT">ETH/USDT</option>
+                            <option value="LTC/USDT">LTC/USDT</option>
+                            <option value="ETH/BTC">ETH/BTC</option>
+                            <option value="JE/BTC">JE/BTC</option>
+                            <option value="LTC/BTC">LTC/BTC</option>
+                            <option value="BCH/BTC">BCH/BTC</option>
+                            <option value="JE/eMYR">JE/eMYR</option>
+                            <option value="BTC/eMYR">BTC/eMYR</option>
+                            <option value="BCH/eMYR">BCH/eMYR</option>
+                            <option value="ETH/eMYR">ETH/eMYR</option>
+                            <option value="USDT/eMYR">USDT/eMYR</option>
+                        </select>    
                     </div>
                 </div>
+                
                 <button type="sumbit" class="btn" @click="saveBot">Submit</button>
                 <router-link to="/" class="btn grey">Cancel</router-link>
             </form>
+            
         </div>
     </div>
 </template>
@@ -85,3 +112,12 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+select.indicator,.trading_pair,.exchange {
+    background-color:khaki
+}
+input.bot_id,input.api_key,input.secret_key {
+    background-color:khaki
+}
+</style>

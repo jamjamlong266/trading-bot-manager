@@ -6,6 +6,7 @@ import ViewBot from '@/components/ViewBot'
 import EditBot from '@/components/EditBot'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import IndicatorSetting from '@/components/IndicatorSetting'
 
 import firebase from 'firebase'
 
@@ -53,7 +54,14 @@ let router = new Router({
         requiresAuth: true
       }
     },
-    ,
+    {
+      path: '/indicator/:bot_id',
+      name: 'indicator-setting',
+      component: IndicatorSetting,
+      meta: {
+        requiresAuth: true
+      }
+    },
     {
       path: '/:bot_id',
       name: 'view-bot',
