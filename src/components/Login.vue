@@ -40,16 +40,18 @@ export default {
     methods: {
         login: function(e) {
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-                .then( user => {
+                .then( (user) => {
                     console.log(user)
+                    console.log(user.email)
                     alert(`You are logged in as ${user.email}`);
                     this.$router.go({
                         path: this.$router.path
                     });
                 })
-                err => {
-                    alert(err.message)
-                }
+                .catch(err => {
+                    console.log("NOOO",err)
+                    alert(err)
+                }) 
 
             e.preventDefault();
         }

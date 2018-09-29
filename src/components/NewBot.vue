@@ -5,8 +5,33 @@
             <form @sumbit.prevent="saveBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="bot_id" required>
-                        <label>Bot ID</label>
+                        <h6>Indicator</h6>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio"  />
+                                <span>Green</span>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio"  />
+                                <span>Green</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="input-field col s12">
+                        <p>Exchange Platform</p>
+                        <select class="browser-default">
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
                     </div>
                 </div>
 
@@ -44,6 +69,18 @@
                         <label>Trading Pair</label>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" checked="checked" />
+                                <span>Active</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+
                 <button type="sumbit" class="btn" @click="saveBot">Submit</button>
                 <router-link to="/" class="btn grey">Cancel</router-link>
             </form>
@@ -59,7 +96,6 @@ export default {
     name: 'new-bot',
     data () {
         return {
-            bot_id: null,
             exchange: null,
             indicator: null,
             api_key: null,
