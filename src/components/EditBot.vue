@@ -5,36 +5,81 @@
             <form @sumbit.prevent="updateBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
+<<<<<<< HEAD
                         <input type="text" v-model="exchange" required>
+=======
+                        <span>BotID :</span><br>
+                        <input disabled type="text" v-model="bot_id" required>
+                        
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="indicator" required>
+                    <p>Indicator</p>
+                        <select v-model="exchange" style="height:50px; display:block;background-color：red">
+                            <option value="" >{{exchange}}</option>
+                            <option value="BINANCE">BINANCE</option>
+                            <option value="COINEX">COINEX</option>
+                            <option value="JONVI">JONVI</option>
+                        </select>
+>>>>>>> 744852c0b1a99ce3ebc75dd5520d0818d885dafd
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p>Indicator :</p>
+                        <select v-model="indicator" style="height:50px; display:block;background-color：red">
+                            <option value="" >{{indicator}}</option>
+                            <option value="RSI">RSI</option>
+                            <option value="EMA">EMA</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
+                        <span>Api Key :</span><br>
                         <input type="text" v-model="api_key" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
+                        <span>Secret Key :</span><br>
                         <input type="text" v-model="secret_key" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="trading_pair" required>
+                        <p>Trading Pair :</p>
+                        <select v-model="trading_pair" style="height:50px; display:block;background-color：red">
+                            <option value="" >{{trading_pair}}</option>
+                            <option value="BTC/USDT">BTC/USDT</option>
+                            <option value="BCH/USDT">BCH/USDT</option>
+                            <option value="JE/USDT">JE/USDT</option>
+                            <option value="ETH/USDT">ETH/USDT</option>
+                            <option value="LTC/USDT">LTC/USDT</option>
+                            <option value="ETH/BTC">ETH/BTC</option>
+                            <option value="JE/BTC">JE/BTC</option>
+                            <option value="LTC/BTC">LTC/BTC</option>
+                            <option value="BCH/BTC">BCH/BTC</option>
+                            <option value="JE/eMYR">JE/eMYR</option>
+                            <option value="BTC/eMYR">BTC/eMYR</option>
+                            <option value="BCH/eMYR">BCH/eMYR</option>
+                            <option value="ETH/eMYR">ETH/eMYR</option>
+                            <option value="USDT/eMYR">USDT/eMYR</option>
+                        </select>    
                     </div>
                 </div>
                 <button type="sumbit" class="btn" @click="updateBot">Submit</button>
-                <router-link to="/" class="btn grey">Cancel</router-link>
+                <router-link to="/" class="btn grey">Cancel</router-link>  
+                <router-link v-bind:to="{name: 'indicator-setting', params: {bot_id: bot_id}}" class="btn grey">INDICATOR</router-link> 
             </form>
+            
         </div>
     </div>
 </template>
