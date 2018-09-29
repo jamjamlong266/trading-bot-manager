@@ -99,8 +99,6 @@
                         </select>    
                     </div>
                 </div>
-<<<<<<< HEAD
-
                 <div class="row">
                     <div class="input-field col s12">
                         <p>
@@ -111,10 +109,6 @@
                         </p>
                     </div>
                 </div>
-
-=======
-                
->>>>>>> 744852c0b1a99ce3ebc75dd5520d0818d885dafd
                 <button type="sumbit" class="btn" @click="saveBot">Submit</button>
                 <router-link to="/" class="btn grey">Cancel</router-link>
             </form>
