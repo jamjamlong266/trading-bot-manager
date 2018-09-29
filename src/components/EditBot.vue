@@ -5,9 +5,7 @@
             <form @sumbit.prevent="updateBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-<<<<<<< HEAD
                         <input type="text" v-model="exchange" required>
-=======
                         <span>BotID :</span><br>
                         <input disabled type="text" v-model="bot_id" required>
                         
@@ -23,7 +21,6 @@
                             <option value="COINEX">COINEX</option>
                             <option value="JONVI">JONVI</option>
                         </select>
->>>>>>> 744852c0b1a99ce3ebc75dd5520d0818d885dafd
                     </div>
                     
                 </div>
