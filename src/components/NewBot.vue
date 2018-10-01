@@ -10,21 +10,21 @@
                         <h6>Indicator</h6>
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('rsi')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('rsi')"/>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('ema')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('ema')"/>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('sma')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('sma')"/>
                                 <span>SMA</span>
                             </label>
                         </p>
@@ -199,7 +199,6 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
-            indi: null
         }
     },
     methods: {
@@ -223,29 +222,31 @@ export default {
             for (let i = 0; i < 5; i++) {
                 autoId += chars.charAt(Math.floor(Math.random() * chars.length))
             }
-            
-            db.collection('trading_bot').add({
-                indicator: this.indicator,
-                overbought_value: this.overbought_value,
-                oversold_value: this.oversold_value,
-                entry_value: this.entry_value,
-                amount:this.amount,
-                exit_value: this.exit_value,
-                percentage_value: this.percentage_value,
-                stop_value: this.stop_value,
-                exchange: this.exchange,
-                api_key: this.api_key,
-                secret_key: this.secret_key,
-                trading_pair: this.trading_pair,
-                ema_value1: this.ema_value1,
-                ema_value2: this.ema_value2,
-                bot_id: autoId,
-                uid: firebase.auth().currentUser.uid
-            })
-            .then(docRef => {
-                this.$router.push('/')
-            })
-            .catch(error => console.log(err))
+
+            if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
+                db.collection('trading_bot').add({
+                    indicator: this.indicator,
+                    overbought_value: this.overbought_value,
+                    oversold_value: this.oversold_value,
+                    entry_value: this.entry_value,
+                    amount:this.amount,
+                    exit_value: this.exit_value,
+                    percentage_value: this.percentage_value,
+                    stop_value: this.stop_value,
+                    exchange: this.exchange,
+                    api_key: this.api_key,
+                    secret_key: this.secret_key,
+                    trading_pair: this.trading_pair,
+                    ema_value1: this.ema_value1,
+                    ema_value2: this.ema_value2,
+                    bot_id: autoId,
+                    uid: firebase.auth().currentUser.uid
+                })
+                .then(docRef => {
+                    this.$router.push('/')
+                })
+                .catch(error => console.log(err))
+                }
         }
     }
 }
