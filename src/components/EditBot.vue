@@ -5,6 +5,7 @@
             <form @sumbit.prevent="updateBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
+                        <input type="text" v-model="exchange" required>
                         <span>BotID :</span><br>
                         <input disabled type="text" v-model="bot_id" required>
                         
@@ -104,7 +105,6 @@ export default {
     name: 'edit-bot',
     data () {
         return {
-            bot_id: null,
             exchange: null,
             indicator: null,
             api_key: null,
