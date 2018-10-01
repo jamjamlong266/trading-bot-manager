@@ -38,11 +38,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99">
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30">
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -57,11 +57,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99">
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30">
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -76,21 +76,21 @@
                                 <span class="card-title">Indicator Setting</span>
                                 <br>
                                 <p class="setting-label">Entry Value</p>
-                                <input class="setting-input" type="text" placeholder="Entry Value">
+                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value">
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount">
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount">
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value">
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value">
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage">
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value">
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss">
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value">
                             </div>
                         </div>
                     </div>
@@ -174,24 +174,31 @@
 <script>
 import db from './firebaseInit'
 import firebase from 'firebase'
+import firebaseConfig from './firebaseConfig';
+import firebaseInit from './firebaseInit';
+
 
 export default {
     name: 'new-bot',
     data () {
         return {
-            bot_id: null,
-            exchange: null,
             indicator: null,
+            overbought_value: null,
+            oversold_value: null,
+            entry_value: null,
+            amount:null,
+            exit_value: null,
+            percentage_value: null,
+            stop_value: null,
+            exchange: null,
             api_key: null,
             secret_key: null,
             trading_pair: null,
+            ema_value1: null,
+            ema_value2:null,
+            bot_id: null,
             uid: null,
-            value: null,
-            indi: null,
-            overbought: null,
-            oversold: null,
-            entry_value: null,
-            exit_value: null,
+            indi: null
         }
     },
     methods: {
@@ -207,17 +214,28 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("ema-setting").style.display = "none"
             }
-            this.value = evt
+            this.indicator = evt
         },
         saveBot: function (){
             console.log(this.value);
+            console.log(ref.getId())
+            // bot_id: db.getId()
             // db.collection('trading_bot').add({
-            //     bot_id: this.bot_id,
-            //     exchange: this.exchange,
             //     indicator: this.indicator,
+            //     overbought_value: this.overbought_value,
+            //     oversold_value: this.oversold_value,
+            //     entry_value: this.entry_value,
+            //     amount:this.amount,
+            //     exit_value: this.exit_value,
+            //     percentage_value: this.percentage_value,
+            //     stop_value: this.stop_value,
+            //     exchange: this.exchange,
             //     api_key: this.api_key,
             //     secret_key: this.secret_key,
             //     trading_pair: this.trading_pair,
+            //     ema_value1: this.ema_value1,
+            //     ema_value2: this.ema_value2,
+                
             //     uid: firebase.auth().currentUser.uid
             // })
             // .then(docRef => this.$router.push('/'))
