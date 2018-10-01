@@ -38,19 +38,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-<<<<<<< HEAD
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_rsi" required>
-                                <label for="icon_telephone" class="setting-symbol">%</label>
-
-                                <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_rsi" required>
-=======
                                 <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
                                 <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value">
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -65,19 +57,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-<<<<<<< HEAD
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_ema" required>
-                                <label for="icon_telephone" class="setting-symbol">%</label>
-
-                                <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="oversold_ema" required>
-=======
                                 <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
                                 <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2">
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -95,30 +79,18 @@
                                 <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
 
                                 <p class="setting-label">Amount</p>
-<<<<<<< HEAD
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="Amount" required>
-=======
                                 <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
                                 <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
 
                                 <p class="setting-label">Percentage</p>
-<<<<<<< HEAD
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage" required>
-
-                                <br>
-                                <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop" required>
-=======
                                 <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
                                 <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
                             </div>
                         </div>
                     </div>
@@ -227,22 +199,7 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
-<<<<<<< HEAD
-            value: null,
-            indi: null,
-            overbought_ema: null,
-            oversold_ema: null,
-            overbought_rsi: null,
-            oversold_rsi: null,
-            entry_value: null,
-            exit_value: null,
-            stop: null,
-            Amount : null,
-            percentage : null
-
-=======
             indi: null
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
         }
     },
     methods: {
@@ -261,11 +218,6 @@ export default {
             this.indicator = evt
         },
         saveBot: function (){
-<<<<<<< HEAD
-            // console.log(this.value);
-            db.collection('trading_bot').add({
-                bot_id: this.bot_id,
-=======
             const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
             let autoId = ''
             for (let i = 0; i < 5; i++) {
@@ -281,26 +233,10 @@ export default {
                 exit_value: this.exit_value,
                 percentage_value: this.percentage_value,
                 stop_value: this.stop_value,
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
                 exchange: this.exchange,
                 api_key: this.api_key,
                 secret_key: this.secret_key,
                 trading_pair: this.trading_pair,
-<<<<<<< HEAD
-                uid: firebase.auth().currentUser.uid,
-                indicator: this.value,
-                overbought_ema: this.overbought_ema,
-                oversold_ema: this.oversold_ema,
-                overbought_rsi: this.overbought_rsi,
-                oversold_rsi: this.oversold_rsi,
-                entry_value: this.entry_value,
-                exit_value: this.exit_value,
-                stop: this.stop,
-                Amount : this.Amount,
-                percentage : this.percentage
-            })
-            .then(docRef => this.$router.push('/'))
-=======
                 ema_value1: this.ema_value1,
                 ema_value2: this.ema_value2,
                 bot_id: autoId,
@@ -309,7 +245,6 @@ export default {
             .then(docRef => {
                 this.$router.push('/')
             })
->>>>>>> 67f6b21d34db19022952e525dc00616acc5b14bd
             .catch(error => console.log(err))
         }
     }

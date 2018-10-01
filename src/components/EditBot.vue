@@ -55,11 +55,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_rsi" required>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_rsi" required>
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -74,11 +74,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_ema" required>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="oversold_ema" required>
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -96,18 +96,18 @@
                                 <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="Amount" required>
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
                                 <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage" required>
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop" required>
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
                             </div>
                         </div>
                     </div>
@@ -166,22 +166,23 @@ export default {
     name: 'edit-bot',
     data () {
         return {
-            bot_id: null,
-            exchange: null,
             indicator: null,
+            overbought_value: null,
+            oversold_value: null,
+            entry_value: null,
+            amount:null,
+            exit_value: null,
+            percentage_value: null,
+            stop_value: null,
+            exchange: null,
             api_key: null,
             secret_key: null,
             trading_pair: null,
+            ema_value1: null,
+            ema_value2:null,
+            bot_id: null,
             uid: null,
-            overbought_ema: null,
-            oversold_ema: null,
-            overbought_rsi: null,
-            oversold_rsi: null,
-            entry_value: null,
-            exit_value: null,
-            stop: null,
-            Amount : null,
-            percentage : null
+            indi: null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -195,15 +196,15 @@ export default {
                     vm.api_key = doc.data().api_key,
                     vm.secret_key = doc.data().secret_key,
                     vm.trading_pair = doc.data().trading_pair,
-                    vm.oversold_ema = doc.data().oversold_ema,
-                    vm.overbought_ema = doc.data().overbought_ema,
-                    vm.oversold_rsi = doc.data().oversold_rsi,
-                    vm.overbought_rsi = doc.data().overbought_rsi,
+                    vm.ema_value2 = doc.data().ema_value2,
+                    vm.ema_value1 = doc.data().ema_value1,
+                    vm.oversold_value = doc.data().oversold_value,
+                    vm.overbought_value = doc.data().overbought_value,
                     vm.entry_value = doc.data().entry_value,
                     vm.exit_value = doc.data().exit_value,
-                    vm.percentage = doc.data().percentage,
-                    vm.stop = doc.data().stop,
-                    vm.Amount = doc.data().Amount
+                    vm.percentage_value = doc.data().percentage_value,
+                    vm.stop_value = doc.data().stop_value,
+                    vm.amount = doc.data().amount
                 })
             })
         })
@@ -222,15 +223,15 @@ export default {
                     this.api_key = doc.data().api_key,
                     this.secret_key = doc.data().secret_key,
                     this.trading_pair = doc.data().trading_pair,
-                    this.Amount =doc.data().Amount,
-                    this.stop = doc.data().stop,
-                    this.percentage = doc.data().percentage,
+                    this.amount =doc.data().amount,
+                    this.stop_value = doc.data().stop_value,
+                    this.percentage_value = doc.data().percentage_value,
                     this.exit_value = doc.data().exit_value,
                     this.entry_value = doc.data().entry_value,
-                    this.overbought_ema = doc.data().overbought_ema,
-                    this.oversold_ema = doc.data().oversold_ema,
-                    this.overbought_rsi = doc.data().overbought_rsi,
-                    this.oversold_rsi = doc.data().oversold_rsi
+                    this.ema_value1 = doc.data().ema_value1,
+                    this.ema_value2 = doc.data().ema_value2,
+                    this.overbought_value = doc.data().overbought_value,
+                    this.oversold_value = doc.data().oversold_value
                 })
             })
             
@@ -240,21 +241,21 @@ export default {
             .then(snapshot => {
                 snapshot.forEach( doc => {
                     doc.ref.update({
-                        bot_id: this.bot_id,
-                        exchange: this.exchange,
                         indicator: this.indicator,
+                        overbought_value: this.overbought_value,
+                        oversold_value: this.oversold_value,
+                        entry_value: this.entry_value,
+                        amount:this.amount,
+                        exit_value: this.exit_value,
+                        percentage_value: this.percentage_value,
+                        stop_value: this.stop_value,
+                        exchange: this.exchange,
                         api_key: this.api_key,
                         secret_key: this.secret_key,
                         trading_pair: this.trading_pair,
-                        overbought_ema: this.overbought_ema,
-                        oversold_ema: this.oversold_ema,
-                        overbought_rsi: this.overbought_rsi,
-                        oversold_rsi: this.oversold_rsi,
-                        entry_value: this.entry_value,
-                        exit_value: this.exit_value,
-                        Amount: this.Amount,
-                        percentage:this.percentage,
-                        stop:this.stop
+                        ema_value1: this.ema_value1,
+                        ema_value2: this.ema_value2,
+                        bot_id: autoId,
                     })
                     .then( () => {
                         this.$router.push({name: 'view-bot', params: {bot_id: this.bot_id}})
