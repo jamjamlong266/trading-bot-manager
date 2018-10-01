@@ -10,19 +10,19 @@
                         <h6>Indicator</h6>
                         <p>
                             <label>
-                                <input class="indicator" name="group1" type="radio"  v-model="indi" @change="myFunction('ss')"/>
+                                <input class="indicator" name="group1" type="radio"  v-model="indic" :value="RSI" @change="myFunction('ss')"/>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="group1" type="radio"  v-model="indi" @change="myFunction('qq')"/>
+                                <input class="indicator" name="group1" type="radio"  v-model="indic" :value="SMA" @change="myFunction('qq')"/>
                                 <span>SMA</span>
                             </label>
                         </p>
                     </div>
-                    <p>aaas {{ indi }}</p>
+                    <p>aaas {{ indic }}</p>
                 </div>
 
                 <div class="row">

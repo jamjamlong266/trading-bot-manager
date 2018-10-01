@@ -5,35 +5,31 @@
             <form @sumbit.prevent="updateBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" v-model="exchange" required>
                         <span>BotID :</span><br>
                         <input disabled type="text" v-model="bot_id" required>
-                        
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                     <p>Exchange :</p>
-                    <form name="myForm" action="">
-                        <select id="mySelect" class="exchange" v-model="exchange" style="height:50px; display:block" onchange="myFunction(this.form)">
+                        <select  class="exchange" v-model="exchange" style="height:50px; display:block" >
                             <option value="BINANCE">BINANCE</option>
                             <option value="COINEX">COINEX</option>
                             <option value="JONVI">JONVI</option>
                         </select>
-                    </form>
                     </div>
-                    
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <p>Indicator :</p>
-                        <select class="indicator" v-model="indicator" style="height:50px; display:block">
+                        <select id="mySelect" class="indicator" v-model="indicator" style="height:50px; display:block" @change="myFunction(this.indicator.value)">
                             <option value="RSI">RSI</option>
                             <option value="EMA">EMA</option>
                         </select>
                     </div>
+                    <p>{{ indicator }}</p>
                 </div>
 
                 <div class="row">
@@ -73,7 +69,7 @@
                         </select>    
                     </div>
                 </div>
-                <p id="demo">Exchange {{ exchange }}</p>
+                <p id="demo">indi {{ indicator }}</p>
                 <div id="hidden_div"  class="hidden" style="display: none;">
                     <div class="indicator"  >
                         <p>ENTRY</p>
@@ -163,9 +159,12 @@ export default {
                 })
             })
         },
-        myFunction(myForm) {
-            var x = document.getElementById("mySelect").value;
-            document.getElementById("demo").innerHTML = "You selected: " + x;
+        myFunction(indicator) {
+            console.log(indicator)
+            // if (indicator == "RSI"){
+            //     document.getElementById("hidden_div").style.display = "block";
+            // }
+            
         }
 
     }
@@ -179,5 +178,26 @@ select.indicator,.trading_pair,.exchange {
 }
 input.bot_id,input.api_key,input.secret_key {
     background-color:khaki
+}
+p {
+    margin-left: 40px
+}
+h3 {
+    text-align: center
+}
+input.entry_price,input.amount {
+    margin-left: 80px;
+    width : 100px
+}
+input.stop_loss{
+    margin-left: 85px;
+    width : 100px
+}
+input.exit_percent{
+    margin-left: 95px;
+    width : 100px
+}
+div.indicator,.line2,.line3{
+    display: flex
 }
 </style>
