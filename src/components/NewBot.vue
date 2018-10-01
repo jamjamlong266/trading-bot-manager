@@ -10,21 +10,21 @@
                         <h6>Indicator</h6>
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('rsi')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('rsi')"/>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('ema')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('ema')"/>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('sma')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('sma')"/>
                                 <span>SMA</span>
                             </label>
                         </p>
