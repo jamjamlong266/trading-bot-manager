@@ -38,7 +38,7 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value">
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
@@ -76,21 +76,21 @@
                                 <span class="card-title">Indicator Setting</span>
                                 <br>
                                 <p class="setting-label">Entry Value</p>
-                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value">
+                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount">
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value">
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value">
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value">
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                     <p>Exchange :</p>
-                        <select class="exchange" v-model="exchange" style="height:50px; display:block">
+                        <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
                             <option value="BINANCE">BINANCE</option>
                             <option value="COINEX">COINEX</option>
                             <option value="JONVI">JONVI</option>
@@ -135,7 +135,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <p>Trading Pair :</p>
-                        <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block">
+                        <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
                             <option value="BTC/USDT">BTC/USDT</option>
                             <option value="BCH/USDT">BCH/USDT</option>
                             <option value="JE/USDT">JE/USDT</option>
