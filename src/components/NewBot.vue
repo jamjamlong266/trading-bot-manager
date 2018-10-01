@@ -109,12 +109,12 @@
                 </div>
 
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="input-feid col s12">
                         <input  class="bot_id" type="text" v-model="bot_id" required>
                         <label>Bot ID</label>
                     </div>
-                </div>
+                </div> -->
 
                 
                 <div class="row">
@@ -174,6 +174,7 @@
 <script>
 import db from './firebaseInit'
 import firebase from 'firebase'
+import 'firebase/firestore';
 import firebaseConfig from './firebaseConfig';
 import firebaseInit from './firebaseInit';
 
@@ -217,29 +218,34 @@ export default {
             this.indicator = evt
         },
         saveBot: function (){
-            console.log(this.value);
-            console.log(ref.getId())
-            // bot_id: db.getId()
-            // db.collection('trading_bot').add({
-            //     indicator: this.indicator,
-            //     overbought_value: this.overbought_value,
-            //     oversold_value: this.oversold_value,
-            //     entry_value: this.entry_value,
-            //     amount:this.amount,
-            //     exit_value: this.exit_value,
-            //     percentage_value: this.percentage_value,
-            //     stop_value: this.stop_value,
-            //     exchange: this.exchange,
-            //     api_key: this.api_key,
-            //     secret_key: this.secret_key,
-            //     trading_pair: this.trading_pair,
-            //     ema_value1: this.ema_value1,
-            //     ema_value2: this.ema_value2,
-                
-            //     uid: firebase.auth().currentUser.uid
-            // })
-            // .then(docRef => this.$router.push('/'))
-            // .catch(error => console.log(err))
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+            let autoId = ''
+            for (let i = 0; i < 5; i++) {
+                autoId += chars.charAt(Math.floor(Math.random() * chars.length))
+            }
+            
+            db.collection('trading_bot').add({
+                indicator: this.indicator,
+                overbought_value: this.overbought_value,
+                oversold_value: this.oversold_value,
+                entry_value: this.entry_value,
+                amount:this.amount,
+                exit_value: this.exit_value,
+                percentage_value: this.percentage_value,
+                stop_value: this.stop_value,
+                exchange: this.exchange,
+                api_key: this.api_key,
+                secret_key: this.secret_key,
+                trading_pair: this.trading_pair,
+                ema_value1: this.ema_value1,
+                ema_value2: this.ema_value2,
+                bot_id: autoId,
+                uid: firebase.auth().currentUser.uid
+            })
+            .then(docRef => {
+                this.$router.push('/')
+            })
+            .catch(error => console.log(err))
         }
     }
 }
