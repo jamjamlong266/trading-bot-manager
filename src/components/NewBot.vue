@@ -10,20 +10,13 @@
                         <h6>Indicator</h6>
                         <p>
                             <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="group1" type="radio"  v-model="indic" :value="RSI" @change="myFunction('ss')"/>
-=======
                                 <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('rsi')"/>
->>>>>>> fbc5e7d051e537e4fce439c479187540efd33201
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="group1" type="radio"  v-model="indic" :value="SMA" @change="myFunction('qq')"/>
-=======
                                 <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('ema')"/>
                                 <span>EMA</span>
                             </label>
@@ -32,14 +25,10 @@
                         <p>
                             <label>
                                 <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('sma')"/>
->>>>>>> fbc5e7d051e537e4fce439c479187540efd33201
                                 <span>SMA</span>
                             </label>
                         </p>
                     </div>
-<<<<<<< HEAD
-                    <p>aaas {{ indic }}</p>
-=======
                 </div>
 
                 <div class="row" id="rsi-setting">
@@ -49,11 +38,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99">
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_rsi" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30">
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_rsi" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -68,17 +57,16 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99">
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_ema" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30">
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="oversold_ema" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
                        
                     </div>
->>>>>>> fbc5e7d051e537e4fce439c479187540efd33201
                 </div>
 
                 <div class="row">
@@ -88,21 +76,21 @@
                                 <span class="card-title">Indicator Setting</span>
                                 <br>
                                 <p class="setting-label">Entry Value</p>
-                                <input class="setting-input" type="text" placeholder="Entry Value">
+                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount">
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="Amount" required>
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value">
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage">
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage" required>
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss">
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop" required>
                             </div>
                         </div>
                     </div>
@@ -200,10 +188,16 @@ export default {
             uid: null,
             value: null,
             indi: null,
-            overbought: null,
-            oversold: null,
+            overbought_ema: null,
+            oversold_ema: null,
+            overbought_rsi: null,
+            oversold_rsi: null,
             entry_value: null,
             exit_value: null,
+            stop: null,
+            Amount : null,
+            percentage : null
+
         }
     },
     methods: {
@@ -222,18 +216,27 @@ export default {
             this.value = evt
         },
         saveBot: function (){
-            console.log(this.value);
-            // db.collection('trading_bot').add({
-            //     bot_id: this.bot_id,
-            //     exchange: this.exchange,
-            //     indicator: this.indicator,
-            //     api_key: this.api_key,
-            //     secret_key: this.secret_key,
-            //     trading_pair: this.trading_pair,
-            //     uid: firebase.auth().currentUser.uid
-            // })
-            // .then(docRef => this.$router.push('/'))
-            // .catch(error => console.log(err))
+            // console.log(this.value);
+            db.collection('trading_bot').add({
+                bot_id: this.bot_id,
+                exchange: this.exchange,
+                api_key: this.api_key,
+                secret_key: this.secret_key,
+                trading_pair: this.trading_pair,
+                uid: firebase.auth().currentUser.uid,
+                indicator: this.value,
+                overbought_ema: this.overbought_ema,
+                oversold_ema: this.oversold_ema,
+                overbought_rsi: this.overbought_rsi,
+                oversold_rsi: this.oversold_rsi,
+                entry_value: this.entry_value,
+                exit_value: this.exit_value,
+                stop: this.stop,
+                Amount : this.Amount,
+                percentage : this.percentage
+            })
+            .then(docRef => this.$router.push('/'))
+            .catch(error => console.log(err))
         }
     }
 }

@@ -22,14 +22,96 @@
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s12">
-                        <p>Indicator :</p>
-                        <select id="mySelect" class="indicator" v-model="indicator" style="height:50px; display:block" @change="myFunction(this.indicator.value)">
-                            <option value="RSI">RSI</option>
-                            <option value="EMA">EMA</option>
-                        </select>
+                    <div class="input-field col s12 holder">
+
+                        <h6>Indicator</h6>
+                        <p>
+                            <label>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('rsi')"/>
+                                <span>RSI</span>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('ema')"/>
+                                <span>EMA</span>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('sma')"/>
+                                <span>SMA</span>
+                            </label>
+                        </p>
                     </div>
-                    <p>{{ indicator }}</p>
+                </div>
+
+                <div class="row" id="rsi-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">RSI Setting</span>
+                                <br>
+                                <p class="setting-label">Overbought %</p>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_rsi" required>
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+
+                                <p class="setting-label">Oversold %</p>
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_rsi" required>
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div class="row" id="ema-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">EMA Setting</span>
+                                <br>
+                                 <p class="setting-label">Overbought %</p>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_ema" required>
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+
+                                <p class="setting-label">Oversold %</p>
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="oversold_ema" required>
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Indicator Setting</span>
+                                <br>
+                                <p class="setting-label">Entry Value</p>
+                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
+
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="Amount" required>
+
+                                <br>
+                                <p class="setting-label">Exit Value</p>
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
+
+                                <p class="setting-label">Percentage</p>
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage" required>
+
+                                <br>
+                                <p class="setting-label">Stop Loss</p>
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 <div class="row">
@@ -69,25 +151,8 @@
                         </select>    
                     </div>
                 </div>
-                <p id="demo">indi {{ indicator }}</p>
-                <div id="hidden_div"  class="hidden" style="display: none;">
-                    <div class="indicator"  >
-                        <p>ENTRY</p>
-                        <input class="entry_price" placeholder="entry_price" id="entry_price" type="text" >
-                        <input class="amount" placeholder="amount" id="amount" type="text" >
-                    </div>
-                    <div class="line2">
-                        <p>EXIT</p>
-                        <input class="exit_percent" placeholder="exit_percent" id="exit_percent" type="text" >
-                    </div>
-                    <div class="line3">
-                        <p>STOP</p>
-                        <input class="stop_loss" placeholder="stop_price" id="stop_loss" type="text" >
-                    </div>
-                </div>
                 <button type="sumbit" class="btn" @click="updateBot">Submit</button>
                 <router-link to="/" class="btn grey">Cancel</router-link>  
-                <router-link v-bind:to="{name: 'indicator-setting', params: {bot_id: bot_id}}" class="btn grey">INDICATOR</router-link> 
             </form>
             
         </div>
@@ -101,11 +166,22 @@ export default {
     name: 'edit-bot',
     data () {
         return {
+            bot_id: null,
             exchange: null,
             indicator: null,
             api_key: null,
             secret_key: null,
             trading_pair: null,
+            uid: null,
+            overbought_ema: null,
+            oversold_ema: null,
+            overbought_rsi: null,
+            oversold_rsi: null,
+            entry_value: null,
+            exit_value: null,
+            stop: null,
+            Amount : null,
+            percentage : null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -117,8 +193,17 @@ export default {
                     vm.exchange = doc.data().exchange,
                     vm.indicator = doc.data().indicator,
                     vm.api_key = doc.data().api_key,
-                    vm.secret_key = doc.data().secret_key
-                    vm.trading_pair = doc.data().trading_pair
+                    vm.secret_key = doc.data().secret_key,
+                    vm.trading_pair = doc.data().trading_pair,
+                    vm.oversold_ema = doc.data().oversold_ema,
+                    vm.overbought_ema = doc.data().overbought_ema,
+                    vm.oversold_rsi = doc.data().oversold_rsi,
+                    vm.overbought_rsi = doc.data().overbought_rsi,
+                    vm.entry_value = doc.data().entry_value,
+                    vm.exit_value = doc.data().exit_value,
+                    vm.percentage = doc.data().percentage,
+                    vm.stop = doc.data().stop,
+                    vm.Amount = doc.data().Amount
                 })
             })
         })
@@ -135,8 +220,17 @@ export default {
                     this.exchange = doc.data().exchange,
                     this.indicator = doc.data().indicator,
                     this.api_key = doc.data().api_key,
-                    this.secret_key = doc.data().secret_key
-                    this.trading_pair = doc.data().trading_pair
+                    this.secret_key = doc.data().secret_key,
+                    this.trading_pair = doc.data().trading_pair,
+                    this.Amount =doc.data().Amount,
+                    this.stop = doc.data().stop,
+                    this.percentage = doc.data().percentage,
+                    this.exit_value = doc.data().exit_value,
+                    this.entry_value = doc.data().entry_value,
+                    this.overbought_ema = doc.data().overbought_ema,
+                    this.oversold_ema = doc.data().oversold_ema,
+                    this.overbought_rsi = doc.data().overbought_rsi,
+                    this.oversold_rsi = doc.data().oversold_rsi
                 })
             })
             
@@ -152,6 +246,15 @@ export default {
                         api_key: this.api_key,
                         secret_key: this.secret_key,
                         trading_pair: this.trading_pair,
+                        overbought_ema: this.overbought_ema,
+                        oversold_ema: this.oversold_ema,
+                        overbought_rsi: this.overbought_rsi,
+                        oversold_rsi: this.oversold_rsi,
+                        entry_value: this.entry_value,
+                        exit_value: this.exit_value,
+                        Amount: this.Amount,
+                        percentage:this.percentage,
+                        stop:this.stop
                     })
                     .then( () => {
                         this.$router.push({name: 'view-bot', params: {bot_id: this.bot_id}})
@@ -159,12 +262,19 @@ export default {
                 })
             })
         },
-        myFunction(indicator) {
-            console.log(indicator)
-            // if (indicator == "RSI"){
-            //     document.getElementById("hidden_div").style.display = "block";
-            // }
-            
+        myFunction: function(evt){
+            this.$emit("change", evt);
+            if (evt == "rsi") {
+                document.getElementById("rsi-setting").style.display = "block"
+                document.getElementById("ema-setting").style.display = "none"
+            } else if(evt == "ema") {
+                document.getElementById("ema-setting").style.display = "block"
+                document.getElementById("rsi-setting").style.display = "none"
+            }else {
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+            }
+            this.value = evt
         }
 
     }
@@ -173,29 +283,42 @@ export default {
 
 
 <style scoped>
-select.indicator,.trading_pair,.exchange {
-    background-color:khaki
-}
-input.bot_id,input.api_key,input.secret_key {
-    background-color:khaki
-}
-p {
-    margin-left: 40px
-}
+
 h3 {
     text-align: center
 }
-input.entry_price,input.amount {
-    margin-left: 80px;
-    width : 100px
+.holder p {
+    display:inline-block;
+    margin-right: 20px;
 }
-input.stop_loss{
-    margin-left: 85px;
-    width : 100px
+
+.setting-label, .setting-input {
+    display:inline-block
 }
-input.exit_percent{
-    margin-left: 95px;
-    width : 100px
+
+#rsi-setting, #ema-setting {
+    display:none;
+}
+
+p.setting-label {
+    margin-right: 10px;
+    width:100px;
+}
+
+label.setting-symbol {
+    width:10px;
+    margin-left: -100px;
+    margin-right: 80px;
+    font-size:18px;
+    font-weight: bold;
+}
+
+input.setting-input {
+    width:200px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+    margin-right:40px;
 }
 div.indicator,.line2,.line3{
     display: flex
