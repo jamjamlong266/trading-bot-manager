@@ -14,11 +14,13 @@
                 <div class="row">
                     <div class="input-field col s12">
                     <p>Exchange :</p>
-                        <select class="exchange" v-model="exchange" style="height:50px; display:block">
+                    <form name="myForm" action="">
+                        <select id="mySelect" class="exchange" v-model="exchange" style="height:50px; display:block" onchange="myFunction(this.form)">
                             <option value="BINANCE">BINANCE</option>
                             <option value="COINEX">COINEX</option>
                             <option value="JONVI">JONVI</option>
                         </select>
+                    </form>
                     </div>
                     
                 </div>
@@ -68,6 +70,22 @@
                             <option value="ETH/eMYR">ETH/eMYR</option>
                             <option value="USDT/eMYR">USDT/eMYR</option>
                         </select>    
+                    </div>
+                </div>
+                <p id="demo">Exchange {{ exchange }}</p>
+                <div id="hidden_div"  class="hidden" style="display: none;">
+                    <div class="indicator"  >
+                        <p>ENTRY</p>
+                        <input class="entry_price" placeholder="entry_price" id="entry_price" type="text" >
+                        <input class="amount" placeholder="amount" id="amount" type="text" >
+                    </div>
+                    <div class="line2">
+                        <p>EXIT</p>
+                        <input class="exit_percent" placeholder="exit_percent" id="exit_percent" type="text" >
+                    </div>
+                    <div class="line3">
+                        <p>STOP</p>
+                        <input class="stop_loss" placeholder="stop_price" id="stop_loss" type="text" >
                     </div>
                 </div>
                 <button type="sumbit" class="btn" @click="updateBot">Submit</button>
@@ -125,6 +143,7 @@ export default {
                     this.trading_pair = doc.data().trading_pair
                 })
             })
+            
         },
         updateBot () {
             db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get()
@@ -143,10 +162,16 @@ export default {
                     })
                 })
             })
+        },
+        myFunction(myForm) {
+            var x = document.getElementById("mySelect").value;
+            document.getElementById("demo").innerHTML = "You selected: " + x;
         }
+
     }
 }
 </script>
+
 
 <style scoped>
 select.indicator,.trading_pair,.exchange {
