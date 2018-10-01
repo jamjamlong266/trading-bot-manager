@@ -5,23 +5,24 @@
         <div class="row">
             <form @sumbit.prevent="saveBot" class="col s12">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 indicator-holder">
 
                         <h6>Indicator</h6>
                         <p>
                             <label>
-                                <input class="with-gap" name="group1" type="radio"  />
-                                <span>Green</span>
+                                <input class="indicator" name="group1" type="radio"  v-model="indi" @change="myFunction('ss')"/>
+                                <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="with-gap" name="group1" type="radio"  />
-                                <span>Green</span>
+                                <input class="indicator" name="group1" type="radio"  v-model="indi" @change="myFunction('qq')"/>
+                                <span>SMA</span>
                             </label>
                         </p>
                     </div>
+                    <p>aaas {{ indi }}</p>
                 </div>
 
                 <div class="row">
@@ -125,30 +126,46 @@ export default {
     name: 'new-bot',
     data () {
         return {
+            bot_id: null,
             exchange: null,
             indicator: null,
             api_key: null,
             secret_key: null,
             trading_pair: null,
-            uid: null
+            uid: null,
+            value: null,
+            indi: null
         }
     },
     methods: {
-        saveBot () {
-            db.collection('trading_bot').add({
-                bot_id: this.bot_id,
-                exchange: this.exchange,
-                indicator: this.indicator,
-                api_key: this.api_key,
-                secret_key: this.secret_key,
-                trading_pair: this.trading_pair,
-                uid: firebase.auth().currentUser.uid
-            })
-            .then(docRef => this.$router.push('/'))
-            .catch(error => console.log(err))
+        myFunction: function(evt){
+            this.$emit("change", evt);
+            console.log(evt)
+            this.value = evt
+        },
+        saveBot: function (){
+            console.log(this.value);
+            // db.collection('trading_bot').add({
+            //     bot_id: this.bot_id,
+            //     exchange: this.exchange,
+            //     indicator: this.indicator,
+            //     api_key: this.api_key,
+            //     secret_key: this.secret_key,
+            //     trading_pair: this.trading_pair,
+            //     uid: firebase.auth().currentUser.uid
+            // })
+            // .then(docRef => this.$router.push('/'))
+            // .catch(error => console.log(err))
         }
     }
 }
+
+$(document).ready(function() {
+    console.log("hello");
+    $('.indicator').on('checked', function() {
+
+    })
+})
 </script>
 
 <style scoped>
@@ -157,5 +174,10 @@ select.indicator,.trading_pair,.exchange {
 }
 input.bot_id,input.api_key,input.secret_key {
     background-color:khaki
+}
+
+.indicator-holder p {
+    display:inline-block;
+    margin-right: 20px;
 }
 </style>
