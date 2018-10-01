@@ -38,6 +38,7 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
+
                                 <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
@@ -57,11 +58,13 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
+
                                 <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
                                 <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2">
+
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -91,6 +94,7 @@
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
                                 <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
+
                             </div>
                         </div>
                     </div>
@@ -199,7 +203,6 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
-            indi: null
         }
     },
     methods: {
@@ -218,11 +221,13 @@ export default {
             this.indicator = evt
         },
         saveBot: function (){
+
             const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
             let autoId = ''
             for (let i = 0; i < 5; i++) {
                 autoId += chars.charAt(Math.floor(Math.random() * chars.length))
             }
+
             if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
                 db.collection('trading_bot').add({
                     indicator: this.indicator,
