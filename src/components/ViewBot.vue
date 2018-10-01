@@ -2,7 +2,7 @@
     <div id="view-bot" class="container">
         <ul class="collection with-header">
             <li class="collection-header">
-                <h4>{{ indicator }}</h4>
+                <h4>{{ bot_name }}</h4>
             </li>
             <li class="collection-item">
                 Bot Indicator: {{ indicator }}
@@ -44,6 +44,9 @@ export default {
             api_key: null,
             secret_key: null,
             trading_pair: null,
+            bot_id: null,
+            bot_name : null
+
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -55,8 +58,10 @@ export default {
                     vm.exchange = doc.data().exchange,
                     vm.indicator = doc.data().indicator,
                     vm.api_key = doc.data().api_key,
-                    vm.secret_key = doc.data().secret_key
-                    vm.trading_pair = doc.data().trading_pair
+                    vm.secret_key = doc.data().secret_key,
+                    vm.trading_pair = doc.data().trading_pair,
+                    vm.bot_id = doc.data().bot_id,
+                    vm.bot_name = doc.data().bot_name
                 })
             })
         })
@@ -75,6 +80,8 @@ export default {
                     this.api_key = doc.data().api_key,
                     this.secret_key = doc.data().secret_key
                     this.trading_pair = doc.data().trading_pair
+                    this.bot_id = doc.data().bot_id,
+                    this.bot_name = doc.data().bot_name
                 })
             })
         },

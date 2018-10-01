@@ -5,6 +5,12 @@
         <div class="row">
             <form @sumbit.prevent="saveBot" class="col s12">
                 <div class="row">
+                    <div class="input-feid col s12">
+                        <span class="bot_name">Bot Name</span>
+                        <input  class="bot_name" type="text" placeholder="enter name" v-model="bot_name" required>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
@@ -108,15 +114,6 @@
                     </div>
                 </div>
 
-
-                <!-- <div class="row">
-                    <div class="input-feid col s12">
-                        <input  class="bot_id" type="text" v-model="bot_id" required>
-                        <label>Bot ID</label>
-                    </div>
-                </div> -->
-
-                
                 <div class="row">
                     <div class="input-field col s12">
                         <input  class="api_key" type="text" v-model="api_key" required>
@@ -199,6 +196,7 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
+            bot_name : null
         }
     },
     methods: {
@@ -240,7 +238,8 @@ export default {
                     ema_value1: this.ema_value1,
                     ema_value2: this.ema_value2,
                     bot_id: autoId,
-                    uid: firebase.auth().currentUser.uid
+                    uid: firebase.auth().currentUser.uid,
+                    bot_name:this.bot_name
                 })
                 .then(docRef => {
                     this.$router.push('/')
@@ -286,5 +285,15 @@ input.setting-input {
     border-radius: 5px;
     text-align: center;
     margin-right:40px;
+}
+input.bot_name {
+    width:200px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+    margin-right:40px;
+}
+span.bot_name {
+    margin-right: 75px;
 }
 </style>

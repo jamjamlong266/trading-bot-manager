@@ -36,9 +36,9 @@ export default {
         }
     },
     created () {
-        // this.uid = firebase.auth().currentUser.uid;
-        // db.collection('trading_bot').where('uid', '==', this.uid).get().then( snapshot => {
-        db.collection('trading_bot').get().then( snapshot => {
+        this.uid = firebase.auth().currentUser.uid;
+        db.collection('trading_bot').where('uid', '==', this.uid).get().then( snapshot => {
+        // db.collection('trading_bot').get().then( snapshot => {
             snapshot.forEach(doc => {
                 console.log(doc)
                 const data = {
