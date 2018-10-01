@@ -5,41 +5,108 @@
         <div class="row">
             <form @sumbit.prevent="saveBot" class="col s12">
                 <div class="row">
-                    <div class="input-field col s12 indicator-holder">
+                    <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
                         <p>
                             <label>
+<<<<<<< HEAD
                                 <input class="indicator" name="group1" type="radio"  v-model="indic" :value="RSI" @change="myFunction('ss')"/>
+=======
+                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('rsi')"/>
+>>>>>>> fbc5e7d051e537e4fce439c479187540efd33201
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
+<<<<<<< HEAD
                                 <input class="indicator" name="group1" type="radio"  v-model="indic" :value="SMA" @change="myFunction('qq')"/>
+=======
+                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('ema')"/>
+                                <span>EMA</span>
+                            </label>
+                        </p>
+
+                        <p>
+                            <label>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('sma')"/>
+>>>>>>> fbc5e7d051e537e4fce439c479187540efd33201
                                 <span>SMA</span>
                             </label>
                         </p>
                     </div>
+<<<<<<< HEAD
                     <p>aaas {{ indic }}</p>
+=======
+                </div>
+
+                <div class="row" id="rsi-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">RSI Setting</span>
+                                <br>
+                                <p class="setting-label">Overbought %</p>
+                                <input class="setting-input" type="text" placeholder="70 - 99">
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+
+                                <p class="setting-label">Oversold %</p>
+                                <input class="setting-input" type="text" placeholder="1 - 30">
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div class="row" id="ema-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">EMA Setting</span>
+                                <br>
+                                 <p class="setting-label">Overbought %</p>
+                                <input class="setting-input" type="text" placeholder="70 - 99">
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+
+                                <p class="setting-label">Oversold %</p>
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30">
+                                <label for="icon_telephone" class="setting-symbol">%</label>
+                            </div>
+                        </div>
+                       
+                    </div>
+>>>>>>> fbc5e7d051e537e4fce439c479187540efd33201
                 </div>
 
                 <div class="row">
-                    
-                    <div class="input-field col s12">
-                        <p>Exchange Platform</p>
-                        <select class="browser-default">
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                        </select>
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Indicator Setting</span>
+                                <br>
+                                <p class="setting-label">Entry Value</p>
+                                <input class="setting-input" type="text" placeholder="Entry Value">
 
-                        <input  class="bot_id" type="text" v-model="bot_id" required>
-                        <label>Bot ID</label>
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="text" placeholder="Amount">
 
+                                <br>
+                                <p class="setting-label">Exit Value</p>
+                                <input class="setting-input" type="text" placeholder="Exit Value">
+
+                                <p class="setting-label">Percentage</p>
+                                <input class="setting-input" type="text" placeholder="Percentage">
+
+                                <br>
+                                <p class="setting-label">Stop Loss</p>
+                                <input class="setting-input" type="text" placeholder="Stop Loss">
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
 
                 <div class="row">
@@ -51,19 +118,17 @@
                             <option value="JONVI">JONVI</option>
                         </select>
                     </div>
-                    
                 </div>
 
+
                 <div class="row">
-                    <div class="input-field col s12">
-                        <p>Indicator :</p>
-                        <select class="indicator" v-model="indicator" style="height:50px; display:block">
-                            <option value="RSI">RSI</option>
-                            <option value="EMA">EMA</option>
-                        </select>
+                    <div class="input-feid col s12">
+                        <input  class="bot_id" type="text" v-model="bot_id" required>
+                        <label>Bot ID</label>
                     </div>
                 </div>
 
+                
                 <div class="row">
                     <div class="input-field col s12">
                         <input  class="api_key" type="text" v-model="api_key" required>
@@ -134,13 +199,26 @@ export default {
             trading_pair: null,
             uid: null,
             value: null,
-            indi: null
+            indi: null,
+            overbought: null,
+            oversold: null,
+            entry_value: null,
+            exit_value: null,
         }
     },
     methods: {
         myFunction: function(evt){
             this.$emit("change", evt);
-            console.log(evt)
+            if (evt == "rsi") {
+                document.getElementById("rsi-setting").style.display = "block"
+                document.getElementById("ema-setting").style.display = "none"
+            } else if(evt == "ema") {
+                document.getElementById("ema-setting").style.display = "block"
+                document.getElementById("rsi-setting").style.display = "none"
+            }else {
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+            }
             this.value = evt
         },
         saveBot: function (){
@@ -160,24 +238,40 @@ export default {
     }
 }
 
-$(document).ready(function() {
-    console.log("hello");
-    $('.indicator').on('checked', function() {
-
-    })
-})
 </script>
 
 <style scoped>
-select.indicator,.trading_pair,.exchange {
-    background-color:khaki
-}
-input.bot_id,input.api_key,input.secret_key {
-    background-color:khaki
-}
-
-.indicator-holder p {
+.holder p {
     display:inline-block;
     margin-right: 20px;
+}
+
+.setting-label, .setting-input {
+    display:inline-block
+}
+
+#rsi-setting, #ema-setting {
+    display:none;
+}
+
+p.setting-label {
+    margin-right: 10px;
+    width:100px;
+}
+
+label.setting-symbol {
+    width:10px;
+    margin-left: -100px;
+    margin-right: 80px;
+    font-size:18px;
+    font-weight: bold;
+}
+
+input.setting-input {
+    width:200px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+    margin-right:40px;
 }
 </style>
