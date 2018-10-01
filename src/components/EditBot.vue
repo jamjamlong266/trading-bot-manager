@@ -14,13 +14,14 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                    <p>Indicator</p>
-                        <select v-model="exchange" style="height:50px; display:block;background-color：red">
-                            <option value="" >{{exchange}}</option>
+                    <p>Exchange :</p>
+                    <form name="myForm" action="">
+                        <select id="mySelect" class="exchange" v-model="exchange" style="height:50px; display:block" onchange="myFunction(this.form)">
                             <option value="BINANCE">BINANCE</option>
                             <option value="COINEX">COINEX</option>
                             <option value="JONVI">JONVI</option>
                         </select>
+                    </form>
                     </div>
                     
                 </div>
@@ -28,8 +29,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <p>Indicator :</p>
-                        <select v-model="indicator" style="height:50px; display:block;background-color：red">
-                            <option value="" >{{indicator}}</option>
+                        <select class="indicator" v-model="indicator" style="height:50px; display:block">
                             <option value="RSI">RSI</option>
                             <option value="EMA">EMA</option>
                         </select>
@@ -38,23 +38,24 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <span>Api Key :</span><br>
-                        <input type="text" v-model="api_key" required>
+                        <span>API KEY :</span>
+                        <input  class="api_key" type="text" v-model="api_key" required>
+                        
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <span>Secret Key :</span><br>
-                        <input type="text" v-model="secret_key" required>
+                        <span>SECRET KEY :</span>
+                        <input  class="secret_key" type="text" v-model="secret_key" required>
+                        
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <p>Trading Pair :</p>
-                        <select v-model="trading_pair" style="height:50px; display:block;background-color：red">
-                            <option value="" >{{trading_pair}}</option>
+                        <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block">
                             <option value="BTC/USDT">BTC/USDT</option>
                             <option value="BCH/USDT">BCH/USDT</option>
                             <option value="JE/USDT">JE/USDT</option>
@@ -70,6 +71,22 @@
                             <option value="ETH/eMYR">ETH/eMYR</option>
                             <option value="USDT/eMYR">USDT/eMYR</option>
                         </select>    
+                    </div>
+                </div>
+                <p id="demo">Exchange {{ exchange }}</p>
+                <div id="hidden_div"  class="hidden" style="display: none;">
+                    <div class="indicator"  >
+                        <p>ENTRY</p>
+                        <input class="entry_price" placeholder="entry_price" id="entry_price" type="text" >
+                        <input class="amount" placeholder="amount" id="amount" type="text" >
+                    </div>
+                    <div class="line2">
+                        <p>EXIT</p>
+                        <input class="exit_percent" placeholder="exit_percent" id="exit_percent" type="text" >
+                    </div>
+                    <div class="line3">
+                        <p>STOP</p>
+                        <input class="stop_loss" placeholder="stop_price" id="stop_loss" type="text" >
                     </div>
                 </div>
                 <button type="sumbit" class="btn" @click="updateBot">Submit</button>
@@ -126,6 +143,7 @@ export default {
                     this.trading_pair = doc.data().trading_pair
                 })
             })
+            
         },
         updateBot () {
             db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get()
@@ -144,7 +162,22 @@ export default {
                     })
                 })
             })
+        },
+        myFunction(myForm) {
+            var x = document.getElementById("mySelect").value;
+            document.getElementById("demo").innerHTML = "You selected: " + x;
         }
+
     }
 }
 </script>
+
+
+<style scoped>
+select.indicator,.trading_pair,.exchange {
+    background-color:khaki
+}
+input.bot_id,input.api_key,input.secret_key {
+    background-color:khaki
+}
+</style>
