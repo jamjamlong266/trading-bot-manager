@@ -277,7 +277,11 @@ export default {
             bot_id: null,
             uid: null,
             bot_name : null,
-            indic:null
+            indic:null,
+            gap_value:null,
+            buy_pend:null,
+            sell_pend:null,
+            durian_amount:null
         }
     },
 
@@ -342,7 +346,11 @@ export default {
                     ema_value2: this.ema_value2,
                     bot_id: autoId,
                     uid: firebase.auth().currentUser.uid,
-                    bot_name:this.bot_name
+                    bot_name:this.bot_name,
+                    gap_value :this.gap_value,
+                    buy_pend : this.buy_pend,
+                    sell_pend : this.sell_pend,
+                    durian_amount : this.durian_amount
                 })
                 .then(docRef => {
                     this.$router.push('/')

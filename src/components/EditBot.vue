@@ -235,7 +235,7 @@
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input type="checkbox" class="box" @click="check()" id="status" />
+                                <input type="checkbox" class="box" id="status"  />
                                 <span>Active</span>
                             </label>
                         </p>
@@ -251,6 +251,10 @@
 
 <script>
 import db from './firebaseInit'
+import firebase from 'firebase'
+import 'firebase/firestore';
+import firebaseConfig from './firebaseConfig';
+import firebaseInit from './firebaseInit';
 
 export default {
     name: 'edit-bot',
@@ -276,35 +280,40 @@ export default {
             gap_value:null,
             buy_pend:null,
             sell_pend:null,
-            durian_amount:null,
-            value:null
+            durian_amount:null
         }
     },
     beforeRouteEnter (to, from, next) {
-        db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                next(vm => {
-                    vm.bot_id = doc.data().bot_id,
-                    vm.exchange = doc.data().exchange,
-                    vm.indicator = doc.data().indicator,
-                    vm.api_key = doc.data().api_key,
-                    vm.secret_key = doc.data().secret_key,
-                    vm.trading_pair = doc.data().trading_pair,
-                    vm.ema_value2 = doc.data().ema_value2,
-                    vm.ema_value1 = doc.data().ema_value1,
-                    vm.oversold_value = doc.data().oversold_value,
-                    vm.overbought_value = doc.data().overbought_value,
-                    vm.entry_value = doc.data().entry_value,
-                    vm.exit_value = doc.data().exit_value,
-                    vm.percentage_value = doc.data().percentage_value,
-                    vm.stop_value = doc.data().stop_value,
-                    vm.amount = doc.data().amount,
-                    vm.gap_value = doc.data().gap_value,
-                    vm.buy_pend = doc.data().buy_pend,
-                    vm.sell_pend = doc.data().sell_pend,
-                    vm.durian_amount = doc.data().durian_amount,
-                    vm.value = doc.data().value
+        const uid = firebase.auth().currentUser.uid
+        const dbref = db.collection('trading_bot')
+
+        dbref.get().then( snapshot => {
+            snapshot.forEach ( doc => {
+                dbref.doc(doc.id).collection('bot').where("uid", "==", uid).get().then( snapdata => {
+                    snapdata.forEach(doc => {
+                        next(vm => {
+                            vm.bot_id = doc.data().bot_id,
+                            vm.exchange = doc.data().exchange,
+                            vm.indicator = doc.data().indicator,
+                            vm.api_key = doc.data().api_key,
+                            vm.secret_key = doc.data().secret_key,
+                            vm.trading_pair = doc.data().trading_pair,
+                            vm.ema_value2 = doc.data().ema_value2,
+                            vm.ema_value1 = doc.data().ema_value1,
+                            vm.oversold_value = doc.data().oversold_value,
+                            vm.overbought_value = doc.data().overbought_value,
+                            vm.entry_value = doc.data().entry_value,
+                            vm.exit_value = doc.data().exit_value,
+                            vm.percentage_value = doc.data().percentage_value,
+                            vm.stop_value = doc.data().stop_value,
+                            vm.amount = doc.data().amount,
+                            vm.gap_value = doc.data().gap_value,
+                            vm.buy_pend = doc.data().buy_pend,
+                            vm.sell_pend = doc.data().sell_pend,
+                            vm.durian_amount = doc.data().durian_amount
+                            vm.uid = doc.data().uid
+                        })
+                    })
                 })
             })
         })
@@ -314,66 +323,87 @@ export default {
     },
     methods: {
         fetchData () {
-            db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get()
-            .then(snapshot => {
-                snapshot.forEach( doc => {
-                    this.bot_id = doc.data().bot_id,
-                    this.exchange = doc.data().exchange,
-                    this.indicator = doc.data().indicator,
-                    this.api_key = doc.data().api_key,
-                    this.secret_key = doc.data().secret_key,
-                    this.trading_pair = doc.data().trading_pair,
-                    this.amount =doc.data().amount,
-                    this.stop_value = doc.data().stop_value,
-                    this.percentage_value = doc.data().percentage_value,
-                    this.exit_value = doc.data().exit_value,
-                    this.entry_value = doc.data().entry_value,
-                    this.ema_value1 = doc.data().ema_value1,
-                    this.ema_value2 = doc.data().ema_value2,
-                    this.overbought_value = doc.data().overbought_value,
-                    this.oversold_value = doc.data().oversold_value,
-                    this.gap_value = doc.data().gap_value,
-                    this.buy_pend = doc.data().buy_pend,
-                    this.sell_pend = doc.data().sell_pend,
-                    this.durian_amount = doc.data().durian_amount,
-                    this.value = doc.data().value
+
+            const uid = firebase.auth().currentUser.uid
+            const dbref = db.collection('trading_bot')
+
+            dbref.get().then( snapshot => {
+                snapshot.forEach ( doc => {
+                    dbref.doc(doc.id).collection('bot').where("uid", "==", uid).get().then( snapdata => {
+                        snapdata.forEach(doc => {
+                            this.bot_id = doc.data().bot_id,
+                            this.exchange = doc.data().exchange,
+                            this.indicator = doc.data().indicator,
+                            this.api_key = doc.data().api_key,
+                            this.secret_key = doc.data().secret_key,
+                            this.trading_pair = doc.data().trading_pair,
+                            this.amount =doc.data().amount,
+                            this.stop_value = doc.data().stop_value,
+                            this.percentage_value = doc.data().percentage_value,
+                            this.exit_value = doc.data().exit_value,
+                            this.entry_value = doc.data().entry_value,
+                            this.ema_value1 = doc.data().ema_value1,
+                            this.ema_value2 = doc.data().ema_value2,
+                            this.overbought_value = doc.data().overbought_value,
+                            this.oversold_value = doc.data().oversold_value,
+                            this.gap_value = doc.data().gap_value,
+                            this.buy_pend = doc.data().buy_pend,
+                            this.sell_pend = doc.data().sell_pend,
+                            this.durian_amount = doc.data().durian_amount
+                            this.uid = doc.data().uid
+                        })
+                        if(this.indicator == "rsi") {
+                            document.getElementById("rsi").style.display = "block"
+                            document.getElementById("ema").style.display = "none"
+                        } else if (this.indicator == "ema") {
+                            document.getElementById("ema").style.display = "block"
+                            document.getElementById("rsi").style.display = "none"
+                        }
+                    })
                 })
             })
-            
         },
         updateBot () {
-            db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get()
-            .then(snapshot => {
-                snapshot.forEach( doc => {
-                    doc.ref.update({
-                        indicator: this.indicator,
-                        overbought_value: this.overbought_value,
-                        oversold_value: this.oversold_value,
-                        entry_value: this.entry_value,
-                        amount:this.amount,
-                        exit_value: this.exit_value,
-                        percentage_value: this.percentage_value,
-                        stop_value: this.stop_value,
-                        exchange: this.exchange,
-                        api_key: this.api_key,
-                        secret_key: this.secret_key,
-                        trading_pair: this.trading_pair,
-                        ema_value1: this.ema_value1,
-                        ema_value2: this.ema_value2,
-                        bot_id: this.bot_id,
-                        gap_value :this.gap_value,
-                        buy_pend : this.buy_pend,
-                        sell_pend : this.sell_pend,
-                        durian_amount : this.durian_amount,
-                        value : this.value
-                    })
-                    .then( () => {
-                        this.$router.push({name: 'view-bot', params: {bot_id: this.bot_id}})
+
+            const uid = firebase.auth().currentUser.uid
+            const dbref = db.collection('trading_bot')
+
+            dbref.get().then( snapshot => {
+                snapshot.forEach ( doc => {
+                    dbref.doc(this.indicator).collection('bot').where("uid", "==", uid).get().then( snapdata => {
+                        snapdata.forEach(doc => {
+                            doc.ref.update({
+                                indicator : this.indicator,
+                                overbought_value : this.overbought_value,
+                                oversold_value : this.oversold_value,
+                                entry_value : this.entry_value,
+                                amount : this.amount,
+                                exit_value : this.exit_value,
+                                percentage_value : this.percentage_value,
+                                stop_value : this.stop_value,
+                                exchange: this.exchange,
+                                api_key : this.api_key,
+                                secret_key: this.secret_key,
+                                trading_pair : this.trading_pair,
+                                ema_value1 : this.ema_value1,
+                                ema_value2 : this.ema_value2,
+                                bot_id : this.bot_id,
+                                gap_value : this.gap_value,
+                                buy_pend : this.buy_pend,
+                                sell_pend : this.sell_pend,
+                                durian_amount : this.durian_amount,
+                                uid : this.uid
+                            })
+                            .then(docRef => {
+                                this.$router.push('/')
+                            })
+                        })
+                        
                     })
                 })
             })
         },
-        myFunction: function(evt){
+        myFunction(evt) {
             this.$emit("change", evt);
             if (evt == "rsi") {
                 document.getElementById("rsi-setting").style.display = "block"
@@ -405,16 +435,17 @@ export default {
                 document.getElementById("durian-indicator-setting").style.display = "block"
             }
             this.indicator = evt
-        },
-        check (){
-            if(document.getElementById("status").checked){
-                input.box.value = "active" 
-            }
-            else if(document.getElementById("status").checked==false){
-                input.box.value = "unactive"
-            }
         }
+        // check (){
+        //     if(document.getElementById("status").checked){
+        //         document.getElementById("status").value = "active" 
+        //     }
+        //     else if(document.getElementById("status").checked==false){
+        //         document.getElementById("status").value = "inactive" 
+        //     }
+        // }
     }
+        
 }
 </script>
 
