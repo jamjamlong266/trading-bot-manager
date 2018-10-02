@@ -11,17 +11,6 @@
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s12">
-                    <p>Exchange :</p>
-                        <select  class="exchange" v-model="exchange" style="height:50px; display:block" >
-                            <option value="BINANCE">BINANCE</option>
-                            <option value="COINEX">COINEX</option>
-                            <option value="JONVI">JONVI</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
                     <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
@@ -43,6 +32,12 @@
                             <label>
                                 <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
                                 <span>SMA</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" />
+                                <span>DURIAN</span>
                             </label>
                         </p>
                     </div>
@@ -86,7 +81,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" id="common-setting">
                     <div class="col s12">
                         <div class="card">
                             <div class="card-content">
@@ -113,42 +108,137 @@
                     </div>
                     
                 </div>
+                <div class="row" id="durian-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Durian Setting</span>
+                                <br>
+                                <p class="setting-label">Gap</p>
+                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" required>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <span>API KEY :</span>
-                        <input  class="api_key" type="text" v-model="api_key" required>
-                        
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" required>
+
+                                <br>
+                                <p class="setting-label">Buy pending</p>
+                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" required>
+
+                                <p class="setting-label">Sell_pending</p>
+                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <span>SECRET KEY :</span>
-                        <input  class="secret_key" type="text" v-model="secret_key" required>
-                        
+                <div id="three-indicator-setting">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <p>Exchange :</p>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
+                                <option value="BINANCE">BINANCE</option>
+                                <option value="COINEX">COINEX</option>
+                                <option value="JONVI">JONVI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <span>API KEY</span>
+                            <input  class="api_key" type="text" v-model="api_key" required>
+                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <span>SECRET KEY</span>
+                            <input  class="secret_key" type="text" v-model="secret_key" required>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p>Trading Pair :</p>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                                <option value="BTC/USDT">BTC/USDT</option>
+                                <option value="BCH/USDT">BCH/USDT</option>
+                                <option value="JE/USDT">JE/USDT</option>
+                                <option value="ETH/USDT">ETH/USDT</option>
+                                <option value="LTC/USDT">LTC/USDT</option>
+                                <option value="ETH/BTC">ETH/BTC</option>
+                                <option value="JE/BTC">JE/BTC</option>
+                                <option value="LTC/BTC">LTC/BTC</option>
+                                <option value="BCH/BTC">BCH/BTC</option>
+                                <option value="JE/eMYR">JE/eMYR</option>
+                                <option value="BTC/eMYR">BTC/eMYR</option>
+                                <option value="BCH/eMYR">BCH/eMYR</option>
+                                <option value="ETH/eMYR">ETH/eMYR</option>
+                                <option value="USDT/eMYR">USDT/eMYR</option>
+                            </select>    
+                        </div>
                     </div>
                 </div>
+                <div id="durian-indicator-setting">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <p>Exchange :</p>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
+                                <option value="BINANCE">BINANCE</option>
+                            </select>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <span>API KEY</span>
+                            <input  class="api_key" type="text" v-model="api_key" required>
+                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <span>SECRET KEY</span>
+                            <input  class="secret_key" type="text" v-model="secret_key" required>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p>Trading Pair :</p>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                                <option value="BTC/USDT">BTC/USDT</option>
+                                <option value="BCH/USDT">BCH/USDT</option>
+                                <option value="JE/USDT">JE/USDT</option>
+                                <option value="ETH/USDT">ETH/USDT</option>
+                                <option value="LTC/USDT">LTC/USDT</option>
+                                <option value="ETH/BTC">ETH/BTC</option>
+                                <option value="JE/BTC">JE/BTC</option>
+                                <option value="LTC/BTC">LTC/BTC</option>
+                                <option value="BCH/BTC">BCH/BTC</option>
+                                <option value="JE/eMYR">JE/eMYR</option>
+                                <option value="BTC/eMYR">BTC/eMYR</option>
+                                <option value="BCH/eMYR">BCH/eMYR</option>
+                                <option value="ETH/eMYR">ETH/eMYR</option>
+                                <option value="USDT/eMYR">USDT/eMYR</option>
+                            </select>    
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <p>Trading Pair :</p>
-                        <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block">
-                            <option value="BTC/USDT">BTC/USDT</option>
-                            <option value="BCH/USDT">BCH/USDT</option>
-                            <option value="JE/USDT">JE/USDT</option>
-                            <option value="ETH/USDT">ETH/USDT</option>
-                            <option value="LTC/USDT">LTC/USDT</option>
-                            <option value="ETH/BTC">ETH/BTC</option>
-                            <option value="JE/BTC">JE/BTC</option>
-                            <option value="LTC/BTC">LTC/BTC</option>
-                            <option value="BCH/BTC">BCH/BTC</option>
-                            <option value="JE/eMYR">JE/eMYR</option>
-                            <option value="BTC/eMYR">BTC/eMYR</option>
-                            <option value="BCH/eMYR">BCH/eMYR</option>
-                            <option value="ETH/eMYR">ETH/eMYR</option>
-                            <option value="USDT/eMYR">USDT/eMYR</option>
-                        </select>    
+                        <p>
+                            <label>
+                                <input type="checkbox" class="box" @click="check()" id="status" />
+                                <span>Active</span>
+                            </label>
+                        </p>
                     </div>
                 </div>
                 <button type="sumbit" class="btn" @click="updateBot">Submit</button>
@@ -182,7 +272,12 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
-            indic: null
+            indic: null,
+            gap_value:null,
+            buy_pend:null,
+            sell_pend:null,
+            durian_amount:null,
+            value:null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -204,7 +299,12 @@ export default {
                     vm.exit_value = doc.data().exit_value,
                     vm.percentage_value = doc.data().percentage_value,
                     vm.stop_value = doc.data().stop_value,
-                    vm.amount = doc.data().amount
+                    vm.amount = doc.data().amount,
+                    vm.gap_value = doc.data().gap_value,
+                    vm.buy_pend = doc.data().buy_pend,
+                    vm.sell_pend = doc.data().sell_pend,
+                    vm.durian_amount = doc.data().durian_amount,
+                    vm.value = doc.data().value
                 })
             })
         })
@@ -231,7 +331,12 @@ export default {
                     this.ema_value1 = doc.data().ema_value1,
                     this.ema_value2 = doc.data().ema_value2,
                     this.overbought_value = doc.data().overbought_value,
-                    this.oversold_value = doc.data().oversold_value
+                    this.oversold_value = doc.data().oversold_value,
+                    this.gap_value = doc.data().gap_value,
+                    this.buy_pend = doc.data().buy_pend,
+                    this.sell_pend = doc.data().sell_pend,
+                    this.durian_amount = doc.data().durian_amount,
+                    this.value = doc.data().value
                 })
             })
             
@@ -255,7 +360,12 @@ export default {
                         trading_pair: this.trading_pair,
                         ema_value1: this.ema_value1,
                         ema_value2: this.ema_value2,
-                        bot_id: autoId
+                        bot_id: this.bot_id,
+                        gap_value :this.gap_value,
+                        buy_pend : this.buy_pend,
+                        sell_pend : this.sell_pend,
+                        durian_amount : this.durian_amount,
+                        value : this.value
                     })
                     .then( () => {
                         this.$router.push({name: 'view-bot', params: {bot_id: this.bot_id}})
@@ -267,17 +377,43 @@ export default {
             this.$emit("change", evt);
             if (evt == "rsi") {
                 document.getElementById("rsi-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
             } else if(evt == "ema") {
                 document.getElementById("ema-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "block"
                 document.getElementById("rsi-setting").style.display = "none"
-            }else {
-                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            } else if(evt=="sma"){
+                document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            }else if(evt=="durian"){
+                document.getElementById("durian-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "block"
             }
-            this.value = evt
+            this.indicator = evt
+        },
+        check (){
+            if(document.getElementById("status").checked){
+                input.box.value = "active" 
+            }
+            else if(document.getElementById("status").checked==false){
+                input.box.value = "unactive"
+            }
         }
-
     }
 }
 </script>

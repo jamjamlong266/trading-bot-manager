@@ -399,28 +399,5 @@ input.bot_name {
 span.bot_name {
     margin-right: 75px;
 }
-/* span.checkmark{
-    height: 15px;
-    width: 15px;
-    border-radius: 100%;
-    top: 0;
-    left: 0;
-    background-color: #2196F3;
-} */
-label.container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    background-color: #2196F3;
-}
-label.container {
-    padding-left: 15px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 20px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+
 </style>
