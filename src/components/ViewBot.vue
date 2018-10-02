@@ -8,9 +8,14 @@
                 <p>
                     Bot Indicator: {{ indicator }}
                 </p>
-                <div>
+                <div id="rsi">
                     <p>Overbought : {{ overbought_value }}</p>
                     <p>Oversold : {{ oversold_value }}</p>
+                </div>
+
+                <div id="ema">
+                    <p>EMA 1 : {{ ema_value1 }}</p>
+                    <p>EMA 2 : {{ ema_value2 }}</p>
                 </div>
             </li>
             <li class="collection-item">
@@ -117,7 +122,16 @@ export default {
                     this.ema_value1 = doc.data().ema_value1,
                     this.ema_value2 = doc.data().ema_value2,
                     this.uid = doc.data().uid
+
+                    console.log(this.indicator)
                 })
+                if(this.indicator == "rsi") {
+                    document.getElementById("rsi").style.display = "block"
+                    document.getElementById("ema").style.display = "none"
+                } else if (this.indicator == "ema") {
+                    document.getElementById("ema").style.display = "block"
+                    document.getElementById("rsi").style.display = "none"
+                }
             })
         },
         deleteBot () {
@@ -134,3 +148,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    #rsi, #ema {
+        display:none;
+    }
+</style>
+

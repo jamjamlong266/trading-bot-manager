@@ -7,6 +7,7 @@ import EditBot from '@/components/EditBot'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import IndicatorSetting from '@/components/IndicatorSetting'
+import Profile from '@/components/Profile'
 
 import firebase from 'firebase'
 
@@ -42,6 +43,14 @@ let router = new Router({
       path: '/new',
       name: 'new-bot',
       component: NewBot,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
       meta: {
         requiresAuth: true
       }

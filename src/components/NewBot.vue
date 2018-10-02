@@ -34,6 +34,13 @@
                                 <span>SMA</span>
                             </label>
                         </p>
+
+                        <p>
+                            <label>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('sma')"/>
+                                <span>SMA</span>
+                            </label>
+                        </p>
                     </div>
                 </div>
 
@@ -199,6 +206,7 @@ export default {
             bot_name : null
         }
     },
+
     methods: {
         myFunction: function(evt){
             this.$emit("change", evt);
@@ -220,9 +228,11 @@ export default {
             for (let i = 0; i < 5; i++) {
                 autoId += chars.charAt(Math.floor(Math.random() * chars.length))
             }
+            const username = firebase.auth().currentUser
+            console.log("USERNAME : ", username)
 
             if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
-                db.collection('trading_bot').add({
+                db.collection('trading_bot').doc(username).add({
                     indicator: this.indicator,
                     overbought_value: this.overbought_value,
                     oversold_value: this.oversold_value,
@@ -245,7 +255,7 @@ export default {
                     this.$router.push('/')
                 })
                 .catch(error => console.log(err))
-                }
+            }
         }
     }
 }
