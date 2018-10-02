@@ -36,21 +36,27 @@ export default {
         }
     },
     created () {
-        this.uid = firebase.auth().currentUser.uid;
-        db.collection('trading_bot').where('uid', '==', this.uid).get().then( snapshot => {
-        // db.collection('trading_bot').get().then( snapshot => {
+        const uid = firebase.auth().currentUser.uid
+        const dbref = db.collection('trading_bot')
+        // .where("uid", "==", uid)
+        dbref.get().then(snapshot => {
             snapshot.forEach(doc => {
-                console.log(doc)
-                const data = {
-                    'id': doc.id,
-                    'bot_id': doc.data().bot_id,
-                    'exchange': doc.data().exchange,
-                    'indicator': doc.data().indicator,
-                    'api_key': doc.data().api_key,
-                    'secret_key': doc.data().secret_key
-                }
-                this.bots.push(data)
-            })
+                // console.log(doc.id)
+                dbref.doc(doc.id).collection('bot').where("uid", "==", uid).get().then( snapdata => {
+                    snapdata.forEach(doc => {
+                        console.log(doc.data().bot_name)
+                        const data = {
+                            'id': doc.id,
+                            'bot_id': doc.data().bot_id,
+                            'exchange': doc.data().exchange,
+                            'indicator': doc.data().indicator,
+                            'api_key': doc.data().api_key,
+                            'secret_key': doc.data().secret_key
+                        }
+                        this.bots.push(data)
+                    })
+                })
+            });
         })
     }
 }
