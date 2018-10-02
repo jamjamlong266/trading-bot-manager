@@ -27,21 +27,21 @@
                         <h6>Indicator</h6>
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('rsi')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')"/>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('ema')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')"/>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indi" @change="myFunction('sma')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
                                 <span>SMA</span>
                             </label>
                         </p>
@@ -182,7 +182,7 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
-            indi: null
+            indic: null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -255,7 +255,7 @@ export default {
                         trading_pair: this.trading_pair,
                         ema_value1: this.ema_value1,
                         ema_value2: this.ema_value2,
-                        bot_id: autoId,
+                        bot_id: autoId
                     })
                     .then( () => {
                         this.$router.push({name: 'view-bot', params: {bot_id: this.bot_id}})

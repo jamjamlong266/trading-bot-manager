@@ -12,31 +12,40 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 holder">
-
                         <h6>Indicator</h6>
                         <p>
-                            <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('rsi')"/>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')" />
+                                <span class="checkmark"></span>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
-                            <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('ema')"/>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')"/>
+                                <span class="checkmark"></span>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
-                            <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('sma')"/>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
+                                <span class="checkmark"></span>
                                 <span>SMA</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" />
+                                <span class="checkmark"></span>
+                                <span>DURIAN</span>
                             </label>
                         </p>
                     </div>
                 </div>
-
+                
                 <div class="row" id="rsi-setting">
                     <div class="col s12">
                         <div class="card">
@@ -75,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" id="common-setting">
                     <div class="col s12">
                         <div class="card">
                             <div class="card-content">
@@ -102,52 +111,123 @@
                     </div>
                     
                 </div>
+                <div class="row" id="durian-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Durian Setting</span>
+                                <br>
+                                <p class="setting-label">Gap</p>
+                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" required>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                    <p>Exchange :</p>
-                        <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
-                            <option value="BINANCE">BINANCE</option>
-                            <option value="COINEX">COINEX</option>
-                            <option value="JONVI">JONVI</option>
-                        </select>
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" required>
+
+                                <br>
+                                <p class="setting-label">Buy pending</p>
+                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" required>
+
+                                <p class="setting-label">Sell_pending</p>
+                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div id="three-indicator-setting">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <p>Exchange :</p>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
+                                <option value="BINANCE">BINANCE</option>
+                                <option value="COINEX">COINEX</option>
+                                <option value="JONVI">JONVI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input  class="api_key" type="text" v-model="api_key" required>
+                            <label>API KEY</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input  class="secret_key" type="text" v-model="secret_key" required>
+                            <label>SECRET KEY</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p>Trading Pair :</p>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                                <option value="BTC/USDT">BTC/USDT</option>
+                                <option value="BCH/USDT">BCH/USDT</option>
+                                <option value="JE/USDT">JE/USDT</option>
+                                <option value="ETH/USDT">ETH/USDT</option>
+                                <option value="LTC/USDT">LTC/USDT</option>
+                                <option value="ETH/BTC">ETH/BTC</option>
+                                <option value="JE/BTC">JE/BTC</option>
+                                <option value="LTC/BTC">LTC/BTC</option>
+                                <option value="BCH/BTC">BCH/BTC</option>
+                                <option value="JE/eMYR">JE/eMYR</option>
+                                <option value="BTC/eMYR">BTC/eMYR</option>
+                                <option value="BCH/eMYR">BCH/eMYR</option>
+                                <option value="ETH/eMYR">ETH/eMYR</option>
+                                <option value="USDT/eMYR">USDT/eMYR</option>
+                            </select>    
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input  class="api_key" type="text" v-model="api_key" required>
-                        <label>API KEY</label>
+                <div id="durian-indicator-setting">
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <p>Exchange :</p>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
+                                <option value="BINANCE">BINANCE</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input  class="secret_key" type="text" v-model="secret_key" required>
-                        <label>SECRET KEY</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input  class="api_key" type="text" v-model="api_key" required>
+                            <label>API KEY</label>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input  class="secret_key" type="text" v-model="secret_key" required>
+                            <label>SECRET KEY</label>
+                        </div>
+                    </div>
 
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <p>Trading Pair :</p>
-                        <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
-                            <option value="BTC/USDT">BTC/USDT</option>
-                            <option value="BCH/USDT">BCH/USDT</option>
-                            <option value="JE/USDT">JE/USDT</option>
-                            <option value="ETH/USDT">ETH/USDT</option>
-                            <option value="LTC/USDT">LTC/USDT</option>
-                            <option value="ETH/BTC">ETH/BTC</option>
-                            <option value="JE/BTC">JE/BTC</option>
-                            <option value="LTC/BTC">LTC/BTC</option>
-                            <option value="BCH/BTC">BCH/BTC</option>
-                            <option value="JE/eMYR">JE/eMYR</option>
-                            <option value="BTC/eMYR">BTC/eMYR</option>
-                            <option value="BCH/eMYR">BCH/eMYR</option>
-                            <option value="ETH/eMYR">ETH/eMYR</option>
-                            <option value="USDT/eMYR">USDT/eMYR</option>
-                        </select>    
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p>Trading Pair :</p>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                                <option value="BTC/USDT">BTC/USDT</option>
+                                <option value="BCH/USDT">BCH/USDT</option>
+                                <option value="JE/USDT">JE/USDT</option>
+                                <option value="ETH/USDT">ETH/USDT</option>
+                                <option value="LTC/USDT">LTC/USDT</option>
+                                <option value="ETH/BTC">ETH/BTC</option>
+                                <option value="JE/BTC">JE/BTC</option>
+                                <option value="LTC/BTC">LTC/BTC</option>
+                                <option value="BCH/BTC">BCH/BTC</option>
+                                <option value="JE/eMYR">JE/eMYR</option>
+                                <option value="BTC/eMYR">BTC/eMYR</option>
+                                <option value="BCH/eMYR">BCH/eMYR</option>
+                                <option value="ETH/eMYR">ETH/eMYR</option>
+                                <option value="USDT/eMYR">USDT/eMYR</option>
+                            </select>    
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -163,7 +243,7 @@
                 <button type="sumbit" class="btn" @click="saveBot">Submit</button>
                 <router-link to="/" class="btn grey">Cancel</router-link>
             </form>
-            
+        
         </div>
     </div>
 </template>
@@ -196,7 +276,8 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
-            bot_name : null
+            bot_name : null,
+            indic:null
         }
     },
     methods: {
@@ -204,13 +285,32 @@ export default {
             this.$emit("change", evt);
             if (evt == "rsi") {
                 document.getElementById("rsi-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
             } else if(evt == "ema") {
                 document.getElementById("ema-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "block"
                 document.getElementById("rsi-setting").style.display = "none"
-            }else {
-                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            } else if(evt=="sma"){
+                document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            }else if(evt=="durian"){
+                document.getElementById("durian-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "block"
             }
             this.indicator = evt
         },
@@ -295,5 +395,29 @@ input.bot_name {
 }
 span.bot_name {
     margin-right: 75px;
+}
+/* span.checkmark{
+    height: 15px;
+    width: 15px;
+    border-radius: 100%;
+    top: 0;
+    left: 0;
+    background-color: #2196F3;
+} */
+label.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    background-color: #2196F3;
+}
+label.container {
+    padding-left: 15px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 </style>
