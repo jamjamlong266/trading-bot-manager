@@ -36,19 +36,11 @@
                                 <span>SMA</span>
                             </label>
                         </p>
-<<<<<<< HEAD
-                        <p>
-                            <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" />
-                                <span class="checkmark"></span>
-                                <span>DURIAN</span>
-=======
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indicator" @change="myFunction('sma')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
                                 <span>SMA</span>
->>>>>>> 4dd86557fd3af900834b56243191ed94920d4181
                             </label>
                         </p>
                     </div>

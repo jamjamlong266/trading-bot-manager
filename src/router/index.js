@@ -6,11 +6,7 @@ import ViewBot from '@/components/ViewBot'
 import EditBot from '@/components/EditBot'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-<<<<<<< HEAD
-=======
-import IndicatorSetting from '@/components/IndicatorSetting'
 import Profile from '@/components/Profile'
->>>>>>> 4dd86557fd3af900834b56243191ed94920d4181
 
 import firebase from 'firebase'
 
