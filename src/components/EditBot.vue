@@ -10,33 +10,34 @@
                     </div>
                 </div>
 
+                
                 <div class="row">
                     <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')"/>
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic" @change="myFunction('rsi')"/>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')"/>
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic" @change="myFunction('ema')"/>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic" @change="myFunction('sma')"/>
                                 <span>SMA</span>
                             </label>
                         </p>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" />
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic" @change="myFunction('durian')" />
                                 <span>DURIAN</span>
                             </label>
                         </p>
@@ -50,11 +51,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" required>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" required>
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -69,11 +70,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" required>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" required>
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -88,21 +89,21 @@
                                 <span class="card-title">Indicator Setting</span>
                                 <br>
                                 <p class="setting-label">Entry Value</p>
-                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
+                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" >
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" >
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" >
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" >
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" >
                             </div>
                         </div>
                     </div>
@@ -115,17 +116,17 @@
                                 <span class="card-title">Durian Setting</span>
                                 <br>
                                 <p class="setting-label">Gap</p>
-                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" required>
+                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" >
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" required>
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" >
 
                                 <br>
                                 <p class="setting-label">Buy pending</p>
-                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" required>
+                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" >
 
                                 <p class="setting-label">Sell_pending</p>
-                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
+                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" >
                             </div>
                         </div>
                     </div>
@@ -135,7 +136,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
                                 <option value="BINANCE">BINANCE</option>
                                 <option value="COINEX">COINEX</option>
                                 <option value="JONVI">JONVI</option>
@@ -146,7 +147,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>API KEY</span>
-                            <input  class="api_key" type="text" v-model="api_key" required>
+                            <input  class="api_key" type="text" v-model="api_key" >
                             
                         </div>
                     </div>
@@ -154,7 +155,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>SECRET KEY</span>
-                            <input  class="secret_key" type="text" v-model="secret_key" required>
+                            <input  class="secret_key" type="text" v-model="secret_key" >
                             
                         </div>
                     </div>
@@ -163,7 +164,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" >
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -195,7 +196,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>API KEY</span>
-                            <input  class="api_key" type="text" v-model="api_key" required>
+                            <input  class="api_key" type="text" v-model="api_key" >
                             
                         </div>
                     </div>
@@ -203,7 +204,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>SECRET KEY</span>
-                            <input  class="secret_key" type="text" v-model="secret_key" required>
+                            <input  class="secret_key" type="text" v-model="secret_key" >
                             
                         </div>
                     </div>
@@ -212,7 +213,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" >
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -235,7 +236,7 @@
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input type="checkbox" class="box" id="status"  />
+                                <input type="checkbox" class="filled-in" />
                                 <span>Active</span>
                             </label>
                         </p>
@@ -310,7 +311,7 @@ export default {
                             vm.gap_value = doc.data().gap_value,
                             vm.buy_pend = doc.data().buy_pend,
                             vm.sell_pend = doc.data().sell_pend,
-                            vm.durian_amount = doc.data().durian_amount
+                            vm.durian_amount = doc.data().durian_amount,
                             vm.uid = doc.data().uid
                         })
                     })
@@ -349,7 +350,7 @@ export default {
                             this.gap_value = doc.data().gap_value,
                             this.buy_pend = doc.data().buy_pend,
                             this.sell_pend = doc.data().sell_pend,
-                            this.durian_amount = doc.data().durian_amount
+                            this.durian_amount = doc.data().durian_amount,
                             this.uid = doc.data().uid
                         })
                         if(this.indicator == "rsi") {
@@ -370,7 +371,7 @@ export default {
 
             dbref.get().then( snapshot => {
                 snapshot.forEach ( doc => {
-                    dbref.doc(this.indicator).collection('bot').where("uid", "==", uid).get().then( snapdata => {
+                    dbref.doc(this.indicator).collection('bot').get().then( snapdata => {
                         snapdata.forEach(doc => {
                             doc.ref.update({
                                 indicator : this.indicator,
@@ -436,14 +437,7 @@ export default {
             }
             this.indicator = evt
         }
-        // check (){
-        //     if(document.getElementById("status").checked){
-        //         document.getElementById("status").value = "active" 
-        //     }
-        //     else if(document.getElementById("status").checked==false){
-        //         document.getElementById("status").value = "inactive" 
-        //     }
-        // }
+       
     }
         
 }
