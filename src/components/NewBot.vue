@@ -325,7 +325,7 @@ export default {
             console.log("USERNAME : ", username)
 
             if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
-                db.collection('trading_bot').doc(username).add({
+                db.collection('trading_bot').doc(this.indicator).collection('bot').add({
                     indicator: this.indicator,
                     overbought_value: this.overbought_value,
                     oversold_value: this.oversold_value,
