@@ -217,7 +217,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -279,7 +279,8 @@
             buy_pend:null,
             sell_pend:null,
             durian_amount:null,
-            durian_exchange: null
+            durian_exchange: null,
+            durian_trading_pair:null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -306,7 +307,8 @@
                     vm.sell_pend = doc.data().sell_pend,
                     vm.durian_amount = doc.data().durian_amount,
                     vm.uid = doc.data().uid,
-                    vm.durian_exchange = doc.data().durian_exchange
+                    vm.durian_exchange = doc.data().durian_exchange,
+                    vm.durian_trading_pair = doc.data().durian_trading_pair
           })
         })
       })
@@ -339,6 +341,7 @@
             this.durian_amount = doc.data().durian_amount,
             this.uid = doc.data().uid,
             this.durian_exchange = doc.data().durian_exchange
+            this.durian_trading_pair = doc.data().durian_trading_pair
           })
         })
       },
@@ -376,40 +379,143 @@
             this.indicator = evt
         },
       updateBot () {
-        db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            doc.ref.update({
-                indicator : this.indicator,
-                overbought_value : this.overbought_value,
-                oversold_value : this.oversold_value,
-                entry_value : this.entry_value,
-                amount : this.amount,
-                exit_value : this.exit_value,
-                percentage_value : this.percentage_value,
-                stop_value : this.stop_value,
-                exchange: this.exchange,
-                api_key : this.api_key,
-                secret_key: this.secret_key,
-                trading_pair : this.trading_pair,
-                ema_value1 : this.ema_value1,
-                ema_value2 : this.ema_value2,
-                bot_id : this.bot_id,
-                gap_value : this.gap_value,
-                buy_pend : this.buy_pend,
-                sell_pend : this.sell_pend,
-                durian_amount : this.durian_amount,
-                uid : this.uid,
-                durian_exchange : this.durian_exchange
-            })
-            .then(() => {
-                   this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                this.$router.push('/')
-            });
-          })
-        })
-      }
+            if(this.indicator == "rsi"){
+                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.update({
+                            indicator : this.indicator,
+                            overbought_value : this.overbought_value,
+                            oversold_value : this.oversold_value,
+                            entry_value : this.entry_value,
+                            amount : this.amount,
+                            exit_value : this.exit_value,
+                            percentage_value : this.percentage_value,
+                            stop_value : this.stop_value,
+                            exchange: this.exchange,
+                            api_key : this.api_key,
+                            secret_key: this.secret_key,
+                            trading_pair : this.trading_pair,
+                            ema_value1 : null,
+                            ema_value2 : null,
+                            bot_id : this.bot_id,
+                            gap_value : null,
+                            buy_pend : null,
+                            sell_pend : null,
+                            durian_amount : null,
+                            uid : this.uid,
+                            durian_exchange : null,
+                            durian_trading_pair : null
+                        })
+                        .then(() => {
+                            this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
+                            this.$router.push('/')
+                        });
+                    })
+                })
+            }else if(this.indicator == "ema"){
+                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.update({
+                            indicator : this.indicator,
+                            overbought_value : null,
+                            oversold_value : null,
+                            entry_value : this.entry_value,
+                            amount : this.amount,
+                            exit_value : this.exit_value,
+                            percentage_value : this.percentage_value,
+                            stop_value : this.stop_value,
+                            exchange: this.exchange,
+                            api_key : this.api_key,
+                            secret_key: this.secret_key,
+                            trading_pair : this.trading_pair,
+                            ema_value1 : this.ema_value1,
+                            ema_value2 : this.ema_value2,
+                            bot_id : this.bot_id,
+                            gap_value : null,
+                            buy_pend : null,
+                            sell_pend : null,
+                            durian_amount : null,
+                            uid : this.uid,
+                            durian_exchange : null,
+                            durian_trading_pair : null
+                        })
+                        .then(() => {
+                            this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
+                            this.$router.push('/')
+                        });
+                    })
+                })
+            }else if(this.indicator == "sma"){
+                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.update({
+                            indicator : null,
+                            overbought_value : null,
+                            oversold_value : this.oversold_value,
+                            entry_value : this.entry_value,
+                            amount : this.amount,
+                            exit_value : this.exit_value,
+                            percentage_value : this.percentage_value,
+                            stop_value : this.stop_value,
+                            exchange: this.exchange,
+                            api_key : this.api_key,
+                            secret_key: this.secret_key,
+                            trading_pair : this.trading_pair,
+                            ema_value1 : null,
+                            ema_value2 : null,
+                            bot_id : this.bot_id,
+                            gap_value : null,
+                            buy_pend : null,
+                            sell_pend : null,
+                            durian_amount : null,
+                            uid : this.uid,
+                            durian_exchange : null,
+                            durian_trading_pair : null
+                        })
+                        .then(() => {
+                            this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
+                            this.$router.push('/')
+                        });
+                    })
+                })
+            }else if(this.indicator == "rsi"){
+                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.update({
+                            indicator : null,
+                            overbought_value : null,
+                            oversold_value : null,
+                            entry_value : null,
+                            amount : null,
+                            exit_value : null,
+                            percentage_value : null,
+                            stop_value : null,
+                            exchange: null,
+                            api_key : this.api_key,
+                            secret_key: this.secret_key,
+                            trading_pair : null,
+                            ema_value1 : null,
+                            ema_value2 : null,
+                            bot_id : this.bot_id,
+                            gap_value : this.gap_value,
+                            buy_pend : this.buy_pend,
+                            sell_pend : this.sell_pend,
+                            durian_amount : this.durian_amount,
+                            uid : this.uid,
+                            durian_exchange : this.durian_exchange,
+                            durian_trading_pair : this.durian_trading_pair
+                        })
+                        .then(() => {
+                            this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
+                            this.$router.push('/')
+                        });
+                    })
+                })
+            }
+        
+        }
     }
-  }
+}
 </script>
 <style scoped>
 .holder p {
