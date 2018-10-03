@@ -74,32 +74,26 @@ export default {
     },
     beforeRouteEnter (to, from, next) {
         const uid = firebase.auth().currentUser.uid
-        const dbref = db.collection('trading_bot')
-
-        dbref.get().then( snapshot => {
-            snapshot.forEach ( doc => {
-                dbref.doc(doc.id).collection('bot').where("uid", "==", uid).get().then( snapdata => {
-                    snapdata.forEach(doc => {
-                        next(vm => {
-                            vm.indicator = doc.data().indicator,
-                            vm.overbought_value = doc.data().overbought_value,
-                            vm.oversold_value = doc.data().oversold_value,
-                            vm.entry_value = doc.data().entry_value,
-                            vm.amount = doc.data().amount,
-                            vm.exit_value = doc.data().exit_value,
-                            vm.percentage_value = doc.data().percentage_value,
-                            vm.stop_value = doc.data().stop_value,
-                            vm.exchange = doc.data().exchange,
-                            vm.api_key = doc.data().api_key,
-                            vm.secret_key = doc.data().secret_key,
-                            vm.trading_pair = doc.data().trading_pair,
-                            vm.bot_id = doc.data().bot_id,
-                            vm.bot_name = doc.data().bot_name
-                            vm.ema_value1 = doc.data().ema_value1,
-                            vm.ema_value2 = doc.data().ema_value2,
-                            vm.uid = doc.data().uid
-                        })
-                    })
+        db.collection('trading_bot').where("uid", "==", uid).get().then( snapdata => {
+            snapdata.forEach(doc => {
+                next(vm => {
+                    vm.indicator = doc.data().indicator,
+                    vm.overbought_value = doc.data().overbought_value,
+                    vm.oversold_value = doc.data().oversold_value,
+                    vm.entry_value = doc.data().entry_value,
+                    vm.amount = doc.data().amount,
+                    vm.exit_value = doc.data().exit_value,
+                    vm.percentage_value = doc.data().percentage_value,
+                    vm.stop_value = doc.data().stop_value,
+                    vm.exchange = doc.data().exchange,
+                    vm.api_key = doc.data().api_key,
+                    vm.secret_key = doc.data().secret_key,
+                    vm.trading_pair = doc.data().trading_pair,
+                    vm.bot_id = doc.data().bot_id,
+                    vm.bot_name = doc.data().bot_name
+                    vm.ema_value1 = doc.data().ema_value1,
+                    vm.ema_value2 = doc.data().ema_value2,
+                    vm.uid = doc.data().uid
                 })
             })
         })
@@ -112,37 +106,33 @@ export default {
             const uid = firebase.auth().currentUser.uid
             const dbref = db.collection('trading_bot')
 
-            dbref.get().then( snapshot => {
-                snapshot.forEach ( doc => {
-                    dbref.doc(dod.id).collection('bot').where("uid", "==", uid).get().then( snapdata => {
-                        snapdata.forEach(doc => {
-                            this.indicator = doc.data().indicator,
-                            this.overbought_value = doc.data().overbought_value,
-                            this.oversold_value = doc.data().oversold_value,
-                            this.entry_value = doc.data().entry_value,
-                            this.amount = doc.data().amount,
-                            this.exit_value = doc.data().exit_value,
-                            this.percentage_value = doc.data().percentage_value,
-                            this.stop_value = doc.data().stop_value,
-                            this.exchange = doc.data().exchange,
-                            this.api_key = doc.data().api_key,
-                            this.secret_key = doc.data().secret_key,
-                            this.trading_pair = doc.data().trading_pair,
-                            this.bot_id = doc.data().bot_id,
-                            this.bot_name = doc.data().bot_name
-                            this.ema_value1 = doc.data().ema_value1,
-                            this.ema_value2 = doc.data().ema_value2,
-                            this.uid = doc.data().uid
-                        })
-                        if(this.indicator == "rsi") {
-                            document.getElementById("rsi").style.display = "block"
-                            document.getElementById("ema").style.display = "none"
-                        } else if (this.indicator == "ema") {
-                            document.getElementById("ema").style.display = "block"
-                            document.getElementById("rsi").style.display = "none"
-                        }
-                    })
+            dbref.where("uid", "==", uid).get().then( snapdata => {
+                snapdata.forEach(doc => {
+                    this.indicator = doc.data().indicator,
+                    this.overbought_value = doc.data().overbought_value,
+                    this.oversold_value = doc.data().oversold_value,
+                    this.entry_value = doc.data().entry_value,
+                    this.amount = doc.data().amount,
+                    this.exit_value = doc.data().exit_value,
+                    this.percentage_value = doc.data().percentage_value,
+                    this.stop_value = doc.data().stop_value,
+                    this.exchange = doc.data().exchange,
+                    this.api_key = doc.data().api_key,
+                    this.secret_key = doc.data().secret_key,
+                    this.trading_pair = doc.data().trading_pair,
+                    this.bot_id = doc.data().bot_id,
+                    this.bot_name = doc.data().bot_name
+                    this.ema_value1 = doc.data().ema_value1,
+                    this.ema_value2 = doc.data().ema_value2,
+                    this.uid = doc.data().uid
                 })
+                if(this.indicator == "rsi") {
+                    document.getElementById("rsi").style.display = "block"
+                    document.getElementById("ema").style.display = "none"
+                } else if (this.indicator == "ema") {
+                    document.getElementById("ema").style.display = "block"
+                    document.getElementById("rsi").style.display = "none"
+                }
             })
         },
         deleteBot () {
