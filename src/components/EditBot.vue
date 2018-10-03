@@ -371,7 +371,7 @@ export default {
 
             dbref.get().then( snapshot => {
                 snapshot.forEach ( doc => {
-                    dbref.doc(this.indicator).collection('bot').get().then( snapdata => {
+                    dbref.doc(doc.id).collection('bot').where("uid", "==", uid).get().then( snapdata => {
                         snapdata.forEach(doc => {
                             doc.ref.update({
                                 indicator : this.indicator,
