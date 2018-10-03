@@ -161,10 +161,32 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row" id="trading_pair">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
                             <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                                <option value="BTC/USDT">BTC/USDT</option>
+                                <option value="BCH/USDT">BCH/USDT</option>
+                                <option value="JE/USDT">JE/USDT</option>
+                                <option value="ETH/USDT">ETH/USDT</option>
+                                <option value="LTC/USDT">LTC/USDT</option>
+                                <option value="ETH/BTC">ETH/BTC</option>
+                                <option value="JE/BTC">JE/BTC</option>
+                                <option value="LTC/BTC">LTC/BTC</option>
+                                <option value="BCH/BTC">BCH/BTC</option>
+                                <option value="JE/eMYR">JE/eMYR</option>
+                                <option value="BTC/eMYR">BTC/eMYR</option>
+                                <option value="BCH/eMYR">BCH/eMYR</option>
+                                <option value="ETH/eMYR">ETH/eMYR</option>
+                                <option value="USDT/eMYR">USDT/eMYR</option>
+                            </select>    
+                        </div>
+                    </div>
+
+                    <div class="row" id="durian_trading_pair">
+                        <div class="input-field col s12">
+                            <p>Durian Trading Pair :</p>
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -282,7 +304,8 @@ export default {
             buy_pend:null,
             sell_pend:null,
             durian_amount:null,
-            durian_exchange:null
+            durian_exchange:null,
+            durian_trading_pair:null
         }
     },
 
@@ -296,6 +319,9 @@ export default {
                 document.getElementById("durian-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
+                
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
             } else if(evt == "ema") {
                 document.getElementById("ema-setting").style.display = "block"
                 document.getElementById("common-setting").style.display = "block"
@@ -303,6 +329,9 @@ export default {
                 document.getElementById("durian-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
+
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
             } else if(evt=="sma"){
                 document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
@@ -310,6 +339,9 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
+
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
             }else if(evt=="durian"){
                 document.getElementById("durian-setting").style.display = "block"
                 document.getElementById("common-setting").style.display = "none"
@@ -317,6 +349,10 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "block"
+
+                document.getElementById("trading_pair").style.display = "none"
+                document.getElementById("durian_trading_pair").style.display = "block"
+
             }
             this.indicator = evt
         },
@@ -408,6 +444,10 @@ input.bot_name {
 }
 span.bot_name {
     margin-right: 75px;
+}
+
+#three-indicator-setting, #durian_trading_pair {
+    display: none;
 }
 
 </style>
