@@ -1,8 +1,8 @@
 <template>
-  <div id="new-employee">
-    <h3>Edit Bot</h3>
-    <div class="row">
-    <form @sumbit.prevent="updateBot" class="col s12">
+    <div id="edit-bot" class="container">
+        <h3>Edit Bot</h3>
+        <div class="row">
+            <form @sumbit.prevent="updateBot" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                         <span>BotID :</span><br>
@@ -17,43 +17,27 @@
                         <h6>Indicator</h6>
                         <p>
                             <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('rsi')"  />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('rsi')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic"/>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('ema')"  />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('ema')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic"/>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
                             <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('sma')"  />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('sma')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic"/>
                                 <span>SMA</span>
                             </label>
                         </p>
                         <p>
                             <label class="container">
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('durian')" />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('durian')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                                <input class="indicator" name='indicator' type="radio"  v-model="indic" />
                                 <span>DURIAN</span>
                             </label>
                         </p>
@@ -203,7 +187,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" disabled>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
                                 <option value="BINANCE">BINANCE</option>
                             </select>
                         </div>
@@ -261,24 +245,23 @@
                 <button type="sumbit" class="btn" @click="updateBot">Submit</button>
                 <router-link to="/" class="btn grey">Cancel</router-link>  
             </form>
-  </div>
-  </div>
+            
+        </div>
+    </div>
 </template>
 
 <script>
-<<<<<<< HEAD
 import db from './firebaseInit'
-
+import firebase from 'firebase'
+import 'firebase/firestore';
+import firebaseConfig from './firebaseConfig';
+import firebaseInit from './firebaseInit';
 
 export default {
-=======
-  import db from './firebaseInit'
-  export default {
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
     name: 'edit-bot',
     data () {
-      return {
-        indicator: null,
+        return {
+            indicator: null,
             overbought_value: null,
             oversold_value: null,
             entry_value: null,
@@ -294,18 +277,19 @@ export default {
             ema_value2:null,
             bot_id: null,
             uid: null,
+            indic: null,
             gap_value:null,
             buy_pend:null,
             sell_pend:null,
             durian_amount:null,
             currentDoc: null
-      }
+        }
     },
     beforeRouteEnter (to, from, next) {
-      db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          next(vm => {
-            vm.bot_id = doc.data().bot_id,
+        db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get().then( snapdata => {
+            snapdata.forEach(doc => {
+                next(vm => {
+                    vm.bot_id = doc.data().bot_id,
                     vm.exchange = doc.data().exchange,
                     vm.indicator = doc.data().indicator,
                     vm.api_key = doc.data().api_key,
@@ -325,15 +309,14 @@ export default {
                     vm.sell_pend = doc.data().sell_pend,
                     vm.durian_amount = doc.data().durian_amount,
                     vm.uid = doc.data().uid
-          })
+                })
+            })
         })
-      })
     },
     watch: {
-      '$route': 'fetchData'
+        '$route': 'fetchData'
     },
     methods: {
-<<<<<<< HEAD
         fetchData () {
             db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then( snapdata => {
                 snapdata.forEach(doc => {
@@ -358,41 +341,14 @@ export default {
                     this.durian_amount = doc.data().durian_amount,
                     this.uid = doc.data().uid
                 })
+                if(this.indicator == "rsi") {
+                    document.getElementById("rsi").style.display = "block"
+                    document.getElementById("ema").style.display = "none"
+                } else if (this.indicator == "ema") {
+                    document.getElementById("ema").style.display = "block"
+                    document.getElementById("rsi").style.display = "none"
+                }
             })
-        },
-        myFunction(evt) {
-            console.log(evt);
-            // this.$emit("change", evt);
-            // if ( evt== "rsi") {
-            //     document.getElementById("rsi-setting").style.display = "block"
-            //     document.getElementById("common-setting").style.display = "block"
-            //     document.getElementById("ema-setting").style.display = "none"
-            //     document.getElementById("durian-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "block"
-            // } else if(evt == "ema") {
-            //     document.getElementById("ema-setting").style.display = "block"
-            //     document.getElementById("common-setting").style.display = "block"
-            //     document.getElementById("rsi-setting").style.display = "none"
-            //     document.getElementById("durian-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "block"
-            // } else if(evt=="sma"){
-            //     document.getElementById("common-setting").style.display = "block"
-            //     document.getElementById("ema-setting").style.display = "none"
-            //     document.getElementById("durian-setting").style.display = "none"
-            //     document.getElementById("rsi-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "block"
-            // }else if(evt=="durian"){
-            //     document.getElementById("durian-setting").style.display = "block"
-            //     document.getElementById("common-setting").style.display = "none"
-            //     document.getElementById("ema-setting").style.display = "none"
-            //     document.getElementById("rsi-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "block"
-            // }
-            // this.indicator = evt
         },
         updateBot () {
             db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then( snapdata => {
@@ -420,75 +376,58 @@ export default {
                             uid : this.uid
                         })
                         .then(() => {
-                            this.$router.push('/')
+                            this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
                         })
                     })
                     
                 })
         }
-=======
-      fetchData () {
-        db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.bot_id = doc.data().bot_id,
-            this.exchange = doc.data().exchange,
-            this.indicator = doc.data().indicator,
-            this.api_key = doc.data().api_key,
-            this.secret_key = doc.data().secret_key,
-            this.trading_pair = doc.data().trading_pair,
-            this.amount =doc.data().amount,
-            this.stop_value = doc.data().stop_value,
-            this.percentage_value = doc.data().percentage_value,
-            this.exit_value = doc.data().exit_value,
-            this.entry_value = doc.data().entry_value,
-            this.ema_value1 = doc.data().ema_value1,
-            this.ema_value2 = doc.data().ema_value2,
-            this.overbought_value = doc.data().overbought_value,
-            this.oversold_value = doc.data().oversold_value,
-            this.gap_value = doc.data().gap_value,
-            this.buy_pend = doc.data().buy_pend,
-            this.sell_pend = doc.data().sell_pend,
-            this.durian_amount = doc.data().durian_amount,
-            this.uid = doc.data().uid
-          })
-        })
-      },
-      myFunction(evt) {
-          console.log(evt);
-      },
-      updateBot () {
-        db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            doc.ref.update({
-                indicator : this.indicator,
-                overbought_value : this.overbought_value,
-                oversold_value : this.oversold_value,
-                entry_value : this.entry_value,
-                amount : this.amount,
-                exit_value : this.exit_value,
-                percentage_value : this.percentage_value,
-                stop_value : this.stop_value,
-                exchange: this.exchange,
-                api_key : this.api_key,
-                secret_key: this.secret_key,
-                trading_pair : this.trading_pair,
-                ema_value1 : this.ema_value1,
-                ema_value2 : this.ema_value2,
-                bot_id : this.bot_id,
-                gap_value : this.gap_value,
-                buy_pend : this.buy_pend,
-                sell_pend : this.sell_pend,
-                durian_amount : this.durian_amount,
-                uid : this.uid
-            })
-            .then(() => {
-            //   this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                this.$router.push('/')
-            });
-          })
-        })
-      }
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+       
     }
-  }
+        
+}
 </script>
+
+
+<style scoped>
+
+h3 {
+    text-align: center
+}
+.holder p {
+    display:inline-block;
+    margin-right: 20px;
+}
+
+.setting-label, .setting-input {
+    display:inline-block
+}
+
+#rsi-setting, #ema-setting {
+    display:none;
+}
+
+p.setting-label {
+    margin-right: 10px;
+    width:100px;
+}
+
+label.setting-symbol {
+    width:10px;
+    margin-left: -100px;
+    margin-right: 80px;
+    font-size:18px;
+    font-weight: bold;
+}
+
+input.setting-input {
+    width:200px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+    margin-right:40px;
+}
+div.indicator,.line2,.line3{
+    display: flex
+}
+</style>
