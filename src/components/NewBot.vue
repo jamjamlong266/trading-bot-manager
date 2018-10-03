@@ -187,7 +187,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
+                            <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" >
                                 <option value="BINANCE">BINANCE</option>
                             </select>
                         </div>
@@ -281,7 +281,8 @@ export default {
             gap_value:null,
             buy_pend:null,
             sell_pend:null,
-            durian_amount:null
+            durian_amount:null,
+            durian_exchange:null
         }
     },
 
@@ -350,7 +351,8 @@ export default {
                     gap_value :this.gap_value,
                     buy_pend : this.buy_pend,
                     sell_pend : this.sell_pend,
-                    durian_amount : this.durian_amount
+                    durian_amount : this.durian_amount,
+                    durian_exchange : this.durian_exchange
                 })
                 .then(docRef => {
                     this.$router.push('/')

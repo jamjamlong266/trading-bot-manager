@@ -16,44 +16,32 @@
 
                         <h6>Indicator</h6>
                         <p>
-                            <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('rsi')"  />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('rsi')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  @change="myFunction('rsi')" />
+                                <span class="checkmark"></span>
                                 <span>RSI</span>
                             </label>
                         </p>
 
                         <p>
-                            <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('ema')"  />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('ema')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  @change="myFunction('ema')"/>
+                                <span class="checkmark"></span>
                                 <span>EMA</span>
                             </label>
                         </p>
 
                         <p>
-                            <label>
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('sma')"  />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('sma')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  @change="myFunction('sma')"/>
+                                <span class="checkmark"></span>
                                 <span>SMA</span>
                             </label>
                         </p>
                         <p>
                             <label class="container">
-<<<<<<< HEAD
-                                <input class="indicator" name="indicator" type="radio" @change="myFunction('durian')" />
-=======
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('durian')"/>
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
+                                <input class="indicator" name="indicator" type="radio"  @change="myFunction('durian')" />
+                                <span class="checkmark"></span>
                                 <span>DURIAN</span>
                             </label>
                         </p>
@@ -67,11 +55,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" >
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" required >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" >
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -86,11 +74,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" >
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" >
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -105,21 +93,21 @@
                                 <span class="card-title">Indicator Setting</span>
                                 <br>
                                 <p class="setting-label">Entry Value</p>
-                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" >
+                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" >
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
 
                                 <br>
                                 <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" >
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" >
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
 
                                 <br>
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" >
+                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
                             </div>
                         </div>
                     </div>
@@ -132,17 +120,17 @@
                                 <span class="card-title">Durian Setting</span>
                                 <br>
                                 <p class="setting-label">Gap</p>
-                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" >
+                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" required>
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" >
+                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" required>
 
                                 <br>
                                 <p class="setting-label">Buy pending</p>
-                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" >
+                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" required>
 
                                 <p class="setting-label">Sell_pending</p>
-                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" >
+                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
                             </div>
                         </div>
                     </div>
@@ -152,7 +140,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
                                 <option value="COINEX">COINEX</option>
                                 <option value="JONVI">JONVI</option>
@@ -163,7 +151,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>API KEY</span>
-                            <input  class="api_key" type="text" v-model="api_key" >
+                            <input  class="api_key" type="text" v-model="api_key" required>
                             
                         </div>
                     </div>
@@ -171,7 +159,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>SECRET KEY</span>
-                            <input  class="secret_key" type="text" v-model="secret_key" >
+                            <input  class="secret_key" type="text" v-model="secret_key" required>
                             
                         </div>
                     </div>
@@ -180,7 +168,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" >
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -203,7 +191,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" disabled>
+                            <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
                             </select>
                         </div>
@@ -212,7 +200,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>API KEY</span>
-                            <input  class="api_key" type="text" v-model="api_key" >
+                            <input  class="api_key" type="text" v-model="api_key" required>
                             
                         </div>
                     </div>
@@ -220,7 +208,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <span>SECRET KEY</span>
-                            <input  class="secret_key" type="text" v-model="secret_key" >
+                            <input  class="secret_key" type="text" v-model="secret_key" required>
                             
                         </div>
                     </div>
@@ -229,7 +217,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" >
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -266,15 +254,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import db from './firebaseInit'
-
-
-export default {
-=======
   import db from './firebaseInit'
   export default {
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
     name: 'edit-bot',
     data () {
       return {
@@ -298,7 +279,7 @@ export default {
             buy_pend:null,
             sell_pend:null,
             durian_amount:null,
-            currentDoc: null
+            durian_exchange: null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -324,7 +305,8 @@ export default {
                     vm.buy_pend = doc.data().buy_pend,
                     vm.sell_pend = doc.data().sell_pend,
                     vm.durian_amount = doc.data().durian_amount,
-                    vm.uid = doc.data().uid
+                    vm.uid = doc.data().uid,
+                    vm.durian_exchange = doc.data().durian_exchange
           })
         })
       })
@@ -333,102 +315,8 @@ export default {
       '$route': 'fetchData'
     },
     methods: {
-<<<<<<< HEAD
-        fetchData () {
-            db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then( snapdata => {
-                snapdata.forEach(doc => {
-                    this.bot_id = doc.data().bot_id,
-                    this.exchange = doc.data().exchange,
-                    this.indicator = doc.data().indicator,
-                    this.api_key = doc.data().api_key,
-                    this.secret_key = doc.data().secret_key,
-                    this.trading_pair = doc.data().trading_pair,
-                    this.amount =doc.data().amount,
-                    this.stop_value = doc.data().stop_value,
-                    this.percentage_value = doc.data().percentage_value,
-                    this.exit_value = doc.data().exit_value,
-                    this.entry_value = doc.data().entry_value,
-                    this.ema_value1 = doc.data().ema_value1,
-                    this.ema_value2 = doc.data().ema_value2,
-                    this.overbought_value = doc.data().overbought_value,
-                    this.oversold_value = doc.data().oversold_value,
-                    this.gap_value = doc.data().gap_value,
-                    this.buy_pend = doc.data().buy_pend,
-                    this.sell_pend = doc.data().sell_pend,
-                    this.durian_amount = doc.data().durian_amount,
-                    this.uid = doc.data().uid
-                })
-            })
-        },
-        myFunction(evt) {
-            console.log(evt);
-            // this.$emit("change", evt);
-            // if ( evt== "rsi") {
-            //     document.getElementById("rsi-setting").style.display = "block"
-            //     document.getElementById("common-setting").style.display = "block"
-            //     document.getElementById("ema-setting").style.display = "none"
-            //     document.getElementById("durian-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "block"
-            // } else if(evt == "ema") {
-            //     document.getElementById("ema-setting").style.display = "block"
-            //     document.getElementById("common-setting").style.display = "block"
-            //     document.getElementById("rsi-setting").style.display = "none"
-            //     document.getElementById("durian-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "block"
-            // } else if(evt=="sma"){
-            //     document.getElementById("common-setting").style.display = "block"
-            //     document.getElementById("ema-setting").style.display = "none"
-            //     document.getElementById("durian-setting").style.display = "none"
-            //     document.getElementById("rsi-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "block"
-            // }else if(evt=="durian"){
-            //     document.getElementById("durian-setting").style.display = "block"
-            //     document.getElementById("common-setting").style.display = "none"
-            //     document.getElementById("ema-setting").style.display = "none"
-            //     document.getElementById("rsi-setting").style.display = "none"
-            //     document.getElementById("three-indicator-setting").style.display = "none"
-            //     document.getElementById("durian-indicator-setting").style.display = "block"
-            // }
-            // this.indicator = evt
-        },
-        updateBot () {
-            db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then( snapdata => {
-                    snapdata.forEach(doc => {
-                        doc.ref.update({
-                            indicator : this.indicator,
-                            overbought_value : this.overbought_value,
-                            oversold_value : this.oversold_value,
-                            entry_value : this.entry_value,
-                            amount : this.amount,
-                            exit_value : this.exit_value,
-                            percentage_value : this.percentage_value,
-                            stop_value : this.stop_value,
-                            exchange: this.exchange,
-                            api_key : this.api_key,
-                            secret_key: this.secret_key,
-                            trading_pair : this.trading_pair,
-                            ema_value1 : this.ema_value1,
-                            ema_value2 : this.ema_value2,
-                            bot_id : this.bot_id,
-                            gap_value : this.gap_value,
-                            buy_pend : this.buy_pend,
-                            sell_pend : this.sell_pend,
-                            durian_amount : this.durian_amount,
-                            uid : this.uid
-                        })
-                        .then(() => {
-                            this.$router.push('/')
-                        })
-                    })
-                    
-                })
-        }
-=======
       fetchData () {
-        db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
+        db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             this.bot_id = doc.data().bot_id,
             this.exchange = doc.data().exchange,
@@ -449,15 +337,46 @@ export default {
             this.buy_pend = doc.data().buy_pend,
             this.sell_pend = doc.data().sell_pend,
             this.durian_amount = doc.data().durian_amount,
-            this.uid = doc.data().uid
+            this.uid = doc.data().uid,
+            this.durian_exchange = doc.data().durian_exchange
           })
         })
       },
-      myFunction(evt) {
-          console.log(evt);
-      },
+      myFunction: function(evt){
+            this.$emit("change", evt);
+            if (evt == "rsi") {
+                document.getElementById("rsi-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "block"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            } else if(evt == "ema") {
+                document.getElementById("ema-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "block"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            } else if(evt=="sma"){
+                document.getElementById("common-setting").style.display = "block"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+            }else if(evt=="durian"){
+                document.getElementById("durian-setting").style.display = "block"
+                document.getElementById("common-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "none"
+                document.getElementById("durian-indicator-setting").style.display = "block"
+            }
+            this.indicator = evt
+        },
       updateBot () {
-        db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
+        db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             doc.ref.update({
                 indicator : this.indicator,
@@ -479,16 +398,62 @@ export default {
                 buy_pend : this.buy_pend,
                 sell_pend : this.sell_pend,
                 durian_amount : this.durian_amount,
-                uid : this.uid
+                uid : this.uid,
+                durian_exchange : this.durian_exchange
             })
             .then(() => {
-            //   this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
+                   this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
                 this.$router.push('/')
             });
           })
         })
       }
->>>>>>> f017b5d3ab9958c84c9711b9a39ce7b2ab1fea87
     }
   }
 </script>
+<style scoped>
+.holder p {
+    display:inline-block;
+    margin-right: 20px;
+}
+
+.setting-label, .setting-input {
+    display:inline-block
+}
+
+#rsi-setting, #ema-setting {
+    display:none;
+}
+
+p.setting-label {
+    margin-right: 10px;
+    width:100px;
+}
+
+label.setting-symbol {
+    width:10px;
+    margin-left: -100px;
+    margin-right: 80px;
+    font-size:18px;
+    font-weight: bold;
+}
+
+input.setting-input {
+    width:200px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+    margin-right:40px;
+}
+input.bot_name {
+    width:200px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    text-align: center;
+    margin-right:40px;
+}
+span.bot_name {
+    margin-right: 75px;
+}
+
+</style>
