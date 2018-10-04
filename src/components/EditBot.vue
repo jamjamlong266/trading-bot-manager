@@ -260,27 +260,27 @@
     data () {
       return {
         indicator: null,
-            overbought_value: null,
-            oversold_value: null,
-            entry_value: null,
-            amount:null,
-            exit_value: null,
-            percentage_value: null,
-            stop_value: null,
-            exchange: null,
-            api_key: null,
-            secret_key: null,
-            trading_pair: null,
-            ema_value1: null,
-            ema_value2:null,
-            bot_id: null,
-            uid: null,
-            gap_value:null,
-            buy_pend:null,
-            sell_pend:null,
-            durian_amount:null,
-            durian_exchange: null,
-            durian_trading_pair:null
+        overbought_value: null,
+        oversold_value: null,
+        entry_value: null,
+        amount:null,
+        exit_value: null,
+        percentage_value: null,
+        stop_value: null,
+        exchange: null,
+        api_key: null,
+        secret_key: null,
+        trading_pair: null,
+        ema_value1: null,
+        ema_value2:null,
+        bot_id: null,
+        uid: null,
+        gap_value:null,
+        buy_pend:null,
+        sell_pend:null,
+        durian_amount:null,
+        durian_exchange: null,
+        durian_trading_pair:null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -408,7 +408,7 @@
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                            this.$router.push('/')
+                            // this.$router.push('/')
                         });
                     })
                 })
@@ -441,7 +441,7 @@
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                            this.$router.push('/')
+                            // this.$router.push('/')
                         });
                     })
                 })
@@ -474,11 +474,11 @@
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                            this.$router.push('/')
+                            // this.$router.push('/')
                         });
                     })
                 })
-            }else if(this.indicator == "rsi"){
+            }else if(this.indicator == "durian"){
                 db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
@@ -507,7 +507,7 @@
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                            this.$router.push('/')
+                            // this.$router.push('/')
                         });
                     })
                 })
