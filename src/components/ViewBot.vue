@@ -6,7 +6,8 @@
             </li>
             <li class="collection-item">
                 <p>
-                    Bot Indicator: {{ indicator }}
+                    Bot Indicator: {{ indicator }} <br>
+                    Bot Status : {{ checkbox }}
                 </p>
                 <div id="rsi">
                     <p>Overbought : {{ overbought_value }}</p>
@@ -54,6 +55,7 @@
             </div>
 
         </ul>
+        
         <router-link to="/" class="btn grey">Back</router-link>
         <button class="btn red" @click="deleteBot">Delete</button>
 
@@ -96,7 +98,8 @@ export default {
             sell_pend:null,
             durian_amount:null,
             durian_exchange: null,
-            durian_trading_pair:null
+            durian_trading_pair:null,
+            checkbox:null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -126,7 +129,8 @@ export default {
                     vm.durian_exchange = doc.data().durian_exchange,
                     vm.durian_trading_pair = doc.data().durian_trading_pair,
                     vm.bot_id = doc.data().bot_id,
-                    vm.bot_name = doc.data().bot_name
+                    vm.bot_name = doc.data().bot_name,
+                    vm.checkbox = doc.data().checkbox
 
                     console.log(vm.indicator)
                     if(vm.indicator == "rsi") {
@@ -176,7 +180,8 @@ export default {
                     this.durian_trading_pair = doc.data().durian_trading_pair,
                     this.durian_amount = doc.data().durian_amount,
                     this.buy_pend = doc.data().buy_pend,
-                    this.sell_pend = doc.data().sell_pend
+                    this.sell_pend = doc.data().sell_pend,
+                    this.checkbox = doc.data().checkbox
                 })
             })
         },

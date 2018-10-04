@@ -256,7 +256,7 @@
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
+                                <input id="checkedbox" type="checkbox" class="filled-in" v-model="checkbox" :value="true" @change="check()" />
                                 <span>Active</span>
                             </label>
                         </p>
@@ -305,7 +305,8 @@ export default {
             sell_pend:null,
             durian_amount:null,
             durian_exchange:null,
-            durian_trading_pair:null
+            durian_trading_pair:null,
+            checkbox:null
         }
     },
 
@@ -319,7 +320,6 @@ export default {
                 document.getElementById("durian-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
-                
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
             } else if(evt == "ema") {
@@ -329,7 +329,6 @@ export default {
                 document.getElementById("durian-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
-
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
             } else if(evt=="sma"){
@@ -339,7 +338,6 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
-
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
             }else if(evt=="durian"){
@@ -387,13 +385,17 @@ export default {
                     buy_pend : this.buy_pend,
                     sell_pend : this.sell_pend,
                     durian_amount : this.durian_amount,
-                    durian_exchange : this.durian_exchange
+                    durian_exchange : this.durian_exchange,
+                    checkbox : this.checkbox
                 })
                 .then(docRef => {
                     this.$router.push('/')
                 })
                 .catch(error => console.log(err))
             // }
+        },
+        check () {
+            console.log(this.checkbox)
         }
     }
 }

@@ -240,7 +240,7 @@
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" />
+                                <input id="checkedbox" type="checkbox" class="filled-in" v-model="checkbox"  @change="check()" />
                                 <span>Active</span>
                             </label>
                         </p>
@@ -280,7 +280,8 @@
         sell_pend:null,
         durian_amount:null,
         durian_exchange: null,
-        durian_trading_pair:null
+        durian_trading_pair:null,
+        checkbox:null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -308,7 +309,8 @@
                     vm.durian_amount = doc.data().durian_amount,
                     vm.uid = doc.data().uid,
                     vm.durian_exchange = doc.data().durian_exchange,
-                    vm.durian_trading_pair = doc.data().durian_trading_pair
+                    vm.durian_trading_pair = doc.data().durian_trading_pair,
+                    vm.checkbox = doc.data().checkbox
           })
         })
       })
@@ -317,35 +319,39 @@
       '$route': 'fetchData'
     },
     methods: {
-      fetchData () {
-        db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.bot_id = doc.data().bot_id,
-            this.exchange = doc.data().exchange,
-            this.indicator = doc.data().indicator,
-            this.api_key = doc.data().api_key,
-            this.secret_key = doc.data().secret_key,
-            this.trading_pair = doc.data().trading_pair,
-            this.amount =doc.data().amount,
-            this.stop_value = doc.data().stop_value,
-            this.percentage_value = doc.data().percentage_value,
-            this.exit_value = doc.data().exit_value,
-            this.entry_value = doc.data().entry_value,
-            this.ema_value1 = doc.data().ema_value1,
-            this.ema_value2 = doc.data().ema_value2,
-            this.overbought_value = doc.data().overbought_value,
-            this.oversold_value = doc.data().oversold_value,
-            this.gap_value = doc.data().gap_value,
-            this.buy_pend = doc.data().buy_pend,
-            this.sell_pend = doc.data().sell_pend,
-            this.durian_amount = doc.data().durian_amount,
-            this.uid = doc.data().uid,
-            this.durian_exchange = doc.data().durian_exchange
-            this.durian_trading_pair = doc.data().durian_trading_pair
-          })
-        })
-      },
-      myFunction: function(evt){
+        fetchData () {
+            db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                this.bot_id = doc.data().bot_id,
+                this.exchange = doc.data().exchange,
+                this.indicator = doc.data().indicator,
+                this.api_key = doc.data().api_key,
+                this.secret_key = doc.data().secret_key,
+                this.trading_pair = doc.data().trading_pair,
+                this.amount =doc.data().amount,
+                this.stop_value = doc.data().stop_value,
+                this.percentage_value = doc.data().percentage_value,
+                this.exit_value = doc.data().exit_value,
+                this.entry_value = doc.data().entry_value,
+                this.ema_value1 = doc.data().ema_value1,
+                this.ema_value2 = doc.data().ema_value2,
+                this.overbought_value = doc.data().overbought_value,
+                this.oversold_value = doc.data().oversold_value,
+                this.gap_value = doc.data().gap_value,
+                this.buy_pend = doc.data().buy_pend,
+                this.sell_pend = doc.data().sell_pend,
+                this.durian_amount = doc.data().durian_amount,
+                this.uid = doc.data().uid,
+                this.durian_exchange = doc.data().durian_exchange,
+                this.durian_trading_pair = doc.data().durian_trading_pair,
+                this.checkbox = doc.data().checkbox
+            })
+            })
+        },
+        check () {
+            console.log(this.checkbox)
+        },
+        myFunction: function(evt){
             this.$emit("change", evt);
             if (evt == "rsi") {
                 document.getElementById("rsi-setting").style.display = "block"
@@ -404,7 +410,8 @@
                             durian_amount : null,
                             uid : this.uid,
                             durian_exchange : null,
-                            durian_trading_pair : null
+                            durian_trading_pair : null,
+                            checkbox :this.checkbox
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -437,7 +444,8 @@
                             durian_amount : null,
                             uid : this.uid,
                             durian_exchange : null,
-                            durian_trading_pair : null
+                            durian_trading_pair : null,
+                            checkbox :this.checkbox
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -470,7 +478,8 @@
                             durian_amount : null,
                             uid : this.uid,
                             durian_exchange : null,
-                            durian_trading_pair : null
+                            durian_trading_pair : null,
+                            checkbox :this.checkbox
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -503,7 +512,8 @@
                             durian_amount : this.durian_amount,
                             uid : this.uid,
                             durian_exchange : this.durian_exchange,
-                            durian_trading_pair : this.durian_trading_pair
+                            durian_trading_pair : this.durian_trading_pair,
+                            checkbox :this.checkbox
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
