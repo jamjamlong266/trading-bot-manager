@@ -201,6 +201,7 @@
                                 <option value="BCH/eMYR">BCH/eMYR</option>
                                 <option value="ETH/eMYR">ETH/eMYR</option>
                                 <option value="USDT/eMYR">USDT/eMYR</option>
+                                
                             </select>    
                         </div>
                     </div>
@@ -211,6 +212,7 @@
                         <p>Exchange :</p>
                             <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" >
                                 <option value="BINANCE">BINANCE</option>
+                                <option value="COINEX">COINEX</option>
                             </select>
                         </div>
                     </div>
