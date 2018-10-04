@@ -349,7 +349,6 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "block"
-
                 document.getElementById("trading_pair").style.display = "none"
                 document.getElementById("durian_trading_pair").style.display = "block"
 
@@ -365,7 +364,7 @@ export default {
             const username = firebase.auth().currentUser
             console.log("USERNAME : ", username)
 
-            if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
+            // if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
                 db.collection('trading_bot').add({
                     indicator: this.indicator,
                     overbought_value: this.overbought_value,
@@ -394,7 +393,7 @@ export default {
                     this.$router.push('/')
                 })
                 .catch(error => console.log(err))
-            }
+            // }
         }
     }
 }

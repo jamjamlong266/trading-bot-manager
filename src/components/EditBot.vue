@@ -482,7 +482,7 @@
                 db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
-                            indicator : null,
+                            indicator : this.indicator,
                             overbought_value : null,
                             oversold_value : null,
                             entry_value : null,
