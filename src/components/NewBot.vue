@@ -127,8 +127,15 @@
                                 <p class="setting-label">Buy pending</p>
                                 <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" required>
 
-                                <p class="setting-label">Sell_pending</p>
+                                <p class="setting-label">Sell pending</p>
                                 <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
+
+                                <br>
+                                <p class="setting-label">Buy Gap</p>
+                                <input class="setting-input" type="text" placeholder="buy gap" v-model="buy_gap" required>
+
+                                <p class="setting-label">Sell gap</p>
+                                <input class="setting-input" type="text" placeholder="Sell gap" v-model="sell_gap" required>
                             </div>
                         </div>
                     </div>
@@ -183,27 +190,7 @@
                         </div>
                     </div>
 
-                    <div class="row" id="durian_trading_pair">
-                        <div class="input-field col s12">
-                            <p>Durian Trading Pair :</p>
-                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
-                                <option value="BTC/USDT">BTC/USDT</option>
-                                <option value="BCH/USDT">BCH/USDT</option>
-                                <option value="JE/USDT">JE/USDT</option>
-                                <option value="ETH/USDT">ETH/USDT</option>
-                                <option value="LTC/USDT">LTC/USDT</option>
-                                <option value="ETH/BTC">ETH/BTC</option>
-                                <option value="JE/BTC">JE/BTC</option>
-                                <option value="LTC/BTC">LTC/BTC</option>
-                                <option value="BCH/BTC">BCH/BTC</option>
-                                <option value="JE/eMYR">JE/eMYR</option>
-                                <option value="BTC/eMYR">BTC/eMYR</option>
-                                <option value="BCH/eMYR">BCH/eMYR</option>
-                                <option value="ETH/eMYR">ETH/eMYR</option>
-                                <option value="USDT/eMYR">USDT/eMYR</option>
-                            </select>    
-                        </div>
-                    </div>
+                    
                 </div>
                 <div id="durian-indicator-setting">
                     <div class="row">
@@ -211,6 +198,7 @@
                         <p>Exchange :</p>
                             <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" >
                                 <option value="BINANCE">BINANCE</option>
+                                <option value="COINEX">COINEX</option>
                             </select>
                         </div>
                     </div>
@@ -229,11 +217,10 @@
                         </div>
                     </div>
 
-
-                    <div class="row">
+                    <div class="row" id="durian_trading_pair">
                         <div class="input-field col s12">
-                            <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                            <p>Durian Trading Pair :</p>
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -248,6 +235,7 @@
                                 <option value="BCH/eMYR">BCH/eMYR</option>
                                 <option value="ETH/eMYR">ETH/eMYR</option>
                                 <option value="USDT/eMYR">USDT/eMYR</option>
+                                <option value="XMR/USDT">XMR/USDT"</option>
                             </select>    
                         </div>
                     </div>
@@ -306,7 +294,9 @@ export default {
             durian_amount:null,
             durian_exchange:null,
             durian_trading_pair:null,
-            checkbox:null
+            checkbox:null,
+            buy_gap:null,
+            sell_gap: null
         }
     },
 
@@ -386,7 +376,10 @@ export default {
                     sell_pend : this.sell_pend,
                     durian_amount : this.durian_amount,
                     durian_exchange : this.durian_exchange,
-                    checkbox : this.checkbox
+                    durian_trading_pair: this.durian_trading_pair,
+                    checkbox : this.checkbox,
+                    buy_gap : this.buy_gap,
+                    sell_gap : this.sell_gap
                 })
                 .then(docRef => {
                     this.$router.push('/')
