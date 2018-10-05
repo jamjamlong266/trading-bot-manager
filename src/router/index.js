@@ -7,6 +7,7 @@ import EditBot from '@/components/EditBot'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
+import Otc from '@/components/Otc'
 
 import firebase from 'firebase'
 
@@ -42,6 +43,14 @@ let router = new Router({
       path: '/new',
       name: 'new-bot',
       component: NewBot,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/otc',
+      name: 'otc',
+      component: Otc,
       meta: {
         requiresAuth: true
       }
