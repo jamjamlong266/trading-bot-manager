@@ -14,8 +14,6 @@
                     <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
-<<<<<<< HEAD
-=======
                         <p>
                             <label class="container">
                                 <input class="indicator" name="indicator" type="radio"  @change="myFunction('rsi')" />
@@ -46,7 +44,6 @@
                                 <span>DURIAN</span>
                             </label>
                         </p>
->>>>>>> e1a02608565c0f8392a05905fb380a10eb95c216
                     </div>
                 </div>
 
@@ -279,13 +276,9 @@
         buy_pend:null,
         sell_pend:null,
         durian_amount:null,
-<<<<<<< HEAD
-        currentDoc: null
-=======
         durian_exchange: null,
         durian_trading_pair:null,
         checkbox:null
->>>>>>> e1a02608565c0f8392a05905fb380a10eb95c216
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -323,66 +316,6 @@
       '$route': 'fetchData'
     },
     methods: {
-<<<<<<< HEAD
-      fetchData () {
-        db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.bot_id = doc.data().bot_id,
-            this.exchange = doc.data().exchange,
-            this.indicator = doc.data().indicator,
-            this.api_key = doc.data().api_key,
-            this.secret_key = doc.data().secret_key,
-            this.trading_pair = doc.data().trading_pair,
-            this.amount =doc.data().amount,
-            this.stop_value = doc.data().stop_value,
-            this.percentage_value = doc.data().percentage_value,
-            this.exit_value = doc.data().exit_value,
-            this.entry_value = doc.data().entry_value,
-            this.ema_value1 = doc.data().ema_value1,
-            this.ema_value2 = doc.data().ema_value2,
-            this.overbought_value = doc.data().overbought_value,
-            this.oversold_value = doc.data().oversold_value,
-            this.gap_value = doc.data().gap_value,
-            this.buy_pend = doc.data().buy_pend,
-            this.sell_pend = doc.data().sell_pend,
-            this.durian_amount = doc.data().durian_amount,
-            this.uid = doc.data().uid
-          })
-        })
-      },
-      updateBot () {
-        db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            doc.ref.update({
-                indicator : this.indicator,
-                overbought_value : this.overbought_value,
-                oversold_value : this.oversold_value,
-                entry_value : this.entry_value,
-                amount : this.amount,
-                exit_value : this.exit_value,
-                percentage_value : this.percentage_value,
-                stop_value : this.stop_value,
-                exchange: this.exchange,
-                api_key : this.api_key,
-                secret_key: this.secret_key,
-                trading_pair : this.trading_pair,
-                ema_value1 : this.ema_value1,
-                ema_value2 : this.ema_value2,
-                bot_id : this.bot_id,
-                gap_value : this.gap_value,
-                buy_pend : this.buy_pend,
-                sell_pend : this.sell_pend,
-                durian_amount : this.durian_amount,
-                uid : this.uid
-            })
-            .then(() => {
-                // this.$router.push('/')
-                this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-            });
-          })
-        })
-      }
-=======
         fetchData () {
             db.collection('trading_bot').where('bot_id', '==', to.params.bot_id).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -588,7 +521,6 @@
             }
         
         }
->>>>>>> e1a02608565c0f8392a05905fb380a10eb95c216
     }
 }
 </script>

@@ -103,11 +103,7 @@ export default {
         }
     },
     beforeRouteEnter (to, from, next) {
-<<<<<<< HEAD
-        const uid = firebase.auth().currentUser.uid
-=======
         // const uid = firebase.auth().currentUser.uid
->>>>>>> e1a02608565c0f8392a05905fb380a10eb95c216
         db.collection('trading_bot').where("bot_id", "==", to.params.bot_id).get().then( snapdata => {
             snapdata.forEach(doc => {
                 next(vm => {
