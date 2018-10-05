@@ -53,11 +53,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" >
+                                <input class="setting-input" type="number" placeholder="70 - 99" v-model="overbought_value" >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value">
+                                <input class="setting-input" type="number" placeholder="1 - 30" v-model="oversold_value">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -72,11 +72,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1">
+                                <input class="setting-input" type="number" placeholder="70 - 99" v-model="ema_value1">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2">
+                                <input class="setting-input" id="icon_telephone" type="number" placeholder="1 - 30" v-model="ema_value2">
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -91,21 +91,20 @@
                                 <span class="card-title">Indicator Setting</span>
                                 <br>
                                 <p class="setting-label">Entry Value</p>
-                                <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
-
-                                <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
-
-                                <br>
-                                <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
+                                <input class="setting-input" type="number" placeholder="Entry Value" v-model="entry_value" required>
 
                                 <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
+                                <input class="setting-input" type="number" placeholder="Percentage" v-model="percentage_value" required>                                
 
                                 <br>
+                                <!-- <p class="setting-label">Exit Value</p>
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required> -->
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="number" placeholder="Amount" v-model="amount" required>
+
                                 <p class="setting-label">Stop Loss</p>
-                                <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
+                                <input class="setting-input" type="number" placeholder="Stop Loss" v-model="stop_value" required>
+
                             </div>
                         </div>
                     </div>
@@ -118,17 +117,24 @@
                                 <span class="card-title">Durian Setting</span>
                                 <br>
                                 <p class="setting-label">Gap</p>
-                                <input class="setting-input" type="text" placeholder="Gap value" v-model="gap_value" required>
+                                <input class="setting-input" type="number" placeholder="Gap value" v-model="gap_value" required>
 
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="text" placeholder="Amount" v-model="durian_amount" required>
+                                <input class="setting-input" type="number" placeholder="Amount" v-model="durian_amount" required>
 
                                 <br>
                                 <p class="setting-label">Buy pending</p>
-                                <input class="setting-input" type="text" placeholder="Buy pending" v-model="buy_pend" required>
+                                <input class="setting-input" type="number" placeholder="Buy pending" v-model="buy_pend" required>
 
-                                <p class="setting-label">Sell_pending</p>
-                                <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
+                                <p class="setting-label">Sell pending</p>
+                                <input class="setting-input" type="number" placeholder="Sell pending" v-model="sell_pend" required>
+
+                                <br>
+                                <p class="setting-label">Buy Gap</p>
+                                <input class="setting-input" type="number" placeholder="buy gap" v-model="buy_gap" required>
+
+                                <p class="setting-label">Sell gap</p>
+                                <input class="setting-input" type="number" placeholder="Sell gap" v-model="sell_gap" required>
                             </div>
                         </div>
                     </div>
@@ -161,34 +167,37 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row" id="trading_pair">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
                             <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
-                                <option value="BTC/USDT">BTC/USDT</option>
-                                <option value="BCH/USDT">BCH/USDT</option>
-                                <option value="JE/USDT">JE/USDT</option>
-                                <option value="ETH/USDT">ETH/USDT</option>
-                                <option value="LTC/USDT">LTC/USDT</option>
-                                <option value="ETH/BTC">ETH/BTC</option>
-                                <option value="JE/BTC">JE/BTC</option>
-                                <option value="LTC/BTC">LTC/BTC</option>
-                                <option value="BCH/BTC">BCH/BTC</option>
-                                <option value="JE/eMYR">JE/eMYR</option>
-                                <option value="BTC/eMYR">BTC/eMYR</option>
-                                <option value="BCH/eMYR">BCH/eMYR</option>
-                                <option value="ETH/eMYR">ETH/eMYR</option>
-                                <option value="USDT/eMYR">USDT/eMYR</option>
+                                <option value="BTCUSDT">BTC/USDT</option>
+                                <option value="BCHUSDT">BCH/USDT</option>
+                                <option value="JEUSDT">JE/USDT</option>
+                                <option value="ETHUSDT">ETH/USDT</option>
+                                <option value="LTCUSDT">LTC/USDT</option>
+                                <option value="ETHBTC">ETH/BTC</option>
+                                <option value="JEBTC">JE/BTC</option>
+                                <option value="LTCBTC">LTC/BTC</option>
+                                <option value="BCHBTC">BCH/BTC</option>
+                                <option value="JEeMYR">JE/eMYR</option>
+                                <option value="BTCeMYR">BTC/eMYR</option>
+                                <option value="BCHeMYR">BCH/eMYR</option>
+                                <option value="ETHeMYR">ETH/eMYR</option>
+                                <option value="USDTeMYR">USDT/eMYR</option>
                             </select>    
                         </div>
                     </div>
+
+                    
                 </div>
                 <div id="durian-indicator-setting">
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" >
+                            <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
+                                <option value="COINEX">COINEX</option>
                             </select>
                         </div>
                     </div>
@@ -207,11 +216,29 @@
                         </div>
                     </div>
 
-
-                    <div class="row">
+                    <div class="row" id="durian_trading_pair">
                         <div class="input-field col s12">
-                            <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                            <p>Durian Trading Pair :</p>
+<<<<<<< HEAD
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
+                                <option value="BTCUSDT">BTC/USDT</option>
+                                <option value="BCHUSDT">BCH/USDT</option>
+                                <option value="JEUSDT">JE/USDT</option>
+                                <option value="ETHUSDT">ETH/USDT</option>
+                                <option value="LTCUSDT">LTC/USDT</option>
+                                <option value="ETHBTC">ETH/BTC</option>
+                                <option value="JEBTC">JE/BTC</option>
+                                <option value="LTCBTC">LTC/BTC</option>
+                                <option value="BCHBTC">BCH/BTC</option>
+                                <option value="JEeMYR">JE/eMYR</option>
+                                <option value="BTCeMYR">BTC/eMYR</option>
+                                <option value="BCHeMYR">BCH/eMYR</option>
+                                <option value="ETHeMYR">ETH/eMYR</option>
+                                <option value="USDTeMYR">USDT/eMYR</option>
+                                <option value="XMRUSDT">XMR/USDT</option>
+                                <option value="CETUSDT">CET/USDT</option>
+=======
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -226,6 +253,8 @@
                                 <option value="BCH/eMYR">BCH/eMYR</option>
                                 <option value="ETH/eMYR">ETH/eMYR</option>
                                 <option value="USDT/eMYR">USDT/eMYR</option>
+                                <option value="XMRUSDT">XMR/USDT</option>
+>>>>>>> 94b0293e49b14418118fb02dd83a195db0427157
                             </select>    
                         </div>
                     </div>
@@ -234,7 +263,7 @@
                     <div class="input-field col s12">
                         <p>
                             <label>
-                                <input type="checkbox" class="filled-in" checked="checked" />
+                                <input id="checkedbox" type="checkbox" class="filled-in" v-model="checkbox" :value="true" @change="check()" />
                                 <span>Active</span>
                             </label>
                         </p>
@@ -265,7 +294,7 @@ export default {
             oversold_value: null,
             entry_value: null,
             amount:null,
-            exit_value: null,
+            // exit_value: null,
             percentage_value: null,
             stop_value: null,
             exchange: null,
@@ -281,7 +310,12 @@ export default {
             gap_value:null,
             buy_pend:null,
             sell_pend:null,
-            durian_amount:null
+            durian_amount:null,
+            durian_exchange:null,
+            durian_trading_pair:null,
+            checkbox:null,
+            buy_gap:null,
+            sell_gap: null
         }
     },
 
@@ -295,6 +329,8 @@ export default {
                 document.getElementById("durian-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
             } else if(evt == "ema") {
                 document.getElementById("ema-setting").style.display = "block"
                 document.getElementById("common-setting").style.display = "block"
@@ -302,6 +338,8 @@ export default {
                 document.getElementById("durian-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
             } else if(evt=="sma"){
                 document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
@@ -309,6 +347,8 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
             }else if(evt=="durian"){
                 document.getElementById("durian-setting").style.display = "block"
                 document.getElementById("common-setting").style.display = "none"
@@ -316,6 +356,9 @@ export default {
                 document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "none"
                 document.getElementById("durian-indicator-setting").style.display = "block"
+                document.getElementById("trading_pair").style.display = "none"
+                document.getElementById("durian_trading_pair").style.display = "block"
+
             }
             this.indicator = evt
         },
@@ -327,15 +370,125 @@ export default {
             }
             const username = firebase.auth().currentUser
             console.log("USERNAME : ", username)
+            console.log(this.indicator)
+            if(this.indicator == "rsi"){
+                this.indicator = this.indicator,
+                this.overbought_value = this.overbought_value,
+                this.oversold_value = this.oversold_value,
+                this.entry_value = this.entry_value,
+                this.amount = this.amount,
+                //this.exit_value = this.exit_value,
+                this.percentage_value = this.percentage_value,
+                this.stop_value = this.stop_value,
+                this.exchange = this.exchange,
+                this.api_key = this.api_key,
+                this.secret_key = this.secret_key,
+                this.trading_pair = this.trading_pair,
+                this.ema_value1 = 0,
+                this.ema_value2 = 0,
+                this.bot_id = autoId,
+                this.uid = firebase.auth().currentUser.uid,
+                this.bot_name = this.bot_name,
+                this.gap_value  = 0,
+                this.buy_pend  = 0,
+                this.sell_pend  = 0,
+                this.durian_amount  = 0,
+                this.durian_exchange = 0,
+                this.durian_trading_pair = 0,
+                this.checkbox = this.checkbox,
+                this.buy_gap = 0,
+                this.sell_gap = 0
+            }else if(this.indicator == "ema"){
+                this.icator = this.indicator,
+                this.overbought_value = 0,
+                this.oversold_value = 0,
+                this.entry_value = this.entry_value,
+                this.amount = this.amount,
+                //this.exit_value = this.exit_value,
+                this.percentage_value = this.percentage_value,
+                this.stop_value = this.stop_value,
+                this.exchange = this.exchange,
+                this.api_key = this.api_key,
+                this.secret_key = this.secret_key,
+                this.trading_pair = this.trading_pair,
+                this.ema_value1 = this.ema_value1,
+                this.ema_value2 = this.ema_value2,
+                this.bot_id = autoId,
+                this.uid = firebase.auth().currentUser.uid,
+                this.bot_name = this.bot_name,
+                this.gap_value  = 0,
+                this.buy_pend  = 0,
+                this.sell_pend  = 0,
+                this.durian_amount  = 0,
+                this.durian_exchange = 0,
+                this.durian_trading_pair = 0,
+                this.checkbox = this.checkbox,
+                this.buy_gap = 0,
+                this.sell_gap = 0
+            }else if(this.indicator == "sma"){
+                this.indicator = this.indicator,
+                this.overbought_value = 0,
+                this.oversold_value = 0,
+                this.entry_value = this.entry_value,
+                this.amount = this.amount,
+                //this.exit_value = this.exit_value,
+                this.percentage_value = this.percentage_value,
+                this.stop_value = this.stop_value,
+                this.exchange = this.exchange,
+                this.api_key = this.api_key,
+                this.secret_key = this.secret_key,
+                this.trading_pair = this.trading_pair,
+                this.ema_value1 = 0,
+                this.ema_value2 = 0,
+                this.bot_id = autoId,
+                this.uid = firebase.auth().currentUser.uid,
+                this.bot_name = this.bot_name,
+                this.gap_value  = 0,
+                this.buy_pend  = 0,
+                this.sell_pend  = 0,
+                this.durian_amount  = 0,
+                this.durian_exchange = 0,
+                this.durian_trading_pair = 0,
+                this.checkbox = this.checkbox,
+                this.buy_gap = 0,
+                this.sell_gap = 0
+            }else if(this.indicator == "durian"){
+                this.indicator = this.indicator,
+                this.overbought_value = 0,
+                this.oversold_value = 0,
+                this.entry_value = 0,
+                this.amount = 0,
+                //this.exit_value = 0,
+                this.percentage_value = 0,
+                this.stop_value = 0,
+                this.exchange = 0,
+                this.api_key = this.api_key,
+                this.secret_key = this.secret_key,
+                this.trading_pair = 0,
+                this.ema_value1 = 0,
+                this.ema_value2 = 0
+                this.bot_id = autoId,
+                this.uid = firebase.auth().currentUser.uid,
+                this.bot_name = this.bot_name,
+                this.gap_value  = this.gap_value,
+                this.buy_pend  = this.buy_pend,
+                this.sell_pend  = this.sell_pend,
+                this.durian_amount  = this.durian_amount,
+                this.durian_exchange = this.durian_exchange,
+                this.durian_trading_pair = this.durian_trading_pair,
+                this.checkbox = this.checkbox,
+                this.buy_gap = this.buy_gap,
+                this.sell_gap = this.sell_gap
+            }
 
-            if (this.indicator != null && this.entry_value != null && this.exit_value != null && this.amount != null && this.percentage_value != null && this.exchange != null && this.api_key != null && this.secret_key != null && this.trading_pair != null ) {
+            if (this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
                 db.collection('trading_bot').add({
                     indicator: this.indicator,
                     overbought_value: this.overbought_value,
                     oversold_value: this.oversold_value,
                     entry_value: this.entry_value,
                     amount:this.amount,
-                    exit_value: this.exit_value,
+                    //exit_value: this.exit_value,
                     percentage_value: this.percentage_value,
                     stop_value: this.stop_value,
                     exchange: this.exchange,
@@ -350,13 +503,21 @@ export default {
                     gap_value :this.gap_value,
                     buy_pend : this.buy_pend,
                     sell_pend : this.sell_pend,
-                    durian_amount : this.durian_amount
+                    durian_amount : this.durian_amount,
+                    durian_exchange : this.durian_exchange,
+                    durian_trading_pair: this.durian_trading_pair,
+                    checkbox : this.checkbox,
+                    buy_gap : this.buy_gap,
+                    sell_gap : this.sell_gap
                 })
                 .then(docRef => {
-                    this.$router.push('/')
+                    this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
                 })
                 .catch(error => console.log(err))
             }
+        },
+        check () {
+            console.log(this.checkbox)
         }
     }
 }
@@ -406,6 +567,10 @@ input.bot_name {
 }
 span.bot_name {
     margin-right: 75px;
+}
+
+#three-indicator-setting, #durian_trading_pair {
+    display: none;
 }
 
 </style>
