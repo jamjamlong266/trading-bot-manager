@@ -10,37 +10,10 @@
                     </div>
                 </div>
 
-                
                 <div class="row">
                     <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
-                        <p>
-                            <label>
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('rsi')"/>
-                                <span>RSI</span>
-                            </label>
-                        </p>
-
-                        <p>
-                            <label>
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('ema')"/>
-                                <span>EMA</span>
-                            </label>
-                        </p>
-
-                        <p>
-                            <label>
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('sma')"/>
-                                <span>SMA</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label class="container">
-                                <input class="indicator" name='indicator' type="radio" @change="myFunction('durian')"/>
-                                <span>DURIAN</span>
-                            </label>
-                        </p>
                     </div>
                 </div>
 
@@ -160,7 +133,6 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
@@ -209,7 +181,6 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
@@ -256,26 +227,26 @@
     data () {
       return {
         indicator: null,
-            overbought_value: null,
-            oversold_value: null,
-            entry_value: null,
-            amount:null,
-            exit_value: null,
-            percentage_value: null,
-            stop_value: null,
-            exchange: null,
-            api_key: null,
-            secret_key: null,
-            trading_pair: null,
-            ema_value1: null,
-            ema_value2:null,
-            bot_id: null,
-            uid: null,
-            gap_value:null,
-            buy_pend:null,
-            sell_pend:null,
-            durian_amount:null,
-            currentDoc: null
+        overbought_value: null,
+        oversold_value: null,
+        entry_value: null,
+        amount:null,
+        exit_value: null,
+        percentage_value: null,
+        stop_value: null,
+        exchange: null,
+        api_key: null,
+        secret_key: null,
+        trading_pair: null,
+        ema_value1: null,
+        ema_value2:null,
+        bot_id: null,
+        uid: null,
+        gap_value:null,
+        buy_pend:null,
+        sell_pend:null,
+        durian_amount:null,
+        currentDoc: null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -336,9 +307,6 @@
           })
         })
       },
-      myFunction(evt) {
-          console.log(evt);
-      },
       updateBot () {
         db.collection('trading_bot').where('bot_id', '==', this.$route.params.bot_id).get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -365,8 +333,8 @@
                 uid : this.uid
             })
             .then(() => {
-            //   this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                this.$router.push('/')
+                // this.$router.push('/')
+                this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
             });
           })
         })

@@ -74,7 +74,7 @@ export default {
     },
     beforeRouteEnter (to, from, next) {
         const uid = firebase.auth().currentUser.uid
-        db.collection('trading_bot').where("uid", "==", uid).get().then( snapdata => {
+        db.collection('trading_bot').where("bot_id", "==", to.params.bot_id).get().then( snapdata => {
             snapdata.forEach(doc => {
                 next(vm => {
                     vm.indicator = doc.data().indicator,
@@ -106,7 +106,7 @@ export default {
             const uid = firebase.auth().currentUser.uid
             const dbref = db.collection('trading_bot')
 
-            dbref.where("uid", "==", uid).get().then( snapdata => {
+            dbref.where("bot_id", "==", to.params.bot_id).get().then( snapdata => {
                 snapdata.forEach(doc => {
                     this.indicator = doc.data().indicator,
                     this.overbought_value = doc.data().overbought_value,
