@@ -54,11 +54,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" required >
+                                <input class="setting-input" type="text" placeholder="7null - 99" v-model="overbought_value" required >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" required>
+                                <input class="setting-input" type="text" placeholder="1 - 3null" v-model="oversold_value" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -73,11 +73,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" required>
+                                <input class="setting-input" type="text" placeholder="7null - 99" v-model="ema_value1" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" required>
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 3null" v-model="ema_value2" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -94,17 +94,12 @@
                                 <p class="setting-label">Entry Value</p>
                                 <input class="setting-input" type="text" placeholder="Entry Value" v-model="entry_value" required>
 
+                                <p class="setting-label">Percentage</p>
+                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
+                                <br>
                                 <p class="setting-label">Amount</p>
                                 <input class="setting-input" type="text" placeholder="Amount" v-model="amount" required>
 
-                                <br>
-                                <p class="setting-label">Exit Value</p>
-                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required>
-
-                                <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="text" placeholder="Percentage" v-model="percentage_value" required>
-
-                                <br>
                                 <p class="setting-label">Stop Loss</p>
                                 <input class="setting-input" type="text" placeholder="Stop Loss" v-model="stop_value" required>
                             </div>
@@ -139,7 +134,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
+                            <select class="exchange" v-model="exchange" style="height:5nullpx; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
                                 <option value="COINEX">COINEX</option>
                                 <option value="JONVI">JONVI</option>
@@ -166,7 +161,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
+                            <select class="trading_pair" v-model="trading_pair" style="height:5nullpx; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -189,8 +184,9 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" required>
+                            <select class="exchange" v-model="durian_exchange" style="height:5nullpx; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
+                                <option value="COINEX">COINEX</option>
                             </select>
                         </div>
                     </div>
@@ -214,7 +210,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:5nullpx; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -229,6 +225,8 @@
                                 <option value="BCH/eMYR">BCH/eMYR</option>
                                 <option value="ETH/eMYR">ETH/eMYR</option>
                                 <option value="USDT/eMYR">USDT/eMYR</option>
+                                <option value="XMRUSDT">XMR/USDT</option>
+                                <option value="CETUSDT">CET/USDT</option>
                             </select>    
                         </div>
                     </div>
@@ -381,19 +379,19 @@
             }
             this.indicator = evt
         },
-      updateBot () {
-            if(this.indicator == "rsi"){
-                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+        updateBot () {
+                if(this.indicator == "rsi"){
+                    db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
                             indicator : this.indicator,
-                            overbought_value : this.overbought_value,
-                            oversold_value : this.oversold_value,
-                            entry_value : this.entry_value,
-                            amount : this.amount,
-                            exit_value : this.exit_value,
-                            percentage_value : this.percentage_value,
-                            stop_value : this.stop_value,
+                            overbought_value : parseFloat(this.overbought_value),
+                            oversold_value : parseFloat(this.oversold_value),
+                            entry_value : parseFloat(this.entry_value),
+                            amount : parseFloat(this.amount),
+                            exit_value : parseFloat(this.exit_value),
+                            percentage_value : parseFloat(this.percentage_value),
+                            stop_value : parseFloat(this.stop_value),
                             exchange: this.exchange,
                             api_key : this.api_key,
                             secret_key: this.secret_key,
@@ -412,28 +410,27 @@
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
-                            // this.$router.push('/')
                         });
                     })
                 })
-            }else if(this.indicator == "ema"){
-                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                }else if(this.indicator == "ema"){
+                    db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
                             indicator : this.indicator,
                             overbought_value : null,
                             oversold_value : null,
-                            entry_value : this.entry_value,
-                            amount : this.amount,
-                            exit_value : this.exit_value,
-                            percentage_value : this.percentage_value,
-                            stop_value : this.stop_value,
+                            entry_value : parseFloat(this.entry_value),
+                            amount : parseFloat(this.amount),
+                            exit_value :parseFloat( this.exit_value),
+                            percentage_value : parseFloat(this.percentage_value),
+                            stop_value :parseFloat( this.stop_value),
                             exchange: this.exchange,
                             api_key : this.api_key,
                             secret_key: this.secret_key,
                             trading_pair : this.trading_pair,
-                            ema_value1 : this.ema_value1,
-                            ema_value2 : this.ema_value2,
+                            ema_value1 :parseFloat( this.ema_value1),
+                            ema_value2 :parseFloat( this.ema_value2),
                             bot_id : this.bot_id,
                             gap_value : null,
                             buy_pend : null,
@@ -450,18 +447,18 @@
                         });
                     })
                 })
-            }else if(this.indicator == "sma"){
-                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                }else if(this.indicator == "sma"){
+                    db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
-                            indicator : null,
+                            indicator : this.indicator,
                             overbought_value : null,
-                            oversold_value : this.oversold_value,
-                            entry_value : this.entry_value,
-                            amount : this.amount,
-                            exit_value : this.exit_value,
-                            percentage_value : this.percentage_value,
-                            stop_value : this.stop_value,
+                            oversold_value : parseFloat(this.oversold_value),
+                            entry_value : parseFloat(this.entry_value),
+                            amount : parseFloat(this.amount),
+                            exit_value : parseFloat(this.exit_value),
+                            percentage_value : parseFloat(this.percentage_value),
+                            stop_value : parseFloat(this.stop_value),
                             exchange: this.exchange,
                             api_key : this.api_key,
                             secret_key: this.secret_key,
@@ -484,8 +481,8 @@
                         });
                     })
                 })
-            }else if(this.indicator == "durian"){
-                db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
+                }else if(this.indicator == "durian"){
+                    db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
                             indicator : this.indicator,
@@ -503,10 +500,10 @@
                             ema_value1 : null,
                             ema_value2 : null,
                             bot_id : this.bot_id,
-                            gap_value : this.gap_value,
-                            buy_pend : this.buy_pend,
-                            sell_pend : this.sell_pend,
-                            durian_amount : this.durian_amount,
+                            gap_value : parseFloat(this.gap_value),
+                            buy_pend : parseFloat(this.buy_pend),
+                            sell_pend : parseFloat(this.sell_pend),
+                            durian_amount : parseFloat(this.durian_amount),
                             uid : this.uid,
                             durian_exchange : this.durian_exchange,
                             durian_trading_pair : this.durian_trading_pair,
@@ -527,7 +524,7 @@
 <style scoped>
 .holder p {
     display:inline-block;
-    margin-right: 20px;
+    margin-right: 2nullpx;
 }
 
 .setting-label, .setting-input {
@@ -538,32 +535,34 @@
     display:none;
 }
 
+
+
 p.setting-label {
-    margin-right: 10px;
-    width:100px;
+    margin-right: 1nullpx;
+    width:1nullnullpx;
 }
 
 label.setting-symbol {
-    width:10px;
-    margin-left: -100px;
-    margin-right: 80px;
+    width:1nullpx;
+    margin-left: -1nullnullpx;
+    margin-right: 8nullpx;
     font-size:18px;
     font-weight: bold;
 }
 
 input.setting-input {
-    width:200px;
-    border: 2px solid rgba(0,0,0,0.2);
+    width:2nullnullpx;
+    border: 2px solid rgba(null,null,null,null.2);
     border-radius: 5px;
     text-align: center;
-    margin-right:40px;
+    margin-right:4nullpx;
 }
 input.bot_name {
-    width:200px;
-    border: 2px solid rgba(0,0,0,0.2);
+    width:2nullnullpx;
+    border: 2px solid rgba(null,null,null,null.2);
     border-radius: 5px;
     text-align: center;
-    margin-right:40px;
+    margin-right:4nullpx;
 }
 span.bot_name {
     margin-right: 75px;

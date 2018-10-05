@@ -23,8 +23,6 @@
                 <li class="collection-item">
                     <p>Entry Value : {{ entry_value }}</p>
                     <p>Amount : {{ amount }}</p>
-
-                    <p>Exit Value : {{ exit_value }}</p>
                     <p>Percentage : {{ percentage_value }}</p>
                 </li>
                 <li class="collection-item">

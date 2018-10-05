@@ -38,7 +38,7 @@
                         </p>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" />
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" checked/>
                                 <span class="checkmark"></span>
                                 <span>DURIAN</span>
                             </label>
@@ -219,7 +219,11 @@
                     <div class="row" id="durian_trading_pair">
                         <div class="input-field col s12">
                             <p>Durian Trading Pair :</p>
+<<<<<<< HEAD
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
+=======
                             <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
+>>>>>>> d9316204190a9713625aee1970256b393cb8d78e
                                 <option value="BTCUSDT">BTC/USDT</option>
                                 <option value="BCHUSDT">BCH/USDT</option>
                                 <option value="JEUSDT">JE/USDT</option>
@@ -235,6 +239,10 @@
                                 <option value="ETHeMYR">ETH/eMYR</option>
                                 <option value="USDTeMYR">USDT/eMYR</option>
                                 <option value="XMRUSDT">XMR/USDT</option>
+<<<<<<< HEAD
+                                <option value="CETUSDT">CET/USDT</option>
+=======
+>>>>>>> d9316204190a9713625aee1970256b393cb8d78e
                             </select>    
                         </div>
                     </div>
@@ -353,13 +361,13 @@ export default {
             console.log(this.indicator)
             if(this.indicator == "rsi"){
                 this.indicator = this.indicator,
-                this.overbought_value = this.overbought_value,
-                this.oversold_value = this.oversold_value,
-                this.entry_value = this.entry_value,
-                this.amount = this.amount,
+                this.overbought_value = parseFloat( this.overbought_value),
+                this.oversold_value = parseFloat(this.oversold_value),
+                this.entry_value = parseFloat(this.entry_value),
+                this.amount = parseFloat(this.amount),
                 //this.exit_value = this.exit_value,
-                this.percentage_value = this.percentage_value,
-                this.stop_value = this.stop_value,
+                this.percentage_value = parseFloat(this.percentage_value),
+                this.stop_value = parseFloat(this.stop_value),
                 this.exchange = this.exchange,
                 this.api_key = this.api_key,
                 this.secret_key = this.secret_key,
@@ -382,17 +390,17 @@ export default {
                 this.icator = this.indicator,
                 this.overbought_value = 0,
                 this.oversold_value = 0,
-                this.entry_value = this.entry_value,
-                this.amount = this.amount,
+                this.entry_value = parseFloat(this.entry_value),
+                this.amount = parseFloat(this.amount),
                 //this.exit_value = this.exit_value,
-                this.percentage_value = this.percentage_value,
-                this.stop_value = this.stop_value,
+                this.percentage_value = parseFloat(this.percentage_value),
+                this.stop_value = parseFloat(this.stop_value),
                 this.exchange = this.exchange,
                 this.api_key = this.api_key,
                 this.secret_key = this.secret_key,
                 this.trading_pair = this.trading_pair,
-                this.ema_value1 = this.ema_value1,
-                this.ema_value2 = this.ema_value2,
+                this.ema_value1 = parseFloat(this.ema_value1),
+                this.ema_value2 = parseFloat(this.ema_value2),
                 this.bot_id = autoId,
                 this.uid = firebase.auth().currentUser.uid,
                 this.bot_name = this.bot_name,
@@ -409,11 +417,11 @@ export default {
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
                 this.oversold_value = 0,
-                this.entry_value = this.entry_value,
-                this.amount = this.amount,
+                this.entry_value = parseFloat(this.entry_value),
+                this.amount = parseFloat(this.amount),
                 //this.exit_value = this.exit_value,
-                this.percentage_value = this.percentage_value,
-                this.stop_value = this.stop_value,
+                this.percentage_value = parseFloat(this.percentage_value),
+                this.stop_value = parseFloat(this.stop_value),
                 this.exchange = this.exchange,
                 this.api_key = this.api_key,
                 this.secret_key = this.secret_key,
@@ -450,15 +458,15 @@ export default {
                 this.bot_id = autoId,
                 this.uid = firebase.auth().currentUser.uid,
                 this.bot_name = this.bot_name,
-                this.gap_value  = this.gap_value,
-                this.buy_pend  = this.buy_pend,
-                this.sell_pend  = this.sell_pend,
-                this.durian_amount  = this.durian_amount,
+                this.gap_value  = parseFloat(this.gap_value),
+                this.buy_pend  =parseFloat( this.buy_pend),
+                this.sell_pend  = parseFloat(this.sell_pend),
+                this.durian_amount  = parseFloat(this.durian_amount),
                 this.durian_exchange = this.durian_exchange,
                 this.durian_trading_pair = this.durian_trading_pair,
                 this.checkbox = this.checkbox,
-                this.buy_gap = this.buy_gap,
-                this.sell_gap = this.sell_gap
+                this.buy_gap = parseFloat(this.buy_gap),
+                this.sell_gap = parseFloat(this.sell_gap)
             }
 
             if (this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
@@ -549,7 +557,7 @@ span.bot_name {
     margin-right: 75px;
 }
 
-#three-indicator-setting, #durian_trading_pair {
+#three-indicator-setting,#common-setting {
     display: none;
 }
 
