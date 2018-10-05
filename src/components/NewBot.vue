@@ -221,7 +221,6 @@
                             <p>Durian Trading Pair :</p>
 
                             <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
-                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
                                 <option value="BTCUSDT">BTC/USDT</option>
                                 <option value="BCHUSDT">BCH/USDT</option>
                                 <option value="JEUSDT">JE/USDT</option>
