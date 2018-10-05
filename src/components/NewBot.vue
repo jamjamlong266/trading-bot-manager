@@ -219,7 +219,11 @@
                     <div class="row" id="durian_trading_pair">
                         <div class="input-field col s12">
                             <p>Durian Trading Pair :</p>
+<<<<<<< HEAD
                             <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
+=======
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
+>>>>>>> d9316204190a9713625aee1970256b393cb8d78e
                                 <option value="BTCUSDT">BTC/USDT</option>
                                 <option value="BCHUSDT">BCH/USDT</option>
                                 <option value="JEUSDT">JE/USDT</option>
@@ -235,7 +239,10 @@
                                 <option value="ETHeMYR">ETH/eMYR</option>
                                 <option value="USDTeMYR">USDT/eMYR</option>
                                 <option value="XMRUSDT">XMR/USDT</option>
+<<<<<<< HEAD
                                 <option value="CETUSDT">CET/USDT</option>
+=======
+>>>>>>> d9316204190a9713625aee1970256b393cb8d78e
                             </select>    
                         </div>
                     </div>

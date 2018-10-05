@@ -10,7 +10,6 @@
                     </div>
                 </div>
 
-                
                 <div class="row">
                     <div class="input-field col s12 holder">
 
@@ -159,7 +158,6 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
@@ -208,7 +206,6 @@
                             
                         </div>
                     </div>
-
 
                     <div class="row">
                         <div class="input-field col s12">
