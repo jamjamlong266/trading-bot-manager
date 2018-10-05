@@ -288,7 +288,7 @@ export default {
             uid: null,
             bot_name : null,
             indic:null,
-            gap_value:null,
+            gap_value:0,
             buy_pend:null,
             sell_pend:null,
             durian_amount:null,
