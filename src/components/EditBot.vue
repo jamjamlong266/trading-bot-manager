@@ -54,11 +54,11 @@
                                 <span class="card-title">RSI Setting</span>
                                 <br>
                                 <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="7null - 99" v-model="overbought_value" required >
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="overbought_value" required >
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" type="text" placeholder="1 - 3null" v-model="oversold_value" required>
+                                <input class="setting-input" type="text" placeholder="1 - 30" v-model="oversold_value" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -73,11 +73,11 @@
                                 <span class="card-title">EMA Setting</span>
                                 <br>
                                  <p class="setting-label">Overbought %</p>
-                                <input class="setting-input" type="text" placeholder="7null - 99" v-model="ema_value1" required>
+                                <input class="setting-input" type="text" placeholder="70 - 99" v-model="ema_value1" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
 
                                 <p class="setting-label">Oversold %</p>
-                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 3null" v-model="ema_value2" required>
+                                <input class="setting-input" id="icon_telephone" type="text" placeholder="1 - 30" v-model="ema_value2" required>
                                 <label for="icon_telephone" class="setting-symbol">%</label>
                             </div>
                         </div>
@@ -125,6 +125,13 @@
 
                                 <p class="setting-label">Sell_pending</p>
                                 <input class="setting-input" type="text" placeholder="Sell pending" v-model="sell_pend" required>
+
+                                <br>
+                                <p class="setting-label">Buy Gap</p>
+                                <input class="setting-input" type="number" placeholder="buy gap" v-model="buy_gap" required>
+
+                                <p class="setting-label">Sell gap</p>
+                                <input class="setting-input" type="number" placeholder="Sell gap" v-model="sell_gap" required>
                             </div>
                         </div>
                     </div>
@@ -134,7 +141,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="exchange" style="height:5nullpx; display:block" required>
+                            <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
                                 <option value="COINEX">COINEX</option>
                                 <option value="JONVI">JONVI</option>
@@ -161,7 +168,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:5nullpx; display:block" required>
+                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -184,7 +191,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
-                            <select class="exchange" v-model="durian_exchange" style="height:5nullpx; display:block" required>
+                            <select class="exchange" v-model="durian_exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
                                 <option value="COINEX">COINEX</option>
                             </select>
@@ -210,7 +217,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="durian_trading_pair" style="height:5nullpx; display:block" required>
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
                                 <option value="BTC/USDT">BTC/USDT</option>
                                 <option value="BCH/USDT">BCH/USDT</option>
                                 <option value="JE/USDT">JE/USDT</option>
@@ -259,7 +266,6 @@
         oversold_value: null,
         entry_value: null,
         amount:null,
-        exit_value: null,
         percentage_value: null,
         stop_value: null,
         exchange: null,
@@ -276,7 +282,9 @@
         durian_amount:null,
         durian_exchange: null,
         durian_trading_pair:null,
-        checkbox:null
+        checkbox:null,
+        buy_gap :null,
+        sell_gap : null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -294,7 +302,6 @@
                     vm.oversold_value = doc.data().oversold_value,
                     vm.overbought_value = doc.data().overbought_value,
                     vm.entry_value = doc.data().entry_value,
-                    vm.exit_value = doc.data().exit_value,
                     vm.percentage_value = doc.data().percentage_value,
                     vm.stop_value = doc.data().stop_value,
                     vm.amount = doc.data().amount,
@@ -305,7 +312,9 @@
                     vm.uid = doc.data().uid,
                     vm.durian_exchange = doc.data().durian_exchange,
                     vm.durian_trading_pair = doc.data().durian_trading_pair,
-                    vm.checkbox = doc.data().checkbox
+                    vm.checkbox = doc.data().checkbox,
+                    vm.buy_gap = doc.data().buy_gap,
+                    vm.sell_gap = doc.data().sell_gap
           })
         })
       })
@@ -326,7 +335,6 @@
                 this.amount =doc.data().amount,
                 this.stop_value = doc.data().stop_value,
                 this.percentage_value = doc.data().percentage_value,
-                this.exit_value = doc.data().exit_value,
                 this.entry_value = doc.data().entry_value,
                 this.ema_value1 = doc.data().ema_value1,
                 this.ema_value2 = doc.data().ema_value2,
@@ -339,7 +347,9 @@
                 this.uid = doc.data().uid,
                 this.durian_exchange = doc.data().durian_exchange,
                 this.durian_trading_pair = doc.data().durian_trading_pair,
-                this.checkbox = doc.data().checkbox
+                this.checkbox = doc.data().checkbox,
+                this.buy_gap = doc.data().buy_gap,
+                this.sell_gap = doc.data().sell_gap
             })
             })
         },
@@ -389,24 +399,25 @@
                             oversold_value : parseFloat(this.oversold_value),
                             entry_value : parseFloat(this.entry_value),
                             amount : parseFloat(this.amount),
-                            exit_value : parseFloat(this.exit_value),
                             percentage_value : parseFloat(this.percentage_value),
                             stop_value : parseFloat(this.stop_value),
                             exchange: this.exchange,
                             api_key : this.api_key,
                             secret_key: this.secret_key,
                             trading_pair : this.trading_pair,
-                            ema_value1 : null,
-                            ema_value2 : null,
+                            ema_value1 : 0,
+                            ema_value2 : 0,
                             bot_id : this.bot_id,
-                            gap_value : null,
-                            buy_pend : null,
-                            sell_pend : null,
-                            durian_amount : null,
+                            gap_value : 0,
+                            buy_pend : 0,
+                            sell_pend : 0,
+                            durian_amount : 0,
                             uid : this.uid,
-                            durian_exchange : null,
-                            durian_trading_pair : null,
-                            checkbox :this.checkbox
+                            durian_exchange : 0,
+                            durian_trading_pair : 0,
+                            checkbox :this.checkbox,
+                            buy_gap :0,
+                            sell_gap : 0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -418,11 +429,10 @@
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
                             indicator : this.indicator,
-                            overbought_value : null,
-                            oversold_value : null,
+                            overbought_value : 0,
+                            oversold_value : 0,
                             entry_value : parseFloat(this.entry_value),
                             amount : parseFloat(this.amount),
-                            exit_value :parseFloat( this.exit_value),
                             percentage_value : parseFloat(this.percentage_value),
                             stop_value :parseFloat( this.stop_value),
                             exchange: this.exchange,
@@ -432,14 +442,16 @@
                             ema_value1 :parseFloat( this.ema_value1),
                             ema_value2 :parseFloat( this.ema_value2),
                             bot_id : this.bot_id,
-                            gap_value : null,
-                            buy_pend : null,
-                            sell_pend : null,
-                            durian_amount : null,
+                            gap_value : 0,
+                            buy_pend : 0,
+                            sell_pend : 0,
+                            durian_amount : 0,
                             uid : this.uid,
-                            durian_exchange : null,
-                            durian_trading_pair : null,
-                            checkbox :this.checkbox
+                            durian_exchange : 0,
+                            durian_trading_pair : 0,
+                            checkbox :this.checkbox,
+                            buy_gap :0,
+                            sell_gap : 0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -452,28 +464,29 @@
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
                             indicator : this.indicator,
-                            overbought_value : null,
+                            overbought_value : 0,
                             oversold_value : parseFloat(this.oversold_value),
                             entry_value : parseFloat(this.entry_value),
                             amount : parseFloat(this.amount),
-                            exit_value : parseFloat(this.exit_value),
                             percentage_value : parseFloat(this.percentage_value),
                             stop_value : parseFloat(this.stop_value),
                             exchange: this.exchange,
                             api_key : this.api_key,
                             secret_key: this.secret_key,
                             trading_pair : this.trading_pair,
-                            ema_value1 : null,
-                            ema_value2 : null,
+                            ema_value1 : 0,
+                            ema_value2 : 0,
                             bot_id : this.bot_id,
-                            gap_value : null,
-                            buy_pend : null,
-                            sell_pend : null,
-                            durian_amount : null,
+                            gap_value : 0,
+                            buy_pend : 0,
+                            sell_pend : 0,
+                            durian_amount : 0,
                             uid : this.uid,
-                            durian_exchange : null,
-                            durian_trading_pair : null,
-                            checkbox :this.checkbox
+                            durian_exchange : 0,
+                            durian_trading_pair : 0,
+                            checkbox :this.checkbox,
+                            buy_gap :0,
+                            sell_gap : 0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -486,19 +499,18 @@
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
                             indicator : this.indicator,
-                            overbought_value : null,
-                            oversold_value : null,
-                            entry_value : null,
-                            amount : null,
-                            exit_value : null,
-                            percentage_value : null,
-                            stop_value : null,
-                            exchange: null,
+                            overbought_value : 0,
+                            oversold_value : 0,
+                            entry_value : 0,
+                            amount : 0,
+                            percentage_value : 0,
+                            stop_value : 0,
+                            exchange: 0,
                             api_key : this.api_key,
                             secret_key: this.secret_key,
-                            trading_pair : null,
-                            ema_value1 : null,
-                            ema_value2 : null,
+                            trading_pair : 0,
+                            ema_value1 : 0,
+                            ema_value2 : 0,
                             bot_id : this.bot_id,
                             gap_value : parseFloat(this.gap_value),
                             buy_pend : parseFloat(this.buy_pend),
@@ -507,7 +519,9 @@
                             uid : this.uid,
                             durian_exchange : this.durian_exchange,
                             durian_trading_pair : this.durian_trading_pair,
-                            checkbox :this.checkbox
+                            checkbox :this.checkbox,
+                            buy_gap :this.buy_gap,
+                            sell_gap : this.sell_gap
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -524,7 +538,7 @@
 <style scoped>
 .holder p {
     display:inline-block;
-    margin-right: 2nullpx;
+    margin-right: 20px;
 }
 
 .setting-label, .setting-input {
@@ -538,31 +552,31 @@
 
 
 p.setting-label {
-    margin-right: 1nullpx;
-    width:1nullnullpx;
+    margin-right: 10px;
+    width:100px;
 }
 
 label.setting-symbol {
-    width:1nullpx;
-    margin-left: -1nullnullpx;
-    margin-right: 8nullpx;
+    width:10px;
+    margin-left: -100px;
+    margin-right: 80px;
     font-size:18px;
     font-weight: bold;
 }
 
 input.setting-input {
-    width:2nullnullpx;
-    border: 2px solid rgba(null,null,null,null.2);
+    width:200px;
+    border: 2px solid rgba(0,0,0,nu0ll.2);
     border-radius: 5px;
     text-align: center;
-    margin-right:4nullpx;
+    margin-right:40px;
 }
 input.bot_name {
-    width:2nullnullpx;
-    border: 2px solid rgba(null,null,null,null.2);
+    width:20px;
+    border: 2px solid rgba(0,0,0,0.2);
     border-radius: 5px;
     text-align: center;
-    margin-right:4nullpx;
+    margin-right:40px;
 }
 span.bot_name {
     margin-right: 75px;
