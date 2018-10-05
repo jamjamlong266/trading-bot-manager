@@ -219,6 +219,7 @@
                     <div class="row" id="durian_trading_pair">
                         <div class="input-field col s12">
                             <p>Durian Trading Pair :</p>
+<<<<<<< HEAD
                             <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block" required>
                                 <option value="BTCUSDT">BTC/USDT</option>
                                 <option value="BCHUSDT">BCH/USDT</option>
@@ -236,6 +237,24 @@
                                 <option value="USDTeMYR">USDT/eMYR</option>
                                 <option value="XMRUSDT">XMR/USDT</option>
                                 <option value="CETUSDT">CET/USDT</option>
+=======
+                            <select class="trading_pair" v-model="durian_trading_pair" style="height:50px; display:block">
+                                <option value="BTC/USDT">BTC/USDT</option>
+                                <option value="BCH/USDT">BCH/USDT</option>
+                                <option value="JE/USDT">JE/USDT</option>
+                                <option value="ETH/USDT">ETH/USDT</option>
+                                <option value="LTC/USDT">LTC/USDT</option>
+                                <option value="ETH/BTC">ETH/BTC</option>
+                                <option value="JE/BTC">JE/BTC</option>
+                                <option value="LTC/BTC">LTC/BTC</option>
+                                <option value="BCH/BTC">BCH/BTC</option>
+                                <option value="JE/eMYR">JE/eMYR</option>
+                                <option value="BTC/eMYR">BTC/eMYR</option>
+                                <option value="BCH/eMYR">BCH/eMYR</option>
+                                <option value="ETH/eMYR">ETH/eMYR</option>
+                                <option value="USDT/eMYR">USDT/eMYR</option>
+                                <option value="XMRUSDT">XMR/USDT</option>
+>>>>>>> 94b0293e49b14418118fb02dd83a195db0427157
                             </select>    
                         </div>
                     </div>
