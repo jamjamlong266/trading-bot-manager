@@ -1,7 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <h4>otc</h4>
-=======
     <div class="container">
         <h4>the is otc</h4>
         <div class="row">
@@ -90,23 +87,10 @@
             </div>
         </div>
     </div>
->>>>>>> 6379cda32ff8e536e009859bc5976eb701318dd8
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
-  name: 'otc',
-  data () {
-    return {
-      
-    }
-  }
-}
-</script>
-
-
-=======
     name: 'otc',
     data: function() {
         return {
@@ -143,4 +127,3 @@ export default {
         box-sizing: border-box;
     }
 </style>
->>>>>>> 6379cda32ff8e536e009859bc5976eb701318dd8
