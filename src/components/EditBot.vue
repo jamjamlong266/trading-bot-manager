@@ -1,5 +1,5 @@
 <template>
-  <div id="new-employee">
+  <div >
     <h3>Edit Bot</h3>
     <div class="row container">
     <form @sumbit.prevent="updateBot" class="col s12">
