@@ -44,6 +44,7 @@ export default {
                     console.log(user)
                     console.log(user.email)
                     alert(`You are logged in as ${user.email}`);
+                    location.reload();
                     this.$router.go({
                         path: this.$router.path
                     });
