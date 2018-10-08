@@ -8,6 +8,10 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import Otc from '@/components/Otc'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6379cda32ff8e536e009859bc5976eb701318dd8
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -42,6 +46,14 @@ let router = new Router({
       path: '/new',
       name: 'new-bot',
       component: NewBot,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/otc',
+      name: 'otc',
+      component: Otc,
       meta: {
         requiresAuth: true
       }
