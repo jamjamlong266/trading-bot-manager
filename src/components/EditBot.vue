@@ -1,5 +1,5 @@
 <template>
-  <div id="new-employee">
+  <div >
     <h3>Edit Bot</h3>
     <div class="row container">
     <form @sumbit.prevent="updateBot" class="col s12">
@@ -520,8 +520,8 @@
                             durian_exchange : this.durian_exchange,
                             durian_trading_pair : this.durian_trading_pair,
                             checkbox :this.checkbox,
-                            buy_gap :this.buy_gap,
-                            sell_gap : this.sell_gap
+                            buy_gap :parseFloat(this.buy_gap),
+                            sell_gap :parseFloat( this.sell_gap)
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
