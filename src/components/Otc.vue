@@ -26,7 +26,7 @@
                         <label for="autocomplete-input">Amount</label>
                     </div>
                     
-                    <button class="waves-effect waves-light btn-large">Update</button>
+                    <button type="sumbit" class="btn" @click="updateBtc">Update</button>
 
 
                 </div>
@@ -55,7 +55,7 @@
                         <label for="autocomplete-input">Amount</label>
                     </div>
                     
-                    <button class="waves-effect waves-light btn-large">Update</button>
+                    <button class="waves-effect waves-light btn-large" @click="updateUsdt">Update</button>
                 </div>
             </div>
             <div class="col s12 m6 l6 input-card">
@@ -82,7 +82,7 @@
                         <label for="autocomplete-input">Amount</label>
                     </div>
                     
-                    <button class="waves-effect waves-light btn-large">Update</button>
+                    <button class="waves-effect waves-light btn-large" @click="updateEth">Update</button>
                 </div>
             </div>
         </div>
@@ -90,6 +90,12 @@
 </template>
 
 <script>
+import db from './firebaseInit'
+import firebase from 'firebase'
+import 'firebase/firestore';
+import firebaseConfig from './firebaseConfig';
+import firebaseInit from './firebaseInit';
+
 export default {
     name: 'otc',
     data: function() {
@@ -108,7 +114,59 @@ export default {
             eth_sellAmount: null,
         };
     },
-    methods: { }
+    // beforeRouteEnter (to, from, next) { 
+    //     db.collection('otc_bot').doc('btc').get().then( snapdata => {
+    //         snapdata.forEach(doc => {
+    //             next(vm => {
+    //                 vm.btc_buyPrice = doc.data().btc_buyPrice
+    //                 vm.btc_buyAmount = doc.data().btc_buyAmount
+    //                 vm.btc_sellPrice = doc.data().btc_sellPrice
+    //                 vm.btc_sellAmount = doc.data().btc_sellAmount
+    //             })
+    //         })
+    //     })
+    // },
+    // watch: {
+    //     '$route': 'fetchData'
+    // },
+    methods: {
+        // fetchData: function() {
+        //     db.collection('otc_bot').doc('btc').get().then( snapdata => {
+        //         snapdata.forEach(doc => {
+        //             next(vm => {
+        //             this.btc_buyPrice = doc.data().btc_buyPrice
+        //             this.btc_buyAmount = doc.data().btc_buyAmount
+        //             this.btc_sellPrice = doc.data().btc_sellPrice
+        //             this.btc_sellAmount = doc.data().btc_sellAmount
+        //             })
+        //         })
+        //     })
+        // },
+        updateBtc: function() {
+            db.collection("otc_bot").doc('btc').set({
+                btc_buyPrice: this.btc_buyPrice,
+                btc_buyAmount: this.btc_buyAmount,
+                btc_sellPrice: this.btc_sellPrice,
+                btc_sellAmount: this.btc_sellAmount
+            })
+        },
+        updateEth: function() {
+            db.collection("otc_bot").doc('eth').set({
+                eth_buyPrice: this.eth_buyPrice,
+                eth_buyAmount: this.eth_buyAmount,
+                eth_sellPrice: this.eth_sellPrice,
+                eth_sellAmount: this.eth_sellAmount
+            })
+        },
+        updateUsdt: function() {
+            db.collection("otc_bot").doc('usdt').set({
+                usdt_buyPrice: this.usdt_buyPrice,
+                usdt_buyAmount: this.usdt_buyAmount,
+                usdt_sellPrice: this.usdt_sellPrice,
+                usdt_sellAmount: this.usdt_sellAmount
+            })
+        }
+    }
 }
 </script>
 

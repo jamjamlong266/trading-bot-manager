@@ -41,13 +41,19 @@ export default {
         login: function(e) {
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
                 .then( (user) => {
-                    console.log(user)
-                    console.log(user.email)
-                    alert(`You are logged in as ${user.email}`);
-                    location.reload();
-                    this.$router.go({
-                        path: this.$router.path
-                    });
+                    var userData = firebase.auth().currentUser;
+                    console.log(userData)
+                    console.log(userData.uid)
+                    alert(`You are logged in as ${userData.email}`);
+                    if( userData.uid == "5R1JlSuH8ueGZZCdaP7QYtGEHvU2"){
+                        this.$router.push('/otc')
+                    }else {
+                        location.reload();
+                        this.$router.go({
+                            path: this.$router.path
+                        });
+                    }
+                    
                 })
                 .catch(err => {
                     console.log("NOOO",err)
