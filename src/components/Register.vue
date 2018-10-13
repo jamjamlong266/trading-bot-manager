@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import db from './firebaseInit'
-import firebase from 'firebase'
+import firebase from 'firebase';
+import db from './firebaseInit';
 import 'firebase/firestore';
 import firebaseConfig from './firebaseConfig';
 import firebaseInit from './firebaseInit';
@@ -46,6 +46,7 @@ export default {
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
                 .then( user => {
                     alert(`Account created for ${user.email}`);
+                    // this.$router.push('/profile')
                     this.$router.go({
                         path: this.$router.path
                     });

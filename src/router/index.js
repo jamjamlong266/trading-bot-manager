@@ -6,8 +6,8 @@ import ViewBot from '@/components/ViewBot'
 import EditBot from '@/components/EditBot'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import IndicatorSetting from '@/components/IndicatorSetting'
-
+import Profile from '@/components/Profile'
+import Otc from '@/components/Otc'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -47,6 +47,22 @@ let router = new Router({
       }
     },
     {
+      path: '/otc',
+      name: 'otc',
+      component: Otc,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/edit/:bot_id',
       name: 'edit-bot',
       component: EditBot,
@@ -55,17 +71,17 @@ let router = new Router({
       }
     },
     {
-      path: '/indicator/:bot_id',
-      name: 'indicator-setting',
-      component: IndicatorSetting,
+      path: '/:bot_id',
+      name: 'view-bot',
+      component: ViewBot,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/:bot_id',
-      name: 'view-bot',
-      component: ViewBot,
+      path: '/otc',
+      name: 'otc',
+      component: Otc,
       meta: {
         requiresAuth: true
       }
@@ -93,7 +109,6 @@ router.beforeEach( (to, from, next) => {
     //Check if IS logged in
     if( firebase.auth().currentUser ) {
       //Go to path
-      console.log("IS USER")
       next({
         path: '/',
         query: {

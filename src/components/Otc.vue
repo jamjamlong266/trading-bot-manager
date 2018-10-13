@@ -115,28 +115,28 @@ export default {
         };
     },
     // beforeRouteEnter (to, from, next) { 
-    //     db.collection('otc_bot').doc('btc').get().then(( snapdata) => {
-    //         snapdata.forEach((doc) => {
+    //     db.collection('otc_bot').doc('btc').get().then( snapdata => {
+    //         snapdata.forEach(doc => {
     //             next(vm => {
-    //                 vm.btc_buyPrice = doc.data().btc_buyPrice,
-    //                 vm.btc_buyAmount = doc.data().btc_buyAmount,
-    //                 vm.btc_sellPrice = doc.data().btc_sellPrice,
+    //                 vm.btc_buyPrice = doc.data().btc_buyPrice
+    //                 vm.btc_buyAmount = doc.data().btc_buyAmount
+    //                 vm.btc_sellPrice = doc.data().btc_sellPrice
     //                 vm.btc_sellAmount = doc.data().btc_sellAmount
     //             })
     //         })
     //     })
     // },
-    watch: {
-        '$route': 'fetchData'
-    },
+    // watch: {
+    //     '$route': 'fetchData'
+    // },
     methods: {
         // fetchData: function() {
-        //     db.collection('otc_bot').doc('btc').get().then( (snapdata) => {
-        //         snapdata.forEach((doc) => {
+        //     db.collection('otc_bot').doc('btc').get().then( snapdata => {
+        //         snapdata.forEach(doc => {
         //             next(vm => {
-        //             this.btc_buyPrice = doc.data().btc_buyPrice,
-        //             this.btc_buyAmount = doc.data().btc_buyAmount,
-        //             this.btc_sellPrice = doc.data().btc_sellPrice,
+        //             this.btc_buyPrice = doc.data().btc_buyPrice
+        //             this.btc_buyAmount = doc.data().btc_buyAmount
+        //             this.btc_sellPrice = doc.data().btc_sellPrice
         //             this.btc_sellAmount = doc.data().btc_sellAmount
         //             })
         //         })

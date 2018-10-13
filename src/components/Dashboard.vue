@@ -7,7 +7,7 @@
             </li>
 
             <li v-for="bot in bots" v-bind:key="bot.id" class="collection-item">
-               {{bot.bot_id}}: {{bot.indicator}}
+               {{bot.bot_name}}: {{bot.indicator}}
 
                <router-link class="secondary-content" v-bind:to="{name: 'view-bot', params: {bot_id: bot.bot_id}}">
                    <i class="fa fa-eye"></i>
@@ -36,18 +36,22 @@ export default {
         }
     },
     created () {
-        this.uid = firebase.auth().currentUser.uid;
-        db.collection('trading_bot').where('uid', '==', this.uid).get().then( snapshot => {
-        // db.collection('trading_bot').get().then( snapshot => {
-            snapshot.forEach(doc => {
-                console.log(doc)
+        const uid = firebase.auth().currentUser.uid
+        const dbref = db.collection('trading_bot')
+        // .where("uid", "==", uid)
+        
+                // console.log(doc.id)
+        dbref.where("uid", "==", uid).get().then( snapdata => {
+            snapdata.forEach(doc => {
+                console.log(doc.data().bot_name)
                 const data = {
                     'id': doc.id,
                     'bot_id': doc.data().bot_id,
                     'exchange': doc.data().exchange,
                     'indicator': doc.data().indicator,
                     'api_key': doc.data().api_key,
-                    'secret_key': doc.data().secret_key
+                    'secret_key': doc.data().secret_key,
+                    'bot_name': doc.data().bot_name
                 }
                 this.bots.push(data)
             })
