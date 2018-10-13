@@ -161,6 +161,10 @@
 
 <script>
 import db from './firebaseInit'
+import firebase from 'firebase'
+import 'firebase/firestore';
+import firebaseConfig from './firebaseConfig';
+import firebaseInit from './firebaseInit';
 
 export default {
     name: 'edit-bot',
