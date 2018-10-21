@@ -15,7 +15,7 @@
                         <h6>Indicator</h6>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')" />
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')" disabled />
                                 <span class="checkmark"></span>
                                 <span>RSI</span>
                             </label>
@@ -23,7 +23,7 @@
 
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')" disabled/>
                                 <span class="checkmark"></span>
                                 <span>EMA</span>
                             </label>
@@ -31,21 +31,21 @@
 
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('normal')" checked/>
                                 <span class="checkmark"></span>
-                                <span>SMA</span>
+                                <span>Normal</span>
                             </label>
                         </p>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" checked/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" disabled/>
                                 <span class="checkmark"></span>
                                 <span>DURIAN</span>
                             </label>
                         </p>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sup_res')" checked/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sup_res')" disabled/>
                                 <span class="checkmark"></span>
                                 <span>Support/Resistant</span>
                             </label>
@@ -363,7 +363,7 @@ export default {
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
                 document.getElementById("sup_res-setting").style.display = "none"
-            } else if(evt=="sma"){
+            } else if(evt=="normal"){
                 document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
                 document.getElementById("durian-setting").style.display = "none"
@@ -472,7 +472,7 @@ export default {
                 this.sup_res_amount=0,
                 this.sell_1=0,
                 this.sell_2=0
-            }else if(this.indicator == "sma"){
+            }else if(this.indicator == "normal"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
                 this.oversold_value = 0,
@@ -666,7 +666,7 @@ span.bot_name {
     margin-right: 75px;
 }
 
-#three-indicator-setting,#common-setting {
+#three-indicator-setting,#common-setting,#durian-setting {
     display: none;
 }
 
