@@ -42,7 +42,7 @@
                                 <span class="checkmark"></span>
                                 <span>DURIAN</span>
                             </label>
-                        </p>
+                        </p> 
                         <p>
                             <label class="container">
                                 <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sup_res')" />
@@ -138,7 +138,7 @@
                                 <!-- <p class="setting-label">Exit Value</p>
                                 <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required> -->
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="number" placeholder="Amount" v-model="normal_amount" required>
+                                <input class="setting-input" type="number" placeholder="0.00" step="0.01" v-model="normal_amount" required>
 
                                 <p class="setting-label">Stop Loss</p>
                                 <input class="setting-input" type="number" placeholder="Stop Loss" v-model="normal_stop_value" required>
@@ -340,7 +340,7 @@ export default {
     name: 'new-bot',
     data () {
         return {
-            indicator: null,
+            indicator: "normal",
             overbought_value: null,
             oversold_value: null,
             entry_value: null,

@@ -1,6 +1,5 @@
 <template>
     <div id="dashboard" class="container">
-        <h3>Dashboard</h3>
         <ul class="collection with-header">
             <li class="collection-header">
                 <h4>Bots</h4>
