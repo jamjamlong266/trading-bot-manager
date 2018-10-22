@@ -131,9 +131,6 @@
                                 <br>
                                 <p class="setting-label">Buy Zone</p>
                                 <input class="setting-input" type="number" placeholder="Entry Value" v-model="normal_buy_zone" required>
-
-                                <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="number" placeholder="Percentage" v-model="normal_percentage_value" required>   
                                 <br>
                                 <!-- <p class="setting-label">Exit Value</p>
                                 <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required> -->
@@ -144,10 +141,10 @@
                                 <input class="setting-input" type="number" placeholder="Stop Loss" v-model="normal_stop_value" required>
                                 <br>
                                 <p class="setting-label">Target 1</p>
-                                <input class="setting-input" type="number"  v-model="normal_target_1" required>
+                                <input class="setting-input" type="number" placeholder="First sell target" v-model="normal_target_1" required>
 
                                 <p class="setting-label">Target 2</p>
-                                <input class="setting-input" type="number"  v-model="normal_target_2" required>   
+                                <input class="setting-input" type="number" placeholder="Second sell target" v-model="normal_target_2" required>   
                             </div>
                         </div>
                     </div>
@@ -376,8 +373,7 @@ export default {
             normal_buy_zone:null,
             normal_target_1:null,
             normal_target_2:null,
-            normal_stop_value:null,
-            normal_percentage_value:null
+            normal_stop_value:null
         }
     },
 
@@ -500,8 +496,7 @@ export default {
                 this.normal_buy_zone=0,
                 this.normal_target_1=0,
                 this.normal_target_2=0,
-                this.normal_stop_value=0,
-                this.normal_percentage_value=0
+                this.normal_stop_value=0
             }else if(this.indicator == "ema"){
                 this.icator = this.indicator,
                 this.overbought_value = 0,
@@ -539,8 +534,7 @@ export default {
                 this.normal_buy_zone=0,
                 this.normal_target_1=0,
                 this.normal_target_2=0,
-                this.normal_stop_value=0,
-                this.normal_percentage_value=0
+                this.normal_stop_value=0
             }else if(this.indicator == "sma"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
@@ -578,8 +572,7 @@ export default {
                 this.normal_buy_zone=0,
                 this.normal_target_1=0,
                 this.normal_target_2=0,
-                this.normal_stop_value=0,
-                this.normal_percentage_value=0
+                this.normal_stop_value=0
             }else if(this.indicator == "durian"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
@@ -617,8 +610,7 @@ export default {
                 this.normal_buy_zone=0,
                 this.normal_target_1=0,
                 this.normal_target_2=0,
-                this.normal_stop_value=0,
-                this.normal_percentage_value=0
+                this.normal_stop_value=0
             }else if(this.indicator == "sup_res"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
@@ -655,8 +647,7 @@ export default {
                 this.normal_buy_zone=0,
                 this.normal_target_1=0,
                 this.normal_target_2=0,
-                this.normal_stop_value=0,
-                this.normal_percentage_value=0
+                this.normal_stop_value=0
             }else if(this.indicator == "normal"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
@@ -693,11 +684,10 @@ export default {
                 this.normal_buy_zone=parseFloat(this.normal_buy_zone),
                 this.normal_target_1=parseFloat(this.normal_target_1),
                 this.normal_target_2=parseFloat(this.normal_target_2),
-                this.normal_stop_value=parseFloat(this.normal_stop_value),
-                this.normal_percentage_value=parseFloat(this.normal_percentage_value)
+                this.normal_stop_value=parseFloat(this.normal_stop_value)
             }
 
-            if (this.normal_percentage_value != null && this.normal_stop_value != null && this.normal_target_2 != null && this.normal_target_1 != null && this.normal_buy_zone != null && this.normal_amount != null && this.sell_2 != null && this.sell_1 != null && this.sup_res_amount != null && this.sup_res_stop_loss != null && this.resistant_value != null && this.support_value !=null && this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
+            if (this.normal_stop_value != null && this.normal_target_2 != null && this.normal_target_1 != null && this.normal_buy_zone != null && this.normal_amount != null && this.sell_2 != null && this.sell_1 != null && this.sup_res_amount != null && this.sup_res_stop_loss != null && this.resistant_value != null && this.support_value !=null && this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
                 db.collection('trading_bot').add({
                     indicator: this.indicator,
                     overbought_value: this.overbought_value,
@@ -735,8 +725,7 @@ export default {
                     normal_buy_zone:this.normal_buy_zone,
                     normal_target_1:this.normal_target_1,
                     normal_target_2:this.normal_target_2,
-                    normal_stop_value:this.normal_stop_value,
-                    normal_percentage_value:this.normal_percentage_value
+                    normal_stop_value:this.normal_stop_value
                 })
                 .then(docRef => {
                     this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})

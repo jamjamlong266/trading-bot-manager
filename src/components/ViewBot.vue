@@ -70,7 +70,6 @@
                 <li class="collection-item">
                     <p>Buy Zone : {{ normal_buy_zone }}</p>
                     <p>Amount : {{ normal_amount }}</p>
-                    <p>Percentage : {{ normal_percentage_value }}</p>
                 </li>
                 <li class="collection-item">
                     <p>Target 1: {{ normal_target_1 }}</p>
@@ -138,8 +137,7 @@ export default {
             normal_buy_zone:null,
             normal_target_1:null,
             normal_target_2:null,
-            normal_stop_value:null,
-            normal_percentage_value:null
+            normal_stop_value:null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -181,8 +179,7 @@ export default {
                     vm.normal_buy_zone= doc.data().normal_buy_zone,
                     vm.normal_target_1= doc.data().normal_target_1,
                     vm.normal_target_2= doc.data().normal_target_2,
-                    vm.normal_stop_value = doc.data().normal_stop_value,
-                    vm.normal_percentage_value = doc.data().normal_percentage_value
+                    vm.normal_stop_value = doc.data().normal_stop_value
 
                     console.log(vm.indicator)
                     if(vm.indicator == "rsi") {
@@ -247,8 +244,7 @@ export default {
                     this.ormal_buy_zone= doc.data().normal_buy_zone,
                     this.normal_target_1= doc.data().normal_target_1,
                     this.normal_target_2= doc.data().normal_target_2,
-                    this.normal_stop_value = doc.data().normal_stop_value,
-                    this.normal_percentage_value = doc.data().normal_percentage_value
+                    this.normal_stop_value = doc.data().normal_stop_value
                 })
             })
         },

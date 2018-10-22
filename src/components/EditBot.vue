@@ -14,7 +14,7 @@
                     <div class="input-field col s12 holder">
 
                         <h6>Indicator</h6>
-                        <p>
+                        <!-- <p>
                             <label class="container">
                                 <input class="indicator" name="indicator" type="radio"  @change="myFunction('rsi')" disabled/>
                                 <span class="checkmark"></span>
@@ -50,7 +50,7 @@
                                 <span class="checkmark"></span>
                                 <span>Support/Resistant</span>
                             </label>
-                        </p>
+                        </p> -->
                         <p>
                             <label class="container">
                                 <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('normal')" checked/>
@@ -128,14 +128,11 @@
                                 <br>
                                 <p class="setting-label">Buy Zone</p>
                                 <input class="setting-input" type="number" placeholder="Entry Value" v-model="normal_buy_zone" required>
-
-                                <p class="setting-label">Percentage</p>
-                                <input class="setting-input" type="number" placeholder="Percentage" v-model="normal_percentage_value" required>   
                                 <br>
                                 <!-- <p class="setting-label">Exit Value</p>
                                 <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required> -->
                                 <p class="setting-label">Amount</p>
-                                <input class="setting-input" type="number" placeholder="Amount" v-model="normal_amount" required>
+                                <input class="setting-input" type="number" placeholder="Amount" step="0.01" v-model="normal_amount" required>
 
                                 <p class="setting-label">Stop Loss</p>
                                 <input class="setting-input" type="number" placeholder="Stop Loss" v-model="normal_stop_value" required>
@@ -214,8 +211,8 @@
                         <p>Exchange :</p>
                             <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
-                                <option value="COINEX">COINEX</option>
-                                <option value="JONVI">JONVI</option>
+                                <!-- <option value="COINEX">COINEX</option>
+                                <option value="JONVI">JONVI</option> -->
                             </select>
                         </div>
                     </div>
@@ -332,7 +329,7 @@
     name: 'edit-bot',
     data () {
       return {
-        indicator: null,
+        indicator: 'normal',
         overbought_value: null,
         oversold_value: null,
         entry_value: null,
@@ -367,8 +364,7 @@
         normal_buy_zone:null,
         normal_target_1:null,
         normal_target_2:null,
-        normal_stop_value:null,
-        normal_percentage_value:null
+        normal_stop_value:null
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -409,8 +405,7 @@
                     vm.normal_buy_zone= doc.data().normal_buy_zone,
                     vm.normal_target_1= doc.data().normal_target_1,
                     vm.normal_target_2= doc.data().normal_target_2,
-                    vm.normal_stop_value = doc.data().normal_stop_value,
-                    vm.normal_percentage_value = doc.data().normal_percentage_value
+                    vm.normal_stop_value = doc.data().normal_stop_value
           })
         })
       })
@@ -456,8 +451,7 @@
                 this.ormal_buy_zone= doc.data().normal_buy_zone,
                 this.normal_target_1= doc.data().normal_target_1,
                 this.normal_target_2= doc.data().normal_target_2,
-                this.normal_stop_value = doc.data().normal_stop_value,
-                this.normal_percentage_value = doc.data().normal_percentage_value
+                this.normal_stop_value = doc.data().normal_stop_value
             })
             })
         },
@@ -563,8 +557,7 @@
                             normal_buy_zone:0,
                             normal_target_1:0,
                             normal_target_2:0,
-                            normal_stop_value:0,
-                            normal_percentage_value:0
+                            normal_stop_value:0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -609,8 +602,7 @@
                             normal_buy_zone:0,
                             normal_target_1:0,
                             normal_target_2:0,
-                            normal_stop_value:0,
-                            normal_percentage_value:0
+                            normal_stop_value:0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -656,8 +648,7 @@
                             normal_buy_zone:0,
                             normal_target_1:0,
                             normal_target_2:0,
-                            normal_stop_value:0,
-                            normal_percentage_value:0
+                            normal_stop_value:0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -703,8 +694,7 @@
                             normal_buy_zone:0,
                             normal_target_1:0,
                             normal_target_2:0,
-                            normal_stop_value:0,
-                            normal_percentage_value:0
+                            normal_stop_value:0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -750,8 +740,7 @@
                             normal_buy_zone:0,
                             normal_target_1:0,
                             normal_target_2:0,
-                            normal_stop_value:0,
-                            normal_percentage_value:0
+                            normal_stop_value:0
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -763,7 +752,7 @@
                     db.collection('trading_bot').where('bot_id', '==', this.bot_id).get().then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         doc.ref.update({
-                            indicator : this.indicator,
+                            indicator : "normal",
                             overbought_value : 0,
                             oversold_value : 0,
                             entry_value : 0,
@@ -797,8 +786,7 @@
                             normal_buy_zone:parseFloat(this.normal_buy_zone),
                             normal_target_1:parseFloat(this.normal_target_1),
                             normal_target_2:parseFloat(this.normal_target_2),
-                            normal_stop_value:parseFloat(this.normal_stop_value),
-                            normal_percentage_value:parseFloat(this.normal_percentage_value)
+                            normal_stop_value:parseFloat(this.normal_stop_value)
                         })
                         .then(() => {
                             this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -822,7 +810,7 @@
     display:inline-block
 }
 
-#rsi-setting, #ema-setting ,#normal-setting{
+#rsi-setting, #ema-setting ,#sup_res-setting,#common-setting,#durian-indicator-setting,#durian-setting{
     display:none;
 }
 
@@ -858,7 +846,5 @@ input.bot_name {
 span.bot_name {
     margin-right: 75px;
 }
-#sup_res-setting{
-    display: block;
-}
+
 </style>
