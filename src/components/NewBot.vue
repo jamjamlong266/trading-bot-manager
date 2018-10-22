@@ -15,7 +15,7 @@
                         <h6>Indicator</h6>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')" />
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')" disabled />
                                 <span class="checkmark"></span>
                                 <span>RSI</span>
                             </label>
@@ -23,7 +23,7 @@
 
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('ema')" disabled/>
                                 <span class="checkmark"></span>
                                 <span>EMA</span>
                             </label>
@@ -31,16 +31,30 @@
 
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')"/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sma')" disabled/>
                                 <span class="checkmark"></span>
                                 <span>SMA</span>
                             </label>
                         </p>
                         <p>
                             <label class="container">
-                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" checked/>
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('durian')" disabled/>
                                 <span class="checkmark"></span>
                                 <span>DURIAN</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('sup_res')" />
+                                <span class="checkmark"></span>
+                                <span>Support/Resistant</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="container">
+                                <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('normal')" checked/>
+                                <span class="checkmark"></span>
+                                <span>Normal</span>
                             </label>
                         </p>
                     </div>
@@ -108,7 +122,35 @@
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+                <div class="row" id="normal-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Normal Setting</span>
+                                <br>
+                                <p class="setting-label">Buy Zone</p>
+                                <input class="setting-input" type="number" placeholder="Entry Value" v-model="normal_buy_zone" required>
+
+                                <p class="setting-label">Percentage</p>
+                                <input class="setting-input" type="number" placeholder="Percentage" v-model="normal_percentage_value" required>   
+                                <br>
+                                <!-- <p class="setting-label">Exit Value</p>
+                                <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required> -->
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="number" placeholder="Amount" v-model="normal_amount" required>
+
+                                <p class="setting-label">Stop Loss</p>
+                                <input class="setting-input" type="number" placeholder="Stop Loss" v-model="normal_stop_value" required>
+                                <br>
+                                <p class="setting-label">Target 1</p>
+                                <input class="setting-input" type="number"  v-model="normal_target_1" required>
+
+                                <p class="setting-label">Target 2</p>
+                                <input class="setting-input" type="number"  v-model="normal_target_2" required>   
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row" id="durian-setting">
                     <div class="col s12">
@@ -138,7 +180,35 @@
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+                <div class="row" id="sup_res-setting">
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Support/Resistant Setting</span>
+                                <br>
+                                <p class="setting-label">Support Level</p>
+                                <input class="setting-input" type="number" placeholder="Support Value" v-model="support_value" required>
+
+                                <p class="setting-label">Resistant Level</p>
+                                <input class="setting-input" type="number" placeholder="Resistant Level" v-model="resistant_value" required>
+
+                                <br>
+                                <p class="setting-label">Amount</p>
+                                <input class="setting-input" type="number" placeholder="Amount" v-model="sup_res_amount" required>
+
+                                <p class="setting-label">Stop loss</p>
+                                <input class="setting-input" type="number" placeholder="Stop loss" v-model="sup_res_stop_loss" required>
+
+                                <br>
+                                <p class="setting-label">First sell</p>
+                                <input class="setting-input" type="number" placeholder="First sell" v-model="sell_1" required>
+
+                                <p class="setting-label">Second sell</p>
+                                <input class="setting-input" type="number" placeholder="Second sell" v-model="sell_2" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="three-indicator-setting">
                     <div class="row">
@@ -275,7 +345,6 @@ export default {
             oversold_value: null,
             entry_value: null,
             amount:null,
-            // exit_value: null,
             percentage_value: null,
             stop_value: null,
             exchange: null,
@@ -288,7 +357,7 @@ export default {
             uid: null,
             bot_name : null,
             indic:null,
-            gap_value:0,
+            gap_value:null,
             buy_pend:null,
             sell_pend:null,
             durian_amount:null,
@@ -296,7 +365,19 @@ export default {
             durian_trading_pair:null,
             checkbox:null,
             buy_gap:null,
-            sell_gap: null
+            sell_gap: null,
+            support_value:null,
+            resistant_value:null,
+            sup_res_stop_loss:null,
+            sup_res_amount:null,
+            sell_1:null,
+            sell_2:null,
+            normal_amount:null,
+            normal_buy_zone:null,
+            normal_target_1:null,
+            normal_target_2:null,
+            normal_stop_value:null,
+            normal_percentage_value:null
         }
     },
 
@@ -312,6 +393,8 @@ export default {
                 document.getElementById("three-indicator-setting").style.display = "block"
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
+                document.getElementById("sup_res-setting").style.display = "none"
+                document.getElementById("normal-setting").style.display = "none"
             } else if(evt == "ema") {
                 document.getElementById("ema-setting").style.display = "block"
                 document.getElementById("common-setting").style.display = "block"
@@ -321,6 +404,8 @@ export default {
                 document.getElementById("three-indicator-setting").style.display = "block"
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
+                document.getElementById("sup_res-setting").style.display = "none"
+                document.getElementById("normal-setting").style.display = "none"
             } else if(evt=="sma"){
                 document.getElementById("common-setting").style.display = "block"
                 document.getElementById("ema-setting").style.display = "none"
@@ -330,6 +415,8 @@ export default {
                 document.getElementById("three-indicator-setting").style.display = "block"
                 document.getElementById("trading_pair").style.display = "block"
                 document.getElementById("durian_trading_pair").style.display = "none"
+                document.getElementById("sup_res-setting").style.display = "none"
+                document.getElementById("normal-setting").style.display = "none"
             }else if(evt=="durian"){
                 document.getElementById("durian-setting").style.display = "block"
                 document.getElementById("common-setting").style.display = "none"
@@ -339,7 +426,31 @@ export default {
                 document.getElementById("durian-indicator-setting").style.display = "block"
                 document.getElementById("trading_pair").style.display = "none"
                 document.getElementById("durian_trading_pair").style.display = "block"
+                document.getElementById("sup_res-setting").style.display = "none"
+                document.getElementById("normal-setting").style.display = "none"
 
+            }else if(evt=="sup_res"){
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("common-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
+                document.getElementById("sup_res-setting").style.display = "block"
+                document.getElementById("normal-setting").style.display = "none"
+            }else if(evt=="normal"){
+                document.getElementById("durian-setting").style.display = "none"
+                document.getElementById("common-setting").style.display = "none"
+                document.getElementById("ema-setting").style.display = "none"
+                document.getElementById("rsi-setting").style.display = "none"
+                document.getElementById("three-indicator-setting").style.display = "block"
+                document.getElementById("durian-indicator-setting").style.display = "none"
+                document.getElementById("trading_pair").style.display = "block"
+                document.getElementById("durian_trading_pair").style.display = "none"
+                document.getElementById("sup_res-setting").style.display = "none"
+                document.getElementById("normal-setting").style.display = "block"
             }
             this.indicator = evt
         },
@@ -378,7 +489,19 @@ export default {
                 this.durian_trading_pair = 0,
                 this.checkbox = this.checkbox,
                 this.buy_gap = 0,
-                this.sell_gap = 0
+                this.sell_gap = 0,
+                this.support_value=0,
+                this.resistant_value=0,
+                this.sup_res_stop_loss=0,
+                this.sup_res_amount=0,
+                this.sell_1=0,
+                this.sell_2=0,
+                this.normal_amount=0,
+                this.normal_buy_zone=0,
+                this.normal_target_1=0,
+                this.normal_target_2=0,
+                this.normal_stop_value=0,
+                this.normal_percentage_value=0
             }else if(this.indicator == "ema"){
                 this.icator = this.indicator,
                 this.overbought_value = 0,
@@ -405,7 +528,19 @@ export default {
                 this.durian_trading_pair = 0,
                 this.checkbox = this.checkbox,
                 this.buy_gap = 0,
-                this.sell_gap = 0
+                this.sell_gap = 0,
+                this.support_value=0,
+                this.resistant_value=0,
+                this.sup_res_stop_loss=0,
+                this.sup_res_amount=0,
+                this.sell_1=0,
+                this.sell_2=0,
+                this.normal_amount=0,
+                this.normal_buy_zone=0,
+                this.normal_target_1=0,
+                this.normal_target_2=0,
+                this.normal_stop_value=0,
+                this.normal_percentage_value=0
             }else if(this.indicator == "sma"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
@@ -432,7 +567,19 @@ export default {
                 this.durian_trading_pair = 0,
                 this.checkbox = this.checkbox,
                 this.buy_gap = 0,
-                this.sell_gap = 0
+                this.sell_gap = 0,
+                this.support_value=0,
+                this.resistant_value=0,
+                this.sup_res_stop_loss=0,
+                this.sup_res_amount=0,
+                this.sell_1=0,
+                this.sell_2=0,
+                this.normal_amount=0,
+                this.normal_buy_zone=0,
+                this.normal_target_1=0,
+                this.normal_target_2=0,
+                this.normal_stop_value=0,
+                this.normal_percentage_value=0
             }else if(this.indicator == "durian"){
                 this.indicator = this.indicator,
                 this.overbought_value = 0,
@@ -459,10 +606,98 @@ export default {
                 this.durian_trading_pair = this.durian_trading_pair,
                 this.checkbox = this.checkbox,
                 this.buy_gap = parseFloat(this.buy_gap),
-                this.sell_gap = parseFloat(this.sell_gap)
+                this.sell_gap = parseFloat(this.sell_gap),
+                this.support_value=0,
+                this.resistant_value=0,
+                this.sup_res_stop_loss=0,
+                this.sup_res_amount=0,
+                this.sell_1=0,
+                this.sell_2=0,
+                this.normal_amount=0,
+                this.normal_buy_zone=0,
+                this.normal_target_1=0,
+                this.normal_target_2=0,
+                this.normal_stop_value=0,
+                this.normal_percentage_value=0
+            }else if(this.indicator == "sup_res"){
+                this.indicator = this.indicator,
+                this.overbought_value = 0,
+                this.oversold_value = 0,
+                this.entry_value = 0,
+                this.amount = 0,
+                this.percentage_value = 0,
+                this.stop_value = 0,
+                this.exchange = this.exchange,
+                this.api_key = this.api_key,
+                this.secret_key = this.secret_key,
+                this.trading_pair = this.trading_pair,
+                this.ema_value1 = 0,
+                this.ema_value2 = 0,
+                this.bot_id = autoId,
+                this.uid = firebase.auth().currentUser.uid,
+                this.bot_name = this.bot_name,
+                this.gap_value  = 0,
+                this.buy_pend  = 0,
+                this.sell_pend  = 0,
+                this.durian_amount  = 0,
+                this.durian_exchange = 0,
+                this.durian_trading_pair = 0,
+                this.checkbox = this.checkbox,
+                this.buy_gap = 0,
+                this.sell_gap = 0,
+                this.support_value=parseFloat(this.support_value),
+                this.resistant_value=parseFloat(this.resistant_value),
+                this.sup_res_stop_loss=parseFloat(this.sup_res_stop_loss),
+                this.sup_res_amount=parseFloat(this.sup_res_amount),
+                this.sell_1=parseFloat(this.sell_1),
+                this.sell_2=parseFloat(this.sell_2),
+                this.normal_amount=0,
+                this.normal_buy_zone=0,
+                this.normal_target_1=0,
+                this.normal_target_2=0,
+                this.normal_stop_value=0,
+                this.normal_percentage_value=0
+            }else if(this.indicator == "normal"){
+                this.indicator = this.indicator,
+                this.overbought_value = 0,
+                this.oversold_value = 0,
+                this.entry_value = 0,
+                this.amount = 0,
+                this.percentage_value = 0,
+                this.stop_value = 0,
+                this.exchange = this.exchange,
+                this.api_key = this.api_key,
+                this.secret_key = this.secret_key,
+                this.trading_pair = this.trading_pair,
+                this.ema_value1 = 0,
+                this.ema_value2 = 0,
+                this.bot_id = autoId,
+                this.uid = firebase.auth().currentUser.uid,
+                this.bot_name = this.bot_name,
+                this.gap_value  = 0,
+                this.buy_pend  = 0,
+                this.sell_pend  = 0,
+                this.durian_amount  = 0,
+                this.durian_exchange = 0,
+                this.durian_trading_pair = 0,
+                this.checkbox = this.checkbox,
+                this.buy_gap = 0,
+                this.sell_gap = 0,
+                this.support_value=0,
+                this.resistant_value=0,
+                this.sup_res_stop_loss=0,
+                this.sup_res_amount=0,
+                this.sell_1=0,
+                this.sell_2=0,
+                this.normal_amount=parseFloat(this.normal_amount),
+                this.normal_buy_zone=parseFloat(this.normal_buy_zone),
+                this.normal_target_1=parseFloat(this.normal_target_1),
+                this.normal_target_2=parseFloat(this.normal_target_2),
+                this.normal_stop_value=parseFloat(this.normal_stop_value),
+                this.normal_percentage_value=parseFloat(this.normal_percentage_value)
             }
 
-            if (this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
+            if (this.normal_percentage_value != null && this.normal_stop_value != null && this.normal_target_2 != null && this.normal_target_1 != null && this.normal_buy_zone != null && this.normal_amount != null && this.sell_2 != null && this.sell_1 != null && this.sup_res_amount != null && this.sup_res_stop_loss != null && this.resistant_value != null && this.support_value !=null && this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
                 db.collection('trading_bot').add({
                     indicator: this.indicator,
                     overbought_value: this.overbought_value,
@@ -489,7 +724,19 @@ export default {
                     durian_trading_pair: this.durian_trading_pair,
                     checkbox : this.checkbox,
                     buy_gap : this.buy_gap,
-                    sell_gap : this.sell_gap
+                    sell_gap : this.sell_gap,
+                    support_value:this.support_value,
+                    resistant_value:this.resistant_value,
+                    sup_res_stop_loss:this.sup_res_stop_loss,
+                    sup_res_amount:this.sup_res_amount,
+                    sell_1:this.sell_1,
+                    sell_2:this.sell_2,
+                    normal_amount:this.normal_amount,
+                    normal_buy_zone:this.normal_buy_zone,
+                    normal_target_1:this.normal_target_1,
+                    normal_target_2:this.normal_target_2,
+                    normal_stop_value:this.normal_stop_value,
+                    normal_percentage_value:this.normal_percentage_value
                 })
                 .then(docRef => {
                     this.$router.push({ name: 'view-bot', params: { bot_id: this.bot_id }})
@@ -550,7 +797,7 @@ span.bot_name {
     margin-right: 75px;
 }
 
-#three-indicator-setting,#common-setting {
+#common-setting,#durian-setting,#sup_res-setting,#durian-indicator-setting{
     display: none;
 }
 

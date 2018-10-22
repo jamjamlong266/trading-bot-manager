@@ -51,6 +51,36 @@
                     <p>Trading Pair: {{ durian_trading_pair }}</p>
                 </li>
             </div>
+            <div id="sup_res-setting">
+                <li class="collection-item">
+                    <p>Support Value : {{ support_value }}</p>
+                    <p>Resistant Value : {{ resistant_value }}</p>
+                    <p>Amount : {{ sup_res_amount }}</p>
+                </li>
+                <li class="collection-item">
+                    <p>Stop Loss: {{ sup_res_stop_loss }}</p>
+                    <p>First Sell Value: {{ sell_1 }}</p>
+                    <p>Second Sell Value: {{ sell_2 }}</p>
+                </li>
+                <li class="collection-item">
+                    <p>Trading Pair: {{ trading_pair }}</p>
+                </li>
+            </div>
+            <div id="normal-setting">
+                <li class="collection-item">
+                    <p>Buy Zone : {{ normal_buy_zone }}</p>
+                    <p>Amount : {{ normal_amount }}</p>
+                    <p>Percentage : {{ normal_percentage_value }}</p>
+                </li>
+                <li class="collection-item">
+                    <p>Target 1: {{ normal_target_1 }}</p>
+                    <p>Target 2: {{ normal_target_2 }}</p>
+                    <p>Stop Loss: {{ normal_stop_value }}</p>
+                </li>
+                <li class="collection-item">
+                    <p>Trading Pair: {{ trading_pair }}</p>
+                </li>
+            </div>
 
         </ul>
         
@@ -97,7 +127,19 @@ export default {
             durian_amount:null,
             durian_exchange: null,
             durian_trading_pair:null,
-            checkbox:null
+            checkbox:null,
+            support_value:null,
+            resistant_value:null,
+            sup_res_stop_loss:null,
+            sup_res_amount:null,
+            sell_1:null,
+            sell_2:null,
+            normal_amount:null,
+            normal_buy_zone:null,
+            normal_target_1:null,
+            normal_target_2:null,
+            normal_stop_value:null,
+            normal_percentage_value:null
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -128,7 +170,19 @@ export default {
                     vm.durian_trading_pair = doc.data().durian_trading_pair,
                     vm.bot_id = doc.data().bot_id,
                     vm.bot_name = doc.data().bot_name,
-                    vm.checkbox = doc.data().checkbox
+                    vm.checkbox = doc.data().checkbox,
+                    vm.support_value = doc.data().support_value,
+                    vm.resistant_value = doc.data().resistant_value,
+                    vm.sup_res_stop_loss = doc.data().sup_res_stop_loss,
+                    vm.sup_res_amount = doc.data().sup_res_amount,
+                    vm.sell_1 = doc.data().sell_1,
+                    vm.sell_2 = doc.data().sell_2,
+                    vm.normal_amount= doc.data().normal_amount,
+                    vm.normal_buy_zone= doc.data().normal_buy_zone,
+                    vm.normal_target_1= doc.data().normal_target_1,
+                    vm.normal_target_2= doc.data().normal_target_2,
+                    vm.normal_stop_value = doc.data().normal_stop_value,
+                    vm.normal_percentage_value = doc.data().normal_percentage_value
 
                     console.log(vm.indicator)
                     if(vm.indicator == "rsi") {
@@ -141,7 +195,10 @@ export default {
                         document.getElementById("three-common-setting").style.display = "block"
                     } else if (vm.indicator == "durian") {
                         document.getElementById("durian-setting").style.display = "block"
-
+                    }else if (vm.indicator == "sup_res") {
+                        document.getElementById("sup_res-setting").style.display = "block"
+                    }else if (vm.indicator == "normal") {
+                        document.getElementById("normal-setting").style.display = "block"
                     }
                 })
             })
@@ -179,7 +236,19 @@ export default {
                     this.durian_amount = doc.data().durian_amount,
                     this.buy_pend = doc.data().buy_pend,
                     this.sell_pend = doc.data().sell_pend,
-                    this.checkbox = doc.data().checkbox
+                    this.checkbox = doc.data().checkbox,
+                    this.support_value = doc.data().support_value,
+                    this.resistant_value = doc.data().resistant_value,
+                    this.sup_res_stop_loss = doc.data().sup_res_stop_loss,
+                    this.sup_res_amount = doc.data().sup_res_amount,
+                    this.sell_1 = doc.data().sell_1,
+                    this.sell_2 = doc.data().sell_2,
+                    this.normal_amount= doc.data().normal_amount,
+                    this.ormal_buy_zone= doc.data().normal_buy_zone,
+                    this.normal_target_1= doc.data().normal_target_1,
+                    this.normal_target_2= doc.data().normal_target_2,
+                    this.normal_stop_value = doc.data().normal_stop_value,
+                    this.normal_percentage_value = doc.data().normal_percentage_value
                 })
             })
         },
@@ -202,7 +271,7 @@ export default {
 </script>
 
 <style scoped>
-    #rsi, #ema,#three-common-setting, #durian-setting{
+    #rsi, #ema,#three-common-setting, #durian-setting,#sup_res-setting,#normal-setting{
         display:none;
     }
 </style>
