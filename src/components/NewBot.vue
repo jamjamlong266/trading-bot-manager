@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="input-field col s12 holder">
                         <h6>Indicator</h6>
-                        <p>
+                        <!-- <p>
                             <label class="container">
                                 <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('rsi')" disabled />
                                 <span class="checkmark"></span>
@@ -49,7 +49,7 @@
                                 <span class="checkmark"></span>
                                 <span>Support/Resistant</span>
                             </label>
-                        </p>
+                        </p> -->
                         <p>
                             <label class="container">
                                 <input class="indicator" name="indicator" type="radio"  v-model="indic" @change="myFunction('normal')" checked/>
@@ -216,8 +216,8 @@
                         <p>Exchange :</p>
                             <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
                                 <option value="BINANCE">BINANCE</option>
-                                <option value="COINEX">COINEX</option>
-                                <option value="JONVI">JONVI</option>
+                                <!-- <option value="COINEX">COINEX</option>
+                                <option value="JONVI">JONVI</option> -->
                             </select>
                         </div>
                     </div>
