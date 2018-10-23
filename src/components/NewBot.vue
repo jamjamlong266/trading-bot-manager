@@ -252,6 +252,7 @@
                                 <option value="BCHeMYR">BCH/eMYR</option>
                                 <option value="ETHeMYR">ETH/eMYR</option>
                                 <option value="USDTeMYR">USDT/eMYR</option>
+                                <option value="BAT/BTC">BAT/BTC</option>
                             </select>    
                         </div>
                     </div>
