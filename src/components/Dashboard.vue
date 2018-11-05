@@ -6,7 +6,7 @@
             </li>
 
             <li v-for="bot in bots" v-bind:key="bot.id" class="collection-item">
-               {{bot.bot_name}}: {{bot.indicator}}
+               {{bot.bot_name}}: {{bot.checkbox}}
 
                <router-link class="secondary-content" v-bind:to="{name: 'view-bot', params: {bot_id: bot.bot_id}}">
                    <i class="fa fa-eye"></i>
@@ -50,7 +50,8 @@ export default {
                     'indicator': doc.data().indicator,
                     'api_key': doc.data().api_key,
                     'secret_key': doc.data().secret_key,
-                    'bot_name': doc.data().bot_name
+                    'bot_name': doc.data().bot_name,
+                    'checkbox': doc.data().checkbox
                 }
                 this.bots.push(data)
             })

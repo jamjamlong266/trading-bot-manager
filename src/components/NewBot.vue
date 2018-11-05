@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 
-                <div class="row" id="rsi-setting">
+                <!-- <div class="row" id="rsi-setting">
                     <div class="col s12">
                         <div class="card">
                             <div class="card-content">
@@ -110,10 +110,10 @@
                                 <p class="setting-label">Percentage</p>
                                 <input class="setting-input" type="number" placeholder="Percentage" v-model="percentage_value" required>                                
 
-                                <br>
+                                <br> -->
                                 <!-- <p class="setting-label">Exit Value</p>
                                 <input class="setting-input" type="text" placeholder="Exit Value" v-model="exit_value" required> -->
-                                <p class="setting-label">Amount</p>
+                                <!-- <p class="setting-label">Amount</p>
                                 <input class="setting-input" type="number" placeholder="Amount" v-model="amount" required>
 
                                 <p class="setting-label">Stop Loss</p>
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row" id="normal-setting">
                     <div class="col s12">
                         <div class="card">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="durian-setting">
+                <!-- <div class="row" id="durian-setting">
                     <div class="col s12">
                         <div class="card">
                             <div class="card-content">
@@ -206,13 +206,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div id="three-indicator-setting">
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
                             <select class="exchange" v-model="exchange" style="height:50px; display:block" required>
-                                <option value="BINANCE">BINANCE</option>
+                                <option value="BINANCE">BINANCE</option> 
                                 <!-- <option value="COINEX">COINEX</option>
                                 <option value="JONVI">JONVI</option> -->
                             </select>
@@ -236,9 +236,10 @@
 
                     <div class="row" id="trading_pair">
                         <div class="input-field col s12">
-                            <p>Trading Pair :</p>
-                            <select class="trading_pair" v-model="trading_pair" style="height:50px; display:block" required>
-                                <option value="BTCUSDT">BTC/USDT</option>
+                            <input  class="trading_pair" type="text" v-model="trading_pair" required>
+                            <label>TRADING PAIR</label>
+                            <!-- <select class="trading_pair" type="text" v-model="trading_pair" required> -->
+                                <!-- <option value="BTCUSDT">BTC/USDT</option>
                                 <option value="BCHUSDT">BCH/USDT</option>
                                 <option value="JEUSDT">JE/USDT</option>
                                 <option value="ETHUSDT">ETH/USDT</option>
@@ -252,14 +253,12 @@
                                 <option value="BCHeMYR">BCH/eMYR</option>
                                 <option value="ETHeMYR">ETH/eMYR</option>
                                 <option value="USDTeMYR">USDT/eMYR</option>
-                                <option value="BAT/BTC">BAT/BTC</option>
-                            </select>    
+                                <option value="BAT/BTC">BAT/BTC</option> -->
+                            <!-- </select>     -->
                         </div>
                     </div>
-
-                    
                 </div>
-                <div id="durian-indicator-setting">
+                <!-- <div id="durian-indicator-setting">
                     <div class="row">
                         <div class="input-field col s12">
                         <p>Exchange :</p>
@@ -307,7 +306,7 @@
                             </select>    
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="input-field col s12">
                         <p>
@@ -339,37 +338,37 @@ export default {
     data () {
         return {
             indicator: "normal",
-            overbought_value: null,
-            oversold_value: null,
-            entry_value: null,
-            amount:null,
-            percentage_value: null,
-            stop_value: null,
+            // overbought_value: null,
+            // oversold_value: null,
+            // entry_value: null,
+            // amount:null,
+            // percentage_value: null,
+            // stop_value: null,
             exchange: null,
             api_key: null,
             secret_key: null,
             trading_pair: null,
-            ema_value1: null,
-            ema_value2:null,
+            // ema_value1: null,
+            // ema_value2:null,
             bot_id: null,
             uid: null,
             bot_name : null,
             indic:null,
-            gap_value:null,
-            buy_pend:null,
-            sell_pend:null,
-            durian_amount:null,
-            durian_exchange:null,
-            durian_trading_pair:null,
+            // gap_value:null,
+            // buy_pend:null,
+            // sell_pend:null,
+            // durian_amount:null,
+            // durian_exchange:null,
+            // durian_trading_pair:null,
             checkbox:null,
-            buy_gap:null,
-            sell_gap: null,
-            support_value:null,
-            resistant_value:null,
-            sup_res_stop_loss:null,
-            sup_res_amount:null,
-            sell_1:null,
-            sell_2:null,
+            // buy_gap:null,
+            // sell_gap: null,
+            // support_value:null,
+            // resistant_value:null,
+            // sup_res_stop_loss:null,
+            // sup_res_amount:null,
+            // sell_1:null,
+            // sell_2:null,
             normal_amount:null,
             normal_buy_zone:null,
             normal_target_1:null,
@@ -381,72 +380,72 @@ export default {
     methods: {
         myFunction: function(evt){
             this.$emit("change", evt);
-            if (evt == "rsi") {
-                document.getElementById("rsi-setting").style.display = "block"
-                document.getElementById("common-setting").style.display = "block"
-                document.getElementById("ema-setting").style.display = "none"
-                document.getElementById("durian-setting").style.display = "none"
-                document.getElementById("durian-indicator-setting").style.display = "none"
-                document.getElementById("three-indicator-setting").style.display = "block"
-                document.getElementById("trading_pair").style.display = "block"
-                document.getElementById("durian_trading_pair").style.display = "none"
-                document.getElementById("sup_res-setting").style.display = "none"
-                document.getElementById("normal-setting").style.display = "none"
-            } else if(evt == "ema") {
-                document.getElementById("ema-setting").style.display = "block"
-                document.getElementById("common-setting").style.display = "block"
-                document.getElementById("rsi-setting").style.display = "none"
-                document.getElementById("durian-setting").style.display = "none"
-                document.getElementById("durian-indicator-setting").style.display = "none"
-                document.getElementById("three-indicator-setting").style.display = "block"
-                document.getElementById("trading_pair").style.display = "block"
-                document.getElementById("durian_trading_pair").style.display = "none"
-                document.getElementById("sup_res-setting").style.display = "none"
-                document.getElementById("normal-setting").style.display = "none"
-            } else if(evt=="sma"){
-                document.getElementById("common-setting").style.display = "block"
-                document.getElementById("ema-setting").style.display = "none"
-                document.getElementById("durian-setting").style.display = "none"
-                document.getElementById("rsi-setting").style.display = "none"
-                document.getElementById("durian-indicator-setting").style.display = "none"
-                document.getElementById("three-indicator-setting").style.display = "block"
-                document.getElementById("trading_pair").style.display = "block"
-                document.getElementById("durian_trading_pair").style.display = "none"
-                document.getElementById("sup_res-setting").style.display = "none"
-                document.getElementById("normal-setting").style.display = "none"
-            }else if(evt=="durian"){
-                document.getElementById("durian-setting").style.display = "block"
-                document.getElementById("common-setting").style.display = "none"
-                document.getElementById("ema-setting").style.display = "none"
-                document.getElementById("rsi-setting").style.display = "none"
-                document.getElementById("three-indicator-setting").style.display = "none"
-                document.getElementById("durian-indicator-setting").style.display = "block"
-                document.getElementById("trading_pair").style.display = "none"
-                document.getElementById("durian_trading_pair").style.display = "block"
-                document.getElementById("sup_res-setting").style.display = "none"
-                document.getElementById("normal-setting").style.display = "none"
+            // if (evt == "rsi") {
+            //     document.getElementById("rsi-setting").style.display = "block"
+            //     document.getElementById("common-setting").style.display = "block"
+            //     document.getElementById("ema-setting").style.display = "none"
+            //     document.getElementById("durian-setting").style.display = "none"
+            //     document.getElementById("durian-indicator-setting").style.display = "none"
+            //     document.getElementById("three-indicator-setting").style.display = "block"
+            //     document.getElementById("trading_pair").style.display = "block"
+            //     document.getElementById("durian_trading_pair").style.display = "none"
+            //     document.getElementById("sup_res-setting").style.display = "none"
+            //     document.getElementById("normal-setting").style.display = "none"
+            // } else if(evt == "ema") {
+            //     document.getElementById("ema-setting").style.display = "block"
+            //     document.getElementById("common-setting").style.display = "block"
+            //     document.getElementById("rsi-setting").style.display = "none"
+            //     document.getElementById("durian-setting").style.display = "none"
+            //     document.getElementById("durian-indicator-setting").style.display = "none"
+            //     document.getElementById("three-indicator-setting").style.display = "block"
+            //     document.getElementById("trading_pair").style.display = "block"
+            //     document.getElementById("durian_trading_pair").style.display = "none"
+            //     document.getElementById("sup_res-setting").style.display = "none"
+            //     document.getElementById("normal-setting").style.display = "none"
+            // } else if(evt=="sma"){
+            //     document.getElementById("common-setting").style.display = "block"
+            //     document.getElementById("ema-setting").style.display = "none"
+            //     document.getElementById("durian-setting").style.display = "none"
+            //     document.getElementById("rsi-setting").style.display = "none"
+            //     document.getElementById("durian-indicator-setting").style.display = "none"
+            //     document.getElementById("three-indicator-setting").style.display = "block"
+            //     document.getElementById("trading_pair").style.display = "block"
+            //     document.getElementById("durian_trading_pair").style.display = "none"
+            //     document.getElementById("sup_res-setting").style.display = "none"
+            //     document.getElementById("normal-setting").style.display = "none"
+            // }else if(evt=="durian"){
+            //     document.getElementById("durian-setting").style.display = "block"
+            //     document.getElementById("common-setting").style.display = "none"
+            //     document.getElementById("ema-setting").style.display = "none"
+            //     document.getElementById("rsi-setting").style.display = "none"
+            //     document.getElementById("three-indicator-setting").style.display = "none"
+            //     document.getElementById("durian-indicator-setting").style.display = "block"
+            //     document.getElementById("trading_pair").style.display = "none"
+            //     document.getElementById("durian_trading_pair").style.display = "block"
+            //     document.getElementById("sup_res-setting").style.display = "none"
+            //     document.getElementById("normal-setting").style.display = "none"
 
-            }else if(evt=="sup_res"){
-                document.getElementById("durian-setting").style.display = "none"
-                document.getElementById("common-setting").style.display = "none"
-                document.getElementById("ema-setting").style.display = "none"
-                document.getElementById("rsi-setting").style.display = "none"
+            // }else if(evt=="sup_res"){
+            //     document.getElementById("durian-setting").style.display = "none"
+            //     document.getElementById("common-setting").style.display = "none"
+            //     document.getElementById("ema-setting").style.display = "none"
+            //     document.getElementById("rsi-setting").style.display = "none"
+            //     document.getElementById("three-indicator-setting").style.display = "block"
+            //     document.getElementById("durian-indicator-setting").style.display = "none"
+            //     document.getElementById("trading_pair").style.display = "block"
+            //     document.getElementById("durian_trading_pair").style.display = "none"
+            //     document.getElementById("sup_res-setting").style.display = "block"
+            //     document.getElementById("normal-setting").style.display = "none"
+            if(evt=="normal"){
+                // document.getElementById("durian-setting").style.display = "none"
+                // document.getElementById("common-setting").style.display = "none"
+                // document.getElementById("ema-setting").style.display = "none"
+                // document.getElementById("rsi-setting").style.display = "none"
                 document.getElementById("three-indicator-setting").style.display = "block"
-                document.getElementById("durian-indicator-setting").style.display = "none"
+                // document.getElementById("durian-indicator-setting").style.display = "none"
                 document.getElementById("trading_pair").style.display = "block"
-                document.getElementById("durian_trading_pair").style.display = "none"
-                document.getElementById("sup_res-setting").style.display = "block"
-                document.getElementById("normal-setting").style.display = "none"
-            }else if(evt=="normal"){
-                document.getElementById("durian-setting").style.display = "none"
-                document.getElementById("common-setting").style.display = "none"
-                document.getElementById("ema-setting").style.display = "none"
-                document.getElementById("rsi-setting").style.display = "none"
-                document.getElementById("three-indicator-setting").style.display = "block"
-                document.getElementById("durian-indicator-setting").style.display = "none"
-                document.getElementById("trading_pair").style.display = "block"
-                document.getElementById("durian_trading_pair").style.display = "none"
-                document.getElementById("sup_res-setting").style.display = "none"
+                // document.getElementById("durian_trading_pair").style.display = "none"
+                // document.getElementById("sup_res-setting").style.display = "none"
                 document.getElementById("normal-setting").style.display = "block"
             }
             this.indicator = evt
@@ -460,227 +459,227 @@ export default {
             const username = firebase.auth().currentUser
             console.log("USERNAME : ", username)
             console.log(this.indicator)
-            if(this.indicator == "rsi"){
+            // if(this.indicator == "rsi"){
+            //     this.indicator = this.indicator,
+            //     this.overbought_value = parseFloat( this.overbought_value),
+            //     this.oversold_value = parseFloat(this.oversold_value),
+            //     this.entry_value = parseFloat(this.entry_value),
+            //     this.amount = parseFloat(this.amount),
+            //     //this.exit_value = this.exit_value,
+            //     this.percentage_value = parseFloat(this.percentage_value),
+            //     this.stop_value = parseFloat(this.stop_value),
+            //     this.exchange = this.exchange,
+            //     this.api_key = this.api_key,
+            //     this.secret_key = this.secret_key,
+            //     this.trading_pair = this.trading_pair,
+            //     this.ema_value1 = 0,
+            //     this.ema_value2 = 0,
+            //     this.bot_id = autoId,
+            //     this.uid = firebase.auth().currentUser.uid,
+            //     this.bot_name = this.bot_name,
+            //     this.gap_value  = 0,
+            //     this.buy_pend  = 0,
+            //     this.sell_pend  = 0,
+            //     this.durian_amount  = 0,
+            //     this.durian_exchange = 0,
+            //     this.durian_trading_pair = 0,
+            //     this.checkbox = this.checkbox,
+            //     this.buy_gap = 0,
+            //     this.sell_gap = 0,
+            //     this.support_value=0,
+            //     this.resistant_value=0,
+            //     this.sup_res_stop_loss=0,
+            //     this.sup_res_amount=0,
+            //     this.sell_1=0,
+            //     this.sell_2=0,
+            //     this.normal_amount=0,
+            //     this.normal_buy_zone=0,
+            //     this.normal_target_1=0,
+            //     this.normal_target_2=0,
+            //     this.normal_stop_value=0
+            // }else if(this.indicator == "ema"){
+            //     this.icator = this.indicator,
+            //     this.overbought_value = 0,
+            //     this.oversold_value = 0,
+            //     this.entry_value = parseFloat(this.entry_value),
+            //     this.amount = parseFloat(this.amount),
+            //     //this.exit_value = this.exit_value,
+            //     this.percentage_value = parseFloat(this.percentage_value),
+            //     this.stop_value = parseFloat(this.stop_value),
+            //     this.exchange = this.exchange,
+            //     this.api_key = this.api_key,
+            //     this.secret_key = this.secret_key,
+            //     this.trading_pair = this.trading_pair,
+            //     this.ema_value1 = parseFloat(this.ema_value1),
+            //     this.ema_value2 = parseFloat(this.ema_value2),
+            //     this.bot_id = autoId,
+            //     this.uid = firebase.auth().currentUser.uid,
+            //     this.bot_name = this.bot_name,
+            //     this.gap_value  = 0,
+            //     this.buy_pend  = 0,
+            //     this.sell_pend  = 0,
+            //     this.durian_amount  = 0,
+            //     this.durian_exchange = 0,
+            //     this.durian_trading_pair = 0,
+            //     this.checkbox = this.checkbox,
+            //     this.buy_gap = 0,
+            //     this.sell_gap = 0,
+            //     this.support_value=0,
+            //     this.resistant_value=0,
+            //     this.sup_res_stop_loss=0,
+            //     this.sup_res_amount=0,
+            //     this.sell_1=0,
+            //     this.sell_2=0,
+            //     this.normal_amount=0,
+            //     this.normal_buy_zone=0,
+            //     this.normal_target_1=0,
+            //     this.normal_target_2=0,
+            //     this.normal_stop_value=0
+            // }else if(this.indicator == "sma"){
+            //     this.indicator = this.indicator,
+            //     this.overbought_value = 0,
+            //     this.oversold_value = 0,
+            //     this.entry_value = parseFloat(this.entry_value),
+            //     this.amount = parseFloat(this.amount),
+            //     //this.exit_value = this.exit_value,
+            //     this.percentage_value = parseFloat(this.percentage_value),
+            //     this.stop_value = parseFloat(this.stop_value),
+            //     this.exchange = this.exchange,
+            //     this.api_key = this.api_key,
+            //     this.secret_key = this.secret_key,
+            //     this.trading_pair = this.trading_pair,
+            //     this.ema_value1 = 0,
+            //     this.ema_value2 = 0,
+            //     this.bot_id = autoId,
+            //     this.uid = firebase.auth().currentUser.uid,
+            //     this.bot_name = this.bot_name,
+            //     this.gap_value  = 0,
+            //     this.buy_pend  = 0,
+            //     this.sell_pend  = 0,
+            //     this.durian_amount  = 0,
+            //     this.durian_exchange = 0,
+            //     this.durian_trading_pair = 0,
+            //     this.checkbox = this.checkbox,
+            //     this.buy_gap = 0,
+            //     this.sell_gap = 0,
+            //     this.support_value=0,
+            //     this.resistant_value=0,
+            //     this.sup_res_stop_loss=0,
+            //     this.sup_res_amount=0,
+            //     this.sell_1=0,
+            //     this.sell_2=0,
+            //     this.normal_amount=0,
+            //     this.normal_buy_zone=0,
+            //     this.normal_target_1=0,
+            //     this.normal_target_2=0,
+            //     this.normal_stop_value=0
+            // }else if(this.indicator == "durian"){
+            //     this.indicator = this.indicator,
+            //     this.overbought_value = 0,
+            //     this.oversold_value = 0,
+            //     this.entry_value = 0,
+            //     this.amount = 0,
+            //     //this.exit_value = 0,
+            //     this.percentage_value = 0,
+            //     this.stop_value = 0,
+            //     this.exchange = 0,
+            //     this.api_key = this.api_key,
+            //     this.secret_key = this.secret_key,
+            //     this.trading_pair = 0,
+            //     this.ema_value1 = 0,
+            //     this.ema_value2 = 0
+            //     this.bot_id = autoId,
+            //     this.uid = firebase.auth().currentUser.uid,
+            //     this.bot_name = this.bot_name,
+            //     this.gap_value  = parseFloat(this.gap_value),
+            //     this.buy_pend  =parseFloat( this.buy_pend),
+            //     this.sell_pend  = parseFloat(this.sell_pend),
+            //     this.durian_amount  = parseFloat(this.durian_amount),
+            //     this.durian_exchange = this.durian_exchange,
+            //     this.durian_trading_pair = this.durian_trading_pair,
+            //     this.checkbox = this.checkbox,
+            //     this.buy_gap = parseFloat(this.buy_gap),
+            //     this.sell_gap = parseFloat(this.sell_gap),
+            //     this.support_value=0,
+            //     this.resistant_value=0,
+            //     this.sup_res_stop_loss=0,
+            //     this.sup_res_amount=0,
+            //     this.sell_1=0,
+            //     this.sell_2=0,
+            //     this.normal_amount=0,
+            //     this.normal_buy_zone=0,
+            //     this.normal_target_1=0,
+            //     this.normal_target_2=0,
+            //     this.normal_stop_value=0
+            // }else if(this.indicator == "sup_res"){
+            //     this.indicator = this.indicator,
+            //     this.overbought_value = 0,
+            //     this.oversold_value = 0,
+            //     this.entry_value = 0,
+            //     this.amount = 0,
+            //     this.percentage_value = 0,
+            //     this.stop_value = 0,
+            //     this.exchange = this.exchange,
+            //     this.api_key = this.api_key,
+            //     this.secret_key = this.secret_key,
+            //     this.trading_pair = this.trading_pair,
+            //     this.ema_value1 = 0,
+            //     this.ema_value2 = 0,
+            //     this.bot_id = autoId,
+            //     this.uid = firebase.auth().currentUser.uid,
+            //     this.bot_name = this.bot_name,
+            //     this.gap_value  = 0,
+            //     this.buy_pend  = 0,
+            //     this.sell_pend  = 0,
+            //     this.durian_amount  = 0,
+            //     this.durian_exchange = 0,
+            //     this.durian_trading_pair = 0,
+            //     this.checkbox = this.checkbox,
+            //     this.buy_gap = 0,
+            //     this.sell_gap = 0,
+            //     this.support_value=parseFloat(this.support_value),
+            //     this.resistant_value=parseFloat(this.resistant_value),
+            //     this.sup_res_stop_loss=parseFloat(this.sup_res_stop_loss),
+            //     this.sup_res_amount=parseFloat(this.sup_res_amount),
+            //     this.sell_1=parseFloat(this.sell_1),
+            //     this.sell_2=parseFloat(this.sell_2),
+            //     this.normal_amount=0,
+            //     this.normal_buy_zone=0,
+            //     this.normal_target_1=0,
+            //     this.normal_target_2=0,
+            //     this.normal_stop_value=0
+            if(this.indicator == "normal"){
                 this.indicator = this.indicator,
-                this.overbought_value = parseFloat( this.overbought_value),
-                this.oversold_value = parseFloat(this.oversold_value),
-                this.entry_value = parseFloat(this.entry_value),
-                this.amount = parseFloat(this.amount),
-                //this.exit_value = this.exit_value,
-                this.percentage_value = parseFloat(this.percentage_value),
-                this.stop_value = parseFloat(this.stop_value),
+                // this.overbought_value = 0,
+                // this.oversold_value = 0,
+                // this.entry_value = 0,
+                // this.amount = 0,
+                // this.percentage_value = 0,
+                // this.stop_value = 0,
                 this.exchange = this.exchange,
                 this.api_key = this.api_key,
                 this.secret_key = this.secret_key,
                 this.trading_pair = this.trading_pair,
-                this.ema_value1 = 0,
-                this.ema_value2 = 0,
+                // this.ema_value1 = 0,
+                // this.ema_value2 = 0,
                 this.bot_id = autoId,
                 this.uid = firebase.auth().currentUser.uid,
                 this.bot_name = this.bot_name,
-                this.gap_value  = 0,
-                this.buy_pend  = 0,
-                this.sell_pend  = 0,
-                this.durian_amount  = 0,
-                this.durian_exchange = 0,
-                this.durian_trading_pair = 0,
+                // this.gap_value  = 0,
+                // this.buy_pend  = 0,
+                // this.sell_pend  = 0,
+                // this.durian_amount  = 0,
+                // this.durian_exchange = 0,
+                // this.durian_trading_pair = 0,
                 this.checkbox = this.checkbox,
-                this.buy_gap = 0,
-                this.sell_gap = 0,
-                this.support_value=0,
-                this.resistant_value=0,
-                this.sup_res_stop_loss=0,
-                this.sup_res_amount=0,
-                this.sell_1=0,
-                this.sell_2=0,
-                this.normal_amount=0,
-                this.normal_buy_zone=0,
-                this.normal_target_1=0,
-                this.normal_target_2=0,
-                this.normal_stop_value=0
-            }else if(this.indicator == "ema"){
-                this.icator = this.indicator,
-                this.overbought_value = 0,
-                this.oversold_value = 0,
-                this.entry_value = parseFloat(this.entry_value),
-                this.amount = parseFloat(this.amount),
-                //this.exit_value = this.exit_value,
-                this.percentage_value = parseFloat(this.percentage_value),
-                this.stop_value = parseFloat(this.stop_value),
-                this.exchange = this.exchange,
-                this.api_key = this.api_key,
-                this.secret_key = this.secret_key,
-                this.trading_pair = this.trading_pair,
-                this.ema_value1 = parseFloat(this.ema_value1),
-                this.ema_value2 = parseFloat(this.ema_value2),
-                this.bot_id = autoId,
-                this.uid = firebase.auth().currentUser.uid,
-                this.bot_name = this.bot_name,
-                this.gap_value  = 0,
-                this.buy_pend  = 0,
-                this.sell_pend  = 0,
-                this.durian_amount  = 0,
-                this.durian_exchange = 0,
-                this.durian_trading_pair = 0,
-                this.checkbox = this.checkbox,
-                this.buy_gap = 0,
-                this.sell_gap = 0,
-                this.support_value=0,
-                this.resistant_value=0,
-                this.sup_res_stop_loss=0,
-                this.sup_res_amount=0,
-                this.sell_1=0,
-                this.sell_2=0,
-                this.normal_amount=0,
-                this.normal_buy_zone=0,
-                this.normal_target_1=0,
-                this.normal_target_2=0,
-                this.normal_stop_value=0
-            }else if(this.indicator == "sma"){
-                this.indicator = this.indicator,
-                this.overbought_value = 0,
-                this.oversold_value = 0,
-                this.entry_value = parseFloat(this.entry_value),
-                this.amount = parseFloat(this.amount),
-                //this.exit_value = this.exit_value,
-                this.percentage_value = parseFloat(this.percentage_value),
-                this.stop_value = parseFloat(this.stop_value),
-                this.exchange = this.exchange,
-                this.api_key = this.api_key,
-                this.secret_key = this.secret_key,
-                this.trading_pair = this.trading_pair,
-                this.ema_value1 = 0,
-                this.ema_value2 = 0,
-                this.bot_id = autoId,
-                this.uid = firebase.auth().currentUser.uid,
-                this.bot_name = this.bot_name,
-                this.gap_value  = 0,
-                this.buy_pend  = 0,
-                this.sell_pend  = 0,
-                this.durian_amount  = 0,
-                this.durian_exchange = 0,
-                this.durian_trading_pair = 0,
-                this.checkbox = this.checkbox,
-                this.buy_gap = 0,
-                this.sell_gap = 0,
-                this.support_value=0,
-                this.resistant_value=0,
-                this.sup_res_stop_loss=0,
-                this.sup_res_amount=0,
-                this.sell_1=0,
-                this.sell_2=0,
-                this.normal_amount=0,
-                this.normal_buy_zone=0,
-                this.normal_target_1=0,
-                this.normal_target_2=0,
-                this.normal_stop_value=0
-            }else if(this.indicator == "durian"){
-                this.indicator = this.indicator,
-                this.overbought_value = 0,
-                this.oversold_value = 0,
-                this.entry_value = 0,
-                this.amount = 0,
-                //this.exit_value = 0,
-                this.percentage_value = 0,
-                this.stop_value = 0,
-                this.exchange = 0,
-                this.api_key = this.api_key,
-                this.secret_key = this.secret_key,
-                this.trading_pair = 0,
-                this.ema_value1 = 0,
-                this.ema_value2 = 0
-                this.bot_id = autoId,
-                this.uid = firebase.auth().currentUser.uid,
-                this.bot_name = this.bot_name,
-                this.gap_value  = parseFloat(this.gap_value),
-                this.buy_pend  =parseFloat( this.buy_pend),
-                this.sell_pend  = parseFloat(this.sell_pend),
-                this.durian_amount  = parseFloat(this.durian_amount),
-                this.durian_exchange = this.durian_exchange,
-                this.durian_trading_pair = this.durian_trading_pair,
-                this.checkbox = this.checkbox,
-                this.buy_gap = parseFloat(this.buy_gap),
-                this.sell_gap = parseFloat(this.sell_gap),
-                this.support_value=0,
-                this.resistant_value=0,
-                this.sup_res_stop_loss=0,
-                this.sup_res_amount=0,
-                this.sell_1=0,
-                this.sell_2=0,
-                this.normal_amount=0,
-                this.normal_buy_zone=0,
-                this.normal_target_1=0,
-                this.normal_target_2=0,
-                this.normal_stop_value=0
-            }else if(this.indicator == "sup_res"){
-                this.indicator = this.indicator,
-                this.overbought_value = 0,
-                this.oversold_value = 0,
-                this.entry_value = 0,
-                this.amount = 0,
-                this.percentage_value = 0,
-                this.stop_value = 0,
-                this.exchange = this.exchange,
-                this.api_key = this.api_key,
-                this.secret_key = this.secret_key,
-                this.trading_pair = this.trading_pair,
-                this.ema_value1 = 0,
-                this.ema_value2 = 0,
-                this.bot_id = autoId,
-                this.uid = firebase.auth().currentUser.uid,
-                this.bot_name = this.bot_name,
-                this.gap_value  = 0,
-                this.buy_pend  = 0,
-                this.sell_pend  = 0,
-                this.durian_amount  = 0,
-                this.durian_exchange = 0,
-                this.durian_trading_pair = 0,
-                this.checkbox = this.checkbox,
-                this.buy_gap = 0,
-                this.sell_gap = 0,
-                this.support_value=parseFloat(this.support_value),
-                this.resistant_value=parseFloat(this.resistant_value),
-                this.sup_res_stop_loss=parseFloat(this.sup_res_stop_loss),
-                this.sup_res_amount=parseFloat(this.sup_res_amount),
-                this.sell_1=parseFloat(this.sell_1),
-                this.sell_2=parseFloat(this.sell_2),
-                this.normal_amount=0,
-                this.normal_buy_zone=0,
-                this.normal_target_1=0,
-                this.normal_target_2=0,
-                this.normal_stop_value=0
-            }else if(this.indicator == "normal"){
-                this.indicator = this.indicator,
-                this.overbought_value = 0,
-                this.oversold_value = 0,
-                this.entry_value = 0,
-                this.amount = 0,
-                this.percentage_value = 0,
-                this.stop_value = 0,
-                this.exchange = this.exchange,
-                this.api_key = this.api_key,
-                this.secret_key = this.secret_key,
-                this.trading_pair = this.trading_pair,
-                this.ema_value1 = 0,
-                this.ema_value2 = 0,
-                this.bot_id = autoId,
-                this.uid = firebase.auth().currentUser.uid,
-                this.bot_name = this.bot_name,
-                this.gap_value  = 0,
-                this.buy_pend  = 0,
-                this.sell_pend  = 0,
-                this.durian_amount  = 0,
-                this.durian_exchange = 0,
-                this.durian_trading_pair = 0,
-                this.checkbox = this.checkbox,
-                this.buy_gap = 0,
-                this.sell_gap = 0,
-                this.support_value=0,
-                this.resistant_value=0,
-                this.sup_res_stop_loss=0,
-                this.sup_res_amount=0,
-                this.sell_1=0,
-                this.sell_2=0,
+                // this.buy_gap = 0,
+                // this.sell_gap = 0,
+                // this.support_value=0,
+                // this.resistant_value=0,
+                // this.sup_res_stop_loss=0,
+                // this.sup_res_amount=0,
+                // this.sell_1=0,
+                // this.sell_2=0,
                 this.normal_amount=parseFloat(this.normal_amount),
                 this.normal_buy_zone=parseFloat(this.normal_buy_zone),
                 this.normal_target_1=parseFloat(this.normal_target_1),
@@ -688,40 +687,42 @@ export default {
                 this.normal_stop_value=parseFloat(this.normal_stop_value)
             }
 
-            if (this.normal_stop_value != null && this.normal_target_2 != null && this.normal_target_1 != null && this.normal_buy_zone != null && this.normal_amount != null && this.sell_2 != null && this.sell_1 != null && this.sup_res_amount != null && this.sup_res_stop_loss != null && this.resistant_value != null && this.support_value !=null && this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
+            // if (this.normal_stop_value != null && this.normal_target_2 != null && this.normal_target_1 != null && this.normal_buy_zone != null && this.normal_amount != null && this.sell_2 != null && this.sell_1 != null && this.sup_res_amount != null && this.sup_res_stop_loss != null && this.resistant_value != null && this.support_value !=null && this.indicator != null && this.buy_gap != null &&this.sell_gap != null &&this.durian_amount != null &&this.durian_exchange != null && this.durian_trading_pair != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null && this.gap_value != null && this.buy_pend !=null && this.sell_pend != null&& this.stop_value != null && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null && this.ema_value1 != null &&this.ema_value2!=null&& this.percentage_value != null && this.amount != null&& this.entry_value!= null && this.oversold_value != null && this.overbought_value !=null ) {
+            //     db.collection('trading_bot').add({
+            if (this.normal_stop_value != null && this.normal_target_2 != null && this.normal_target_1 != null && this.normal_buy_zone != null && this.normal_amount != null && this.indicator != null && this.checkbox != null&& this.bot_id != null && this.bot_name != null  && this.exchange !=null && this.api_key != null && this.secret_key != null && this.trading_pair != null  ) {
                 db.collection('trading_bot').add({
                     indicator: this.indicator,
-                    overbought_value: this.overbought_value,
-                    oversold_value: this.oversold_value,
-                    entry_value: this.entry_value,
-                    amount:this.amount,
+                    // overbought_value: this.overbought_value,
+                    // oversold_value: this.oversold_value,
+                    // entry_value: this.entry_value,
+                    // amount:this.amount,
                     //exit_value: this.exit_value,
-                    percentage_value: this.percentage_value,
-                    stop_value: this.stop_value,
+                    // percentage_value: this.percentage_value,
+                    // stop_value: this.stop_value,
                     exchange: this.exchange,
                     api_key: this.api_key,
                     secret_key: this.secret_key,
                     trading_pair: this.trading_pair,
-                    ema_value1: this.ema_value1,
-                    ema_value2: this.ema_value2,
+                    // ema_value1: this.ema_value1,
+                    // ema_value2: this.ema_value2,
                     bot_id: autoId,
                     uid: firebase.auth().currentUser.uid,
                     bot_name:this.bot_name,
-                    gap_value :this.gap_value,
-                    buy_pend : this.buy_pend,
-                    sell_pend : this.sell_pend,
-                    durian_amount : this.durian_amount,
-                    durian_exchange : this.durian_exchange,
-                    durian_trading_pair: this.durian_trading_pair,
+                    // gap_value :this.gap_value,
+                    // buy_pend : this.buy_pend,
+                    // sell_pend : this.sell_pend,
+                    // durian_amount : this.durian_amount,
+                    // durian_exchange : this.durian_exchange,
+                    // durian_trading_pair: this.durian_trading_pair,
                     checkbox : this.checkbox,
-                    buy_gap : this.buy_gap,
-                    sell_gap : this.sell_gap,
-                    support_value:this.support_value,
-                    resistant_value:this.resistant_value,
-                    sup_res_stop_loss:this.sup_res_stop_loss,
-                    sup_res_amount:this.sup_res_amount,
-                    sell_1:this.sell_1,
-                    sell_2:this.sell_2,
+                    // buy_gap : this.buy_gap,
+                    // sell_gap : this.sell_gap,
+                    // support_value:this.support_value,
+                    // resistant_value:this.resistant_value,
+                    // sup_res_stop_loss:this.sup_res_stop_loss,
+                    // sup_res_amount:this.sup_res_amount,
+                    // sell_1:this.sell_1,
+                    // sell_2:this.sell_2,
                     normal_amount:this.normal_amount,
                     normal_buy_zone:this.normal_buy_zone,
                     normal_target_1:this.normal_target_1,
@@ -752,9 +753,9 @@ export default {
     display:inline-block
 }
 
-#rsi-setting, #ema-setting {
+/* #rsi-setting, #ema-setting {
     display:none;
-}
+} */
 
 p.setting-label {
     margin-right: 10px;
@@ -787,7 +788,7 @@ span.bot_name {
     margin-right: 75px;
 }
 
-#common-setting,#durian-setting,#sup_res-setting,#durian-indicator-setting{
+#common-setting,#durian-setting{
     display: none;
 }
 
